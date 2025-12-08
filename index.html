@@ -535,6 +535,16 @@
             flex: 1;
         }
         
+        .gallery-image-container {
+            position: relative;
+            background: var(--gray-100);
+            border-radius: 8px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .gallery-main-image {
             width: 100%;
             max-height: 50vh;
@@ -543,33 +553,67 @@
             background: var(--gray-100);
         }
         
+        .gallery-image-count {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
         .gallery-thumbnails {
             display: flex;
             gap: 8px;
             margin-top: 16px;
             overflow-x: auto;
-            padding-bottom: 4px;
+            padding: 4px 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gray-300) transparent;
+        }
+        
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 3px;
         }
         
         .gallery-thumbnail {
-            width: 64px;
-            height: 64px;
+            width: 72px;
+            height: 72px;
             border-radius: 6px;
             object-fit: cover;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 2px solid var(--gray-200);
             opacity: 0.7;
-            transition: opacity 0.15s, border-color 0.15s;
+            transition: opacity 0.15s, border-color 0.15s, transform 0.15s;
             flex-shrink: 0;
+            background: var(--gray-100);
         }
         
         .gallery-thumbnail:hover {
             opacity: 1;
+            transform: scale(1.05);
         }
         
         .gallery-thumbnail.active {
             border-color: var(--primary);
             opacity: 1;
+        }
+        
+        .gallery-thumbnail.error {
+            display: none;
         }
         
         .gallery-info {
@@ -614,28 +658,64 @@
             .gallery-container {
                 max-width: 100%;
                 max-height: 100vh;
+                height: 100vh;
                 border-radius: 0;
             }
             
             .gallery-header {
-                padding: 14px 16px;
+                padding: 12px 16px;
             }
             
             .gallery-title {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
+            }
+            
+            .gallery-scientific {
+                font-size: 0.8rem;
             }
             
             .gallery-body {
-                padding: 16px;
+                padding: 12px;
             }
             
-            .gallery-thumbnail {
-                width: 56px;
-                height: 56px;
+            .gallery-image-container {
+                min-height: 180px;
             }
             
             .gallery-main-image {
-                max-height: 40vh;
+                max-height: 35vh;
+            }
+            
+            .gallery-thumbnails {
+                gap: 6px;
+                margin-top: 12px;
+                padding: 6px 0;
+            }
+            
+            .gallery-thumbnail {
+                width: 54px;
+                height: 54px;
+            }
+            
+            .gallery-info {
+                margin-top: 14px;
+                padding-top: 14px;
+            }
+            
+            .gallery-info h4 {
+                font-size: 0.9rem;
+            }
+            
+            .gallery-info p,
+            .gallery-features ul {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Touch hint for mobile */
+        @media (hover: none) {
+            .gallery-thumbnail:hover {
+                transform: none;
             }
         }
     </style>
@@ -2112,7 +2192,10 @@
                     <button class="gallery-close" aria-label="Close">&times;</button>
                 </div>
                 <div class="gallery-body">
-                    <img class="gallery-main-image" src="" alt="">
+                    <div class="gallery-image-container">
+                        <img class="gallery-main-image" src="" alt="">
+                        <span class="gallery-image-count"></span>
+                    </div>
                     <div class="gallery-thumbnails"></div>
                     <div class="gallery-info">
                         <h4>Description</h4>
@@ -2125,9 +2208,153 @@
         document.body.appendChild(galleryOverlay);
         
         // Additional images per species (key: scientific name lowercase)
+        // Using Wikipedia Special:FilePath which always resolves to the actual image
         const speciesGalleryImages = {
-            // Add additional images here, e.g.:
-            // 'didemnum vexillum': ['url1.jpg', 'url2.jpg']
+            // === INVASIVE SPECIES ===
+            'didemnum vexillum': [
+                'https://upload.wikimedia.org/wikipedia/commons/5/5c/Didemnum_vexillum_at_Holyhead%2C_Wales.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/0/02/Didemnum_vexillum_on_Georges_Bank.jpg'
+            ],
+            'perna viridis': [
+                'https://upload.wikimedia.org/wikipedia/commons/f/f5/Mussel_Perna_viridis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/48/Green_mussel_at_Thane_Creek.jpg'
+            ],
+            'asterias amurensis': [
+                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Asterias_amurensis_at_Monterey_Bay_Aquarium.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/7/7f/Asterias_amurensis_002.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/0/07/Asterias_amurensis_-_Northern_Pacific_Seastar.jpg'
+            ],
+            'sabella spallanzanii': [
+                'https://upload.wikimedia.org/wikipedia/commons/4/4b/Sabella_spallanzanii_%28Mediterranean_fanworm%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/9/9b/Sabella_spallanzanii_Lazaretto.JPG',
+                'https://upload.wikimedia.org/wikipedia/commons/e/ef/Sabella_spallanzanii_%28crown%29.jpg'
+            ],
+            'styela clava': [
+                'https://upload.wikimedia.org/wikipedia/commons/e/e0/Styela_clava_at_Fishguard%2C_Wales.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/a/a7/Styela_clava.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/1e/Clubbed_tunicate_Styela_clava_at_Swansea.jpg'
+            ],
+            'carcinus maenas': [
+                'https://upload.wikimedia.org/wikipedia/commons/7/76/Carcinus_maenas.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Strandkrabbe_Carcinus_maenas.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/9/9a/Carcinus_maenas_female.jpg'
+            ],
+            'undaria pinnatifida': [
+                'https://upload.wikimedia.org/wikipedia/commons/8/8e/Undaria_pinnatifida_%28Wakame%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/a/a0/Wakame_cultivation_in_Sanriku.JPG',
+                'https://upload.wikimedia.org/wikipedia/commons/f/fe/Undaria_pinnatifida_-_1.jpg'
+            ],
+            'ciona intestinalis': [
+                'https://upload.wikimedia.org/wikipedia/commons/9/9b/Ciona_intestinalis_Koren%26Danielssen.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/8/80/Ciona_intestinalis_group.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/4b/Sea_vase_%28Ciona_intestinalis%29.jpg'
+            ],
+            'perna perna': [
+                'https://upload.wikimedia.org/wikipedia/commons/d/d5/Perna_perna_001.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/8/8c/Brown_mussel_Perna_perna.jpg'
+            ],
+            'perna canaliculus': [
+                'https://upload.wikimedia.org/wikipedia/commons/7/7b/Perna_canaliculus.JPG',
+                'https://upload.wikimedia.org/wikipedia/commons/4/4a/New_Zealand_Greenshell_Mussels.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/9/9e/Greenlip_mussel.jpg'
+            ],
+            'mytilopsis sallei': [
+                'https://upload.wikimedia.org/wikipedia/commons/5/5f/Mytilopsis_sallei_001.jpg'
+            ],
+            'dreissena polymorpha': [
+                'https://upload.wikimedia.org/wikipedia/commons/8/87/Dreissena_polymorpha2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/d/d8/Dreissena_polymorpha3.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/5/54/Zebra_mussel_GLERL_1.jpg'
+            ],
+            'dreissena bugensis': [
+                'https://upload.wikimedia.org/wikipedia/commons/3/38/Dreissena_rostriformis_bugensis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/e/e8/Quagga_mussel_%28Dreissena_bugensis%29_-_journal.pone.0000770.g001-A.png'
+            ],
+            'magallana gigas': [
+                'https://upload.wikimedia.org/wikipedia/commons/9/9c/Crassostrea_gigas_p1040848.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/10/Pacific_oyster_Japan.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/a/ae/Oesterbank_Texel_2015.jpg'
+            ],
+            'styela plicata': [
+                'https://upload.wikimedia.org/wikipedia/commons/1/19/Styela_plicata.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/0/03/Styela_plicata_kz2.jpg'
+            ],
+            'eriocheir sinensis': [
+                'https://upload.wikimedia.org/wikipedia/commons/1/1a/Eriocheir_sinensis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Chinese_mitten_crab_%28Eriocheir_sinensis%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/44/Chinesische_Wollhandkrabbe_Eriocheir_sinensis.jpg'
+            ],
+            'rhithropanopeus harrisii': [
+                'https://upload.wikimedia.org/wikipedia/commons/4/44/Rhithropanopeus_harrisii.jpg'
+            ],
+            'charybdis japonica': [
+                'https://upload.wikimedia.org/wikipedia/commons/3/36/Charybdis_japonica_-_National_Museum_of_Nature_and_Science%2C_Tokyo.jpg'
+            ],
+            'mnemiopsis leidyi': [
+                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Mnemiopsis_leidyi_-_two_swimming.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/d/d7/Mnemiopsis_leidyi_1.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/1d/Sea_walnut%2C_bioluminescence.jpg'
+            ],
+            'caulerpa taxifolia': [
+                'https://upload.wikimedia.org/wikipedia/commons/c/ca/Caulerpa_taxifolia.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Caulerpa_taxifolia_-_Aquazoo.jpg'
+            ],
+            
+            // === NATIVE/COMMON SPECIES ===
+            'balanidae family': [
+                'https://upload.wikimedia.org/wikipedia/commons/8/8e/Balanus_balanus.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/1b/Balanus_improvisus2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Acorn_barnacles_Balanus_glandula.jpg'
+            ],
+            'galeolaria caespitosa': [
+                'https://upload.wikimedia.org/wikipedia/commons/8/80/Galeolaria_caespitosa.JPG',
+                'https://upload.wikimedia.org/wikipedia/commons/d/da/Serpulidae_-_Galeolaria_caespitosa.JPG'
+            ],
+            'bugula spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/3/38/Bugula_neritina.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/9/94/Bugula_neritina_Moss_animal.jpg'
+            ],
+            'mytilus galloprovincialis': [
+                'https://upload.wikimedia.org/wikipedia/commons/f/f9/Mytilus_galloprovincialis_01.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/6/65/Mytilus_galloprovincialis_shell.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/b/bf/Mediterranean_mussel.jpg'
+            ],
+            'ulva australis': [
+                'https://upload.wikimedia.org/wikipedia/commons/2/20/Ulva_lactuca.jpeg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/4d/Sea_lettuce_in_Gullmarn_fjord.jpg'
+            ],
+            'demospongiae': [
+                'https://upload.wikimedia.org/wikipedia/commons/3/31/Halichondria_panicea.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/1/1c/Hymeniacidon_perlevis.jpg'
+            ],
+            'megabalanus spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/0/0a/Megabalanus_tintinnabulum_%28giant_acorn_barnacle%29.jpg'
+            ],
+            'serpulidae & spirorbidae': [
+                'https://upload.wikimedia.org/wikipedia/commons/6/64/Serpula_vermicularis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/c/cb/Spirorbis_spirorbis_on_Fucus_serratus.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/a/a9/Serpulid_tubeworms.jpg'
+            ],
+            'watersipora spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/4/42/Watersipora_subtorquata.jpg'
+            ],
+            'sargassum spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/f/f0/Sargassum_muticum.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/7/79/Sargassum_weeds_closeup.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/c/cc/Sargassum_%28Sargassum_sp.%29.jpg'
+            ],
+            'amphipoda': [
+                'https://upload.wikimedia.org/wikipedia/commons/4/44/Gammarus_roeseli.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/7/7c/Gammarus_pulex_2_beentree.jpg'
+            ],
+            'isopoda': [
+                'https://upload.wikimedia.org/wikipedia/commons/5/50/Idotea_baltica_Helgoland.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/4/49/Ligia_oceanica_Flickr.jpg'
+            ],
+            'patiriella spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/f/f7/Patiriella_regularis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/5/5b/Patiriella_calcar.jpg'
+            ]
         };
         
         // Open gallery modal
@@ -2150,30 +2377,92 @@
             
             const mainImg = galleryOverlay.querySelector('.gallery-main-image');
             const thumbs = galleryOverlay.querySelector('.gallery-thumbnails');
+            const countBadge = galleryOverlay.querySelector('.gallery-image-count');
             thumbs.innerHTML = '';
+            
+            // Track loaded images and current position
+            let loadedImages = [];
+            let currentIndex = 0;
+            
+            const updateCount = () => {
+                const visibleThumbs = thumbs.querySelectorAll('.gallery-thumbnail:not(.error)');
+                if (visibleThumbs.length > 1) {
+                    const activeIndex = Array.from(visibleThumbs).findIndex(t => t.classList.contains('active'));
+                    countBadge.textContent = `${activeIndex + 1} / ${visibleThumbs.length}`;
+                    countBadge.style.display = 'block';
+                } else {
+                    countBadge.style.display = 'none';
+                }
+            };
             
             if (images.length > 0) {
                 mainImg.src = images[0];
                 mainImg.alt = name;
                 mainImg.style.display = 'block';
                 
-                // Only show thumbnails if multiple images
-                if (images.length > 1) {
-                    images.forEach((src, i) => {
-                        const thumb = document.createElement('img');
-                        thumb.className = 'gallery-thumbnail' + (i === 0 ? ' active' : '');
-                        thumb.src = src;
-                        thumb.alt = `${name} ${i + 1}`;
-                        thumb.onclick = () => {
-                            mainImg.src = src;
-                            thumbs.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
-                            thumb.classList.add('active');
-                        };
-                        thumbs.appendChild(thumb);
-                    });
-                }
+                // Handle main image errors - try next image
+                mainImg.onerror = function() {
+                    const nextThumb = thumbs.querySelector('.gallery-thumbnail:not(.error):not(.active)');
+                    if (nextThumb) {
+                        nextThumb.click();
+                    } else {
+                        this.style.display = 'none';
+                    }
+                };
+                
+                // Create thumbnails
+                images.forEach((src, i) => {
+                    const thumb = document.createElement('img');
+                    thumb.className = 'gallery-thumbnail' + (i === 0 ? ' active' : '');
+                    thumb.src = src;
+                    thumb.alt = `${name} ${i + 1}`;
+                    
+                    // Handle thumbnail load success
+                    thumb.onload = function() {
+                        loadedImages.push(src);
+                        updateCount();
+                    };
+                    
+                    // Handle thumbnail load errors
+                    thumb.onerror = function() {
+                        this.classList.add('error');
+                        // If this was the active thumbnail, select next available
+                        if (this.classList.contains('active')) {
+                            const nextThumb = thumbs.querySelector('.gallery-thumbnail:not(.error)');
+                            if (nextThumb) nextThumb.click();
+                        }
+                        updateCount();
+                    };
+                    
+                    thumb.onclick = () => {
+                        if (thumb.classList.contains('error')) return;
+                        mainImg.src = src;
+                        mainImg.style.display = 'block';
+                        thumbs.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                        updateCount();
+                    };
+                    thumbs.appendChild(thumb);
+                });
+                
+                // Initial count (will update as images load)
+                setTimeout(updateCount, 100);
+                
+                // Keyboard navigation for gallery
+                galleryOverlay.onkeydown = (e) => {
+                    const visibleThumbs = Array.from(thumbs.querySelectorAll('.gallery-thumbnail:not(.error)'));
+                    const activeThumb = thumbs.querySelector('.gallery-thumbnail.active');
+                    const activeIdx = visibleThumbs.indexOf(activeThumb);
+                    
+                    if (e.key === 'ArrowLeft' && activeIdx > 0) {
+                        visibleThumbs[activeIdx - 1].click();
+                    } else if (e.key === 'ArrowRight' && activeIdx < visibleThumbs.length - 1) {
+                        visibleThumbs[activeIdx + 1].click();
+                    }
+                };
             } else {
                 mainImg.style.display = 'none';
+                countBadge.style.display = 'none';
             }
             
             galleryOverlay.classList.add('active');
@@ -2203,6 +2492,35 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && galleryOverlay.classList.contains('active')) closeGallery();
         });
+        
+        // Touch swipe support for mobile image navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const imageContainer = galleryOverlay.querySelector('.gallery-image-container');
+        
+        imageContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        imageContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            const thumbs = galleryOverlay.querySelector('.gallery-thumbnails');
+            const visibleThumbs = Array.from(thumbs.querySelectorAll('.gallery-thumbnail:not(.error)'));
+            const activeThumb = thumbs.querySelector('.gallery-thumbnail.active');
+            const activeIdx = visibleThumbs.indexOf(activeThumb);
+            
+            if (Math.abs(diff) > swipeThreshold && activeThumb && activeIdx !== -1) {
+                if (diff > 0 && activeIdx < visibleThumbs.length - 1) {
+                    // Swipe left - next image
+                    visibleThumbs[activeIdx + 1].click();
+                } else if (diff < 0 && activeIdx > 0) {
+                    // Swipe right - previous image
+                    visibleThumbs[activeIdx - 1].click();
+                }
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
