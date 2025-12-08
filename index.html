@@ -2208,152 +2208,227 @@
         document.body.appendChild(galleryOverlay);
         
         // Additional images per species (key: scientific name lowercase)
-        // Using Wikipedia Special:FilePath which always resolves to the actual image
         const speciesGalleryImages = {
             // === INVASIVE SPECIES ===
             'didemnum vexillum': [
-                'https://upload.wikimedia.org/wikipedia/commons/5/5c/Didemnum_vexillum_at_Holyhead%2C_Wales.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/0/02/Didemnum_vexillum_on_Georges_Bank.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Didemnum_vexillum.jpg/800px-Didemnum_vexillum.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Colonial_sea_squirt_%28Didemnum_vexillum%29.jpg/800px-Colonial_sea_squirt_%28Didemnum_vexillum%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Didemnum_vexillum_on_gravel.jpg/800px-Didemnum_vexillum_on_gravel.jpg'
             ],
             'perna viridis': [
-                'https://upload.wikimedia.org/wikipedia/commons/f/f5/Mussel_Perna_viridis.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/48/Green_mussel_at_Thane_Creek.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Perna_viridis_002.jpg/800px-Perna_viridis_002.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Green_mussel.jpg/800px-Green_mussel.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Asian_green_mussel.jpg/800px-Asian_green_mussel.jpg'
             ],
             'asterias amurensis': [
-                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Asterias_amurensis_at_Monterey_Bay_Aquarium.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/7/7f/Asterias_amurensis_002.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/0/07/Asterias_amurensis_-_Northern_Pacific_Seastar.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Asterias_amurensis.jpg/800px-Asterias_amurensis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Northern_Pacific_seastar.jpg/800px-Northern_Pacific_seastar.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Asterias_amurensis_underside.jpg/800px-Asterias_amurensis_underside.jpg'
             ],
             'sabella spallanzanii': [
-                'https://upload.wikimedia.org/wikipedia/commons/4/4b/Sabella_spallanzanii_%28Mediterranean_fanworm%29.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/9/9b/Sabella_spallanzanii_Lazaretto.JPG',
-                'https://upload.wikimedia.org/wikipedia/commons/e/ef/Sabella_spallanzanii_%28crown%29.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sabella_spallanzanii_Lazaretto.jpg/800px-Sabella_spallanzanii_Lazaretto.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sabella_spallanzanii_%28Mediterranean_fanworm%29.jpg/800px-Sabella_spallanzanii_%28Mediterranean_fanworm%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/European_fan_worm_Sabella_spallanzanii.jpg/800px-European_fan_worm_Sabella_spallanzanii.jpg'
             ],
             'styela clava': [
-                'https://upload.wikimedia.org/wikipedia/commons/e/e0/Styela_clava_at_Fishguard%2C_Wales.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/a/a7/Styela_clava.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/1e/Clubbed_tunicate_Styela_clava_at_Swansea.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Styela_clava.jpg/800px-Styela_clava.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Styela_clava_at_Kircubbin.jpg/800px-Styela_clava_at_Kircubbin.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Clubbed_tunicate_Styela_clava.jpg/800px-Clubbed_tunicate_Styela_clava.jpg'
             ],
             'carcinus maenas': [
-                'https://upload.wikimedia.org/wikipedia/commons/7/76/Carcinus_maenas.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Strandkrabbe_Carcinus_maenas.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/9/9a/Carcinus_maenas_female.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Carcinus_maenas.jpg/800px-Carcinus_maenas.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Carcinus_maenas_2.jpg/800px-Carcinus_maenas_2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/European_shore_crab.jpg/800px-European_shore_crab.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Green_crab_Carcinus_maenas.jpg/800px-Green_crab_Carcinus_maenas.jpg'
             ],
             'undaria pinnatifida': [
-                'https://upload.wikimedia.org/wikipedia/commons/8/8e/Undaria_pinnatifida_%28Wakame%29.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/a/a0/Wakame_cultivation_in_Sanriku.JPG',
-                'https://upload.wikimedia.org/wikipedia/commons/f/fe/Undaria_pinnatifida_-_1.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Undaria_pinnatifida_wakame.jpg/800px-Undaria_pinnatifida_wakame.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wakame_seaweed.jpg/800px-Wakame_seaweed.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Undaria_pinnatifida_on_rope.jpg/800px-Undaria_pinnatifida_on_rope.jpg'
             ],
             'ciona intestinalis': [
-                'https://upload.wikimedia.org/wikipedia/commons/9/9b/Ciona_intestinalis_Koren%26Danielssen.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/8/80/Ciona_intestinalis_group.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/4b/Sea_vase_%28Ciona_intestinalis%29.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Ciona_intestinalis.jpg/800px-Ciona_intestinalis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ciona_intestinalis_2.jpg/800px-Ciona_intestinalis_2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Vase_tunicate.jpg/800px-Vase_tunicate.jpg'
             ],
             'perna perna': [
-                'https://upload.wikimedia.org/wikipedia/commons/d/d5/Perna_perna_001.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/8/8c/Brown_mussel_Perna_perna.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Perna_perna_brown_mussel.jpg/800px-Perna_perna_brown_mussel.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Brown_mussels.jpg/800px-Brown_mussels.jpg'
             ],
             'perna canaliculus': [
-                'https://upload.wikimedia.org/wikipedia/commons/7/7b/Perna_canaliculus.JPG',
-                'https://upload.wikimedia.org/wikipedia/commons/4/4a/New_Zealand_Greenshell_Mussels.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/9/9e/Greenlip_mussel.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Perna_canaliculus.jpg/800px-Perna_canaliculus.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/New_Zealand_green-lipped_mussel.jpg/800px-New_Zealand_green-lipped_mussel.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Greenshell_mussel.jpg/800px-Greenshell_mussel.jpg'
             ],
             'mytilopsis sallei': [
-                'https://upload.wikimedia.org/wikipedia/commons/5/5f/Mytilopsis_sallei_001.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mytilopsis_sallei.jpg/800px-Mytilopsis_sallei.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Black-striped_mussel.jpg/800px-Black-striped_mussel.jpg'
+            ],
+            'brachidontes pharaonis': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Brachidontes_pharaonis.jpg/800px-Brachidontes_pharaonis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Variable_mussel.jpg/800px-Variable_mussel.jpg'
             ],
             'dreissena polymorpha': [
-                'https://upload.wikimedia.org/wikipedia/commons/8/87/Dreissena_polymorpha2.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/d/d8/Dreissena_polymorpha3.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/5/54/Zebra_mussel_GLERL_1.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Dreissena_polymorpha3.jpg/800px-Dreissena_polymorpha3.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Zebra_mussel_%28Dreissena_polymorpha%29.jpg/800px-Zebra_mussel_%28Dreissena_polymorpha%29.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Zebra_mussels_clustered.jpg/800px-Zebra_mussels_clustered.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Dreissena_polymorpha_shell.jpg/800px-Dreissena_polymorpha_shell.jpg'
             ],
             'dreissena bugensis': [
-                'https://upload.wikimedia.org/wikipedia/commons/3/38/Dreissena_rostriformis_bugensis.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/e/e8/Quagga_mussel_%28Dreissena_bugensis%29_-_journal.pone.0000770.g001-A.png'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Quagga_mussel.jpg/800px-Quagga_mussel.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Dreissena_bugensis.jpg/800px-Dreissena_bugensis.jpg'
+            ],
+            'varicorbula gibba': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Corbula_gibba.jpg/800px-Corbula_gibba.jpg'
             ],
             'magallana gigas': [
-                'https://upload.wikimedia.org/wikipedia/commons/9/9c/Crassostrea_gigas_p1040848.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/10/Pacific_oyster_Japan.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/a/ae/Oesterbank_Texel_2015.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pacific_oyster_Japan.jpg/800px-Pacific_oyster_Japan.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Crassostrea_gigas_p1040848.jpg/800px-Crassostrea_gigas_p1040848.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Magallana_gigas_shell.jpg/800px-Magallana_gigas_shell.jpg'
+            ],
+            'didemnum perlucidum': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Didemnum_perlucidum.jpg/800px-Didemnum_perlucidum.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/White_colonial_tunicate.jpg/800px-White_colonial_tunicate.jpg'
             ],
             'styela plicata': [
-                'https://upload.wikimedia.org/wikipedia/commons/1/19/Styela_plicata.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/0/03/Styela_plicata_kz2.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Styela_plicata_kz2.jpg/800px-Styela_plicata_kz2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Styela_plicata.jpg/800px-Styela_plicata.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pleated_sea_squirt.jpg/800px-Pleated_sea_squirt.jpg'
             ],
             'eriocheir sinensis': [
-                'https://upload.wikimedia.org/wikipedia/commons/1/1a/Eriocheir_sinensis.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/c/c5/Chinese_mitten_crab_%28Eriocheir_sinensis%29.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/44/Chinesische_Wollhandkrabbe_Eriocheir_sinensis.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Eriocheir_sinensis.jpg/800px-Eriocheir_sinensis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Chinese_mitten_crab.jpg/800px-Chinese_mitten_crab.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Chinesische_Wollhandkrabbe.jpg/800px-Chinesische_Wollhandkrabbe.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Eriocheir_sinensis_claw.jpg/800px-Eriocheir_sinensis_claw.jpg'
             ],
             'rhithropanopeus harrisii': [
-                'https://upload.wikimedia.org/wikipedia/commons/4/44/Rhithropanopeus_harrisii.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Rhithropanopeus_harrisii.jpg/800px-Rhithropanopeus_harrisii.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Harris_mud_crab.jpg/800px-Harris_mud_crab.jpg'
             ],
             'charybdis japonica': [
-                'https://upload.wikimedia.org/wikipedia/commons/3/36/Charybdis_japonica_-_National_Museum_of_Nature_and_Science%2C_Tokyo.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Charybdis_japonica.jpg/800px-Charybdis_japonica.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Asian_paddle_crab.jpg/800px-Asian_paddle_crab.jpg'
+            ],
+            'blackfordia virginica': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Blackfordia_virginica.jpg/800px-Blackfordia_virginica.jpg'
             ],
             'mnemiopsis leidyi': [
-                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Mnemiopsis_leidyi_-_two_swimming.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/d/d7/Mnemiopsis_leidyi_1.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/1d/Sea_walnut%2C_bioluminescence.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mnemiopsis_leidyi.jpg/800px-Mnemiopsis_leidyi.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Mnemiopsis_leidyi_2.jpg/800px-Mnemiopsis_leidyi_2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Sea_walnut_Mnemiopsis_leidyi.jpg/800px-Sea_walnut_Mnemiopsis_leidyi.jpg'
             ],
             'caulerpa taxifolia': [
-                'https://upload.wikimedia.org/wikipedia/commons/c/ca/Caulerpa_taxifolia.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Caulerpa_taxifolia_-_Aquazoo.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Caulerpa_taxifolia.jpg/800px-Caulerpa_taxifolia.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Caulerpa_taxifolia_Monaco.jpg/800px-Caulerpa_taxifolia_Monaco.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Killer_algae.jpg/800px-Killer_algae.jpg'
+            ],
+            'bonnemaisonia hamifera': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Bonnemaisonia_hamifera.jpg/800px-Bonnemaisonia_hamifera.jpg'
             ],
             
             // === NATIVE/COMMON SPECIES ===
             'balanidae family': [
-                'https://upload.wikimedia.org/wikipedia/commons/8/8e/Balanus_balanus.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/1b/Balanus_improvisus2.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/4e/Acorn_barnacles_Balanus_glandula.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Acorn_barnacles.jpg/800px-Acorn_barnacles.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Balanus_improvisus2.jpg/800px-Balanus_improvisus2.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Barnacles_feeding.jpg/800px-Barnacles_feeding.jpg'
             ],
             'galeolaria caespitosa': [
-                'https://upload.wikimedia.org/wikipedia/commons/8/80/Galeolaria_caespitosa.JPG',
-                'https://upload.wikimedia.org/wikipedia/commons/d/da/Serpulidae_-_Galeolaria_caespitosa.JPG'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Galeolaria_caespitosa.jpg/800px-Galeolaria_caespitosa.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sydney_rock_oyster_and_tube_worm.jpg/800px-Sydney_rock_oyster_and_tube_worm.jpg'
             ],
             'bugula spp.': [
-                'https://upload.wikimedia.org/wikipedia/commons/3/38/Bugula_neritina.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/9/94/Bugula_neritina_Moss_animal.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Bugula_neritina.jpg/800px-Bugula_neritina.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bugula_flabellata.jpg/800px-Bugula_flabellata.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bryozoan_Bugula.jpg/800px-Bryozoan_Bugula.jpg'
             ],
             'mytilus galloprovincialis': [
-                'https://upload.wikimedia.org/wikipedia/commons/f/f9/Mytilus_galloprovincialis_01.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/6/65/Mytilus_galloprovincialis_shell.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/b/bf/Mediterranean_mussel.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Mytilus_galloprovincialis.jpg/800px-Mytilus_galloprovincialis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Blue_mussel_Mytilus.jpg/800px-Blue_mussel_Mytilus.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Mediterranean_mussel.jpg/800px-Mediterranean_mussel.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_mussels_clustered.jpg/800px-Blue_mussels_clustered.jpg'
             ],
             'ulva australis': [
-                'https://upload.wikimedia.org/wikipedia/commons/2/20/Ulva_lactuca.jpeg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/4d/Sea_lettuce_in_Gullmarn_fjord.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Ulva_lactuca.jpg/800px-Ulva_lactuca.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Sea_lettuce_Ulva.jpg/800px-Sea_lettuce_Ulva.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Green_seaweed_Ulva.jpg/800px-Green_seaweed_Ulva.jpg'
             ],
             'demospongiae': [
-                'https://upload.wikimedia.org/wikipedia/commons/3/31/Halichondria_panicea.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/1/1c/Hymeniacidon_perlevis.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Encrusting_sponge.jpg/800px-Encrusting_sponge.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Marine_sponge.jpg/800px-Marine_sponge.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Halichondria_panicea.jpg/800px-Halichondria_panicea.jpg'
             ],
             'megabalanus spp.': [
-                'https://upload.wikimedia.org/wikipedia/commons/0/0a/Megabalanus_tintinnabulum_%28giant_acorn_barnacle%29.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Megabalanus_tintinnabulum.jpg/800px-Megabalanus_tintinnabulum.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Large_barnacles.jpg/800px-Large_barnacles.jpg'
+            ],
+            'tetraclita spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Tetraclita_squamosa.jpg/800px-Tetraclita_squamosa.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Volcano_barnacles.jpg/800px-Volcano_barnacles.jpg'
             ],
             'serpulidae & spirorbidae': [
-                'https://upload.wikimedia.org/wikipedia/commons/6/64/Serpula_vermicularis.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/c/cb/Spirorbis_spirorbis_on_Fucus_serratus.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/a/a9/Serpulid_tubeworms.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Serpula_vermicularis.jpg/800px-Serpula_vermicularis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Spirorbis_spirorbis.jpg/800px-Spirorbis_spirorbis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Tube_worms_serpulid.jpg/800px-Tube_worms_serpulid.jpg'
             ],
             'watersipora spp.': [
-                'https://upload.wikimedia.org/wikipedia/commons/4/42/Watersipora_subtorquata.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Watersipora_subtorquata.jpg/800px-Watersipora_subtorquata.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Red_rust_bryozoan.jpg/800px-Red_rust_bryozoan.jpg'
+            ],
+            'celleporaria spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Celleporaria_brunnea.jpg/800px-Celleporaria_brunnea.jpg'
+            ],
+            'cnemidocarpa spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Cnemidocarpa_verrucosa.jpg/800px-Cnemidocarpa_verrucosa.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Solitary_sea_squirt.jpg/800px-Solitary_sea_squirt.jpg'
+            ],
+            'didemnidae (native)': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Colonial_ascidian.jpg/800px-Colonial_ascidian.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Didemnum_molle.jpg/800px-Didemnum_molle.jpg'
+            ],
+            'trichomya hirsuta': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Trichomya_hirsuta.jpg/800px-Trichomya_hirsuta.jpg'
+            ],
+            'septifer bilocularis': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Septifer_bilocularis.jpg/800px-Septifer_bilocularis.jpg'
+            ],
+            'cladophora spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Cladophora_sp.jpg/800px-Cladophora_sp.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Green_hair_algae.jpg/800px-Green_hair_algae.jpg'
+            ],
+            'hincksia spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Brown_filamentous_algae.jpg/800px-Brown_filamentous_algae.jpg'
             ],
             'sargassum spp.': [
-                'https://upload.wikimedia.org/wikipedia/commons/f/f0/Sargassum_muticum.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/7/79/Sargassum_weeds_closeup.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/c/cc/Sargassum_%28Sargassum_sp.%29.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sargassum_muticum.jpg/800px-Sargassum_muticum.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Sargassum_seaweed.jpg/800px-Sargassum_seaweed.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Sargassum_underwater.jpg/800px-Sargassum_underwater.jpg'
+            ],
+            'gracilaria & gelidium spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Gracilaria_sp.jpg/800px-Gracilaria_sp.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Gelidium_sp.jpg/800px-Gelidium_sp.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Red_algae_underwater.jpg/800px-Red_algae_underwater.jpg'
             ],
             'amphipoda': [
-                'https://upload.wikimedia.org/wikipedia/commons/4/44/Gammarus_roeseli.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/7/7c/Gammarus_pulex_2_beentree.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Amphipod.jpg/800px-Amphipod.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Gammarus_pulex.jpg/800px-Gammarus_pulex.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Marine_amphipod.jpg/800px-Marine_amphipod.jpg'
             ],
             'isopoda': [
-                'https://upload.wikimedia.org/wikipedia/commons/5/50/Idotea_baltica_Helgoland.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/4/49/Ligia_oceanica_Flickr.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Idotea_baltica.jpg/800px-Idotea_baltica.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Marine_isopod.jpg/800px-Marine_isopod.jpg'
+            ],
+            'pachygrapsus spp.': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Pachygrapsus_crassipes.jpg/800px-Pachygrapsus_crassipes.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Shore_crab_Pachygrapsus.jpg/800px-Shore_crab_Pachygrapsus.jpg'
             ],
             'patiriella spp.': [
-                'https://upload.wikimedia.org/wikipedia/commons/f/f7/Patiriella_regularis.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/5/5b/Patiriella_calcar.jpg'
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Patiriella_regularis.jpg/800px-Patiriella_regularis.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Cushion_star.jpg/800px-Cushion_star.jpg'
+            ],
+            'multiple taxa': [
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sea_anemone.jpg/800px-Sea_anemone.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Chiton.jpg/800px-Chiton.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Limpets_on_rock.jpg/800px-Limpets_on_rock.jpg'
             ]
         };
         
@@ -2380,15 +2455,12 @@
             const countBadge = galleryOverlay.querySelector('.gallery-image-count');
             thumbs.innerHTML = '';
             
-            // Track loaded images and current position
-            let loadedImages = [];
+            // Track current image index
             let currentIndex = 0;
             
-            const updateCount = () => {
-                const visibleThumbs = thumbs.querySelectorAll('.gallery-thumbnail:not(.error)');
-                if (visibleThumbs.length > 1) {
-                    const activeIndex = Array.from(visibleThumbs).findIndex(t => t.classList.contains('active'));
-                    countBadge.textContent = `${activeIndex + 1} / ${visibleThumbs.length}`;
+            const updateCount = (index) => {
+                if (images.length > 1) {
+                    countBadge.textContent = `${index + 1} / ${images.length}`;
                     countBadge.style.display = 'block';
                 } else {
                     countBadge.style.display = 'none';
@@ -2399,15 +2471,12 @@
                 mainImg.src = images[0];
                 mainImg.alt = name;
                 mainImg.style.display = 'block';
+                updateCount(0);
                 
-                // Handle main image errors - try next image
+                // Handle main image errors
                 mainImg.onerror = function() {
-                    const nextThumb = thumbs.querySelector('.gallery-thumbnail:not(.error):not(.active)');
-                    if (nextThumb) {
-                        nextThumb.click();
-                    } else {
-                        this.style.display = 'none';
-                    }
+                    this.src = '';
+                    this.alt = 'Image not available';
                 };
                 
                 // Create thumbnails
@@ -2417,47 +2486,28 @@
                     thumb.src = src;
                     thumb.alt = `${name} ${i + 1}`;
                     
-                    // Handle thumbnail load success
-                    thumb.onload = function() {
-                        loadedImages.push(src);
-                        updateCount();
-                    };
-                    
                     // Handle thumbnail load errors
                     thumb.onerror = function() {
                         this.classList.add('error');
-                        // If this was the active thumbnail, select next available
-                        if (this.classList.contains('active')) {
-                            const nextThumb = thumbs.querySelector('.gallery-thumbnail:not(.error)');
-                            if (nextThumb) nextThumb.click();
-                        }
-                        updateCount();
                     };
                     
                     thumb.onclick = () => {
-                        if (thumb.classList.contains('error')) return;
+                        currentIndex = i;
                         mainImg.src = src;
                         mainImg.style.display = 'block';
                         thumbs.querySelectorAll('.gallery-thumbnail').forEach(t => t.classList.remove('active'));
                         thumb.classList.add('active');
-                        updateCount();
+                        updateCount(i);
                     };
                     thumbs.appendChild(thumb);
                 });
                 
-                // Initial count (will update as images load)
-                setTimeout(updateCount, 100);
-                
                 // Keyboard navigation for gallery
                 galleryOverlay.onkeydown = (e) => {
-                    const visibleThumbs = Array.from(thumbs.querySelectorAll('.gallery-thumbnail:not(.error)'));
-                    const activeThumb = thumbs.querySelector('.gallery-thumbnail.active');
-                    const activeIdx = visibleThumbs.indexOf(activeThumb);
-                    
-                    if (e.key === 'ArrowLeft' && activeIdx > 0) {
-                        visibleThumbs[activeIdx - 1].click();
-                    } else if (e.key === 'ArrowRight' && activeIdx < visibleThumbs.length - 1) {
-                        visibleThumbs[activeIdx + 1].click();
+                    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                        thumbs.children[currentIndex - 1].click();
+                    } else if (e.key === 'ArrowRight' && currentIndex < images.length - 1) {
+                        thumbs.children[currentIndex + 1].click();
                     }
                 };
             } else {
@@ -2507,17 +2557,15 @@
             const swipeThreshold = 50;
             const diff = touchStartX - touchEndX;
             const thumbs = galleryOverlay.querySelector('.gallery-thumbnails');
-            const visibleThumbs = Array.from(thumbs.querySelectorAll('.gallery-thumbnail:not(.error)'));
             const activeThumb = thumbs.querySelector('.gallery-thumbnail.active');
-            const activeIdx = visibleThumbs.indexOf(activeThumb);
             
-            if (Math.abs(diff) > swipeThreshold && activeThumb && activeIdx !== -1) {
-                if (diff > 0 && activeIdx < visibleThumbs.length - 1) {
+            if (Math.abs(diff) > swipeThreshold && activeThumb) {
+                if (diff > 0 && activeThumb.nextElementSibling) {
                     // Swipe left - next image
-                    visibleThumbs[activeIdx + 1].click();
-                } else if (diff < 0 && activeIdx > 0) {
+                    activeThumb.nextElementSibling.click();
+                } else if (diff < 0 && activeThumb.previousElementSibling) {
                     // Swipe right - previous image
-                    visibleThumbs[activeIdx - 1].click();
+                    activeThumb.previousElementSibling.click();
                 }
             }
         }, { passive: true });
