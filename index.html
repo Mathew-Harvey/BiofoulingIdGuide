@@ -409,6 +409,30 @@
             header, .filter-bar, .search-box, nav { display: none; }
             .species-card { break-inside: avoid; page-break-inside: avoid; }
         }
+        
+        /* Image Fallback */
+        .species-image img.error {
+            display: none;
+        }
+        .species-image .placeholder {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0e5ec 0%, #c5ccd6 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+        .species-image img.error + .placeholder {
+            display: flex;
+        }
+        .placeholder-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -482,7 +506,7 @@
                 <div class="species-grid" id="invasive-grid">
                     <!-- Didemnum vexillum -->
                     <div class="species-card invasive" data-name="didemnum vexillum carpet sea squirt ascidian">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Carpet Sea Squirt]</div>
+                        <div class="species-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tunicate_colony_of_Didemnum_vexillum_overgrowing_gravel.JPG/400px-Tunicate_colony_of_Didemnum_vexillum_overgrowing_gravel.JPG" alt="Carpet Sea Squirt - Didemnum vexillum" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -508,7 +532,7 @@
                     
                     <!-- Perna viridis -->
                     <div class="species-card invasive" data-name="perna viridis asian green mussel">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Asian Green Mussel]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Perna_viridis_001.jpg?width=400" alt="Asian Green Mussel - Perna viridis" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -534,7 +558,7 @@
                     
                     <!-- Asterias amurensis -->
                     <div class="species-card invasive" data-name="asterias amurensis northern pacific seastar">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Northern Pacific Seastar]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_1012_Asterias_amurensis_Northern_Pacific_Seastar.jpg?width=400" alt="Northern Pacific Seastar - Asterias amurensis" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -560,7 +584,7 @@
                     
                     <!-- Sabella spallanzanii -->
                     <div class="species-card invasive" data-name="sabella spallanzanii european fan worm polychaete">
-                        <div class="species-image">[PLACEHOLDER IMAGE - European Fan Worm]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Sabella_spallanzanii.jpg?width=400" alt="European Fan Worm - Sabella spallanzanii" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -586,7 +610,7 @@
                     
                     <!-- Styela clava -->
                     <div class="species-card invasive" data-name="styela clava stalked sea squirt ascidian">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Stalked Sea Squirt]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_clava.jpg?width=400" alt="Stalked Sea Squirt - Styela clava" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -612,7 +636,7 @@
                     
                     <!-- Carcinus maenas -->
                     <div class="species-card invasive" data-name="carcinus maenas european shore crab">
-                        <div class="species-image">[PLACEHOLDER IMAGE - European Shore Crab]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Carcinus_maenas.jpg?width=400" alt="European Shore Crab - Carcinus maenas" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -637,7 +661,7 @@
                     
                     <!-- Undaria pinnatifida -->
                     <div class="species-card invasive" data-name="undaria pinnatifida japanese kelp wakame macroalga">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Japanese Kelp]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Undaria_pinnatifida.jpg?width=400" alt="Japanese Kelp Wakame - Undaria pinnatifida" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -662,7 +686,7 @@
                     
                     <!-- Ciona intestinalis -->
                     <div class="species-card invasive" data-name="ciona intestinalis vase tunicate ascidian">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Vase Tunicate]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Ciona_intestinalis.jpg?width=400" alt="Vase Tunicate - Ciona intestinalis" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -685,6 +709,431 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Perna perna -->
+                    <div class="species-card invasive" data-name="perna perna brown mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Perna_perna_shell.jpg?width=400" alt="Brown Mussel - Perna perna" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Brown Mussel</div>
+                                    <div class="species-scientific">Perna perna</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Large brown mussel with heavy fouling potential. Native to Africa and South America. Can reach 90mm.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Dark brown to black shell</li>
+                                    <li>Up to 90mm length</li>
+                                    <li>Forms dense clusters</li>
+                                    <li>Heavy hull fouler</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Perna canaliculus -->
+                    <div class="species-card invasive" data-name="perna canaliculus nz green-lipped mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Greenshell_mussel.jpg?width=400" alt="NZ Green-lipped Mussel - Perna canaliculus" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">NZ Green-lipped Mussel</div>
+                                    <div class="species-scientific">Perna canaliculus</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Large mussel with distinctive green lip on shell margin. Non-native to WA. Hull fouler from New Zealand vessels.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Green lip along shell margin</li>
+                                    <li>Brown-green shell exterior</li>
+                                    <li>Up to 240mm length</li>
+                                    <li>Distinctive green periostracum</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mytilopsis sallei -->
+                    <div class="species-card invasive" data-name="mytilopsis sallei black-striped false mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Mytilopsis_sallei.jpg?width=400" alt="Black-striped False Mussel - Mytilopsis sallei" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Black-striped False Mussel</div>
+                                    <div class="species-scientific">Mytilopsis sallei</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Bivalve</span>
+                            <p class="species-description">Small invasive bivalve. Can tolerate low salinity. Major biofouler in tropical/subtropical ports.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small size (up to 25mm)</li>
+                                    <li>Dark stripes on shell</li>
+                                    <li>Tolerates brackish water</li>
+                                    <li>Forms dense colonies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Brachidontes pharaonis -->
+                    <div class="species-card invasive" data-name="brachidontes pharaonis variable mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Brachidontes_pharaonis_001.jpg?width=400" alt="Variable Mussel - Brachidontes pharaonis" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Variable Mussel</div>
+                                    <div class="species-scientific">Brachidontes pharaonis</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Exotic mussel from Red Sea/Indian Ocean. Lessepsian migrant spreading via Suez Canal. Fouling pest.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Variable colouration</li>
+                                    <li>Ribbed shell surface</li>
+                                    <li>Up to 35mm length</li>
+                                    <li>Intertidal/subtidal zones</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dreissena polymorpha -->
+                    <div class="species-card invasive" data-name="dreissena polymorpha zebra mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Dreissena_polymorpha3.jpg?width=400" alt="Zebra Mussel - Dreissena polymorpha" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Zebra Mussel</div>
+                                    <div class="species-scientific">Dreissena polymorpha</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Bivalve</span>
+                            <p class="species-description">Freshwater pest with potential to foul internal systems. Distinctive zebra-striped pattern. Major infrastructure fouler.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Zebra-like striped pattern</li>
+                                    <li>D-shaped shell</li>
+                                    <li>Up to 50mm length</li>
+                                    <li>Attaches by byssal threads</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dreissena bugensis -->
+                    <div class="species-card invasive" data-name="dreissena bugensis quagga mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Dreissena_bugensis.jpg?width=400" alt="Quagga Mussel - Dreissena bugensis" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Quagga Mussel</div>
+                                    <div class="species-scientific">Dreissena bugensis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Bivalve</span>
+                            <p class="species-description">Freshwater internal system fouler. Similar to zebra mussel but rounder shell. Clogs pipes and infrastructure.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Rounder than zebra mussel</li>
+                                    <li>Pale bands/stripes</li>
+                                    <li>Ventral side convex</li>
+                                    <li>Up to 40mm length</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Varicorbula gibba -->
+                    <div class="species-card invasive" data-name="varicorbula gibba basket clam">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Varicorbula_gibba_01.JPG?width=400" alt="Basket Clam - Varicorbula gibba" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Basket Clam</div>
+                                    <div class="species-scientific">Varicorbula gibba</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Bivalve</span>
+                            <p class="species-description">Introduced clam found in sediments. Opportunistic coloniser in disturbed environments.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small white shells</li>
+                                    <li>Up to 12mm length</li>
+                                    <li>Asymmetric valves</li>
+                                    <li>Lives in soft sediment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Magallana gigas -->
+                    <div class="species-card invasive" data-name="magallana gigas pacific oyster">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Crassostrea_gigas_p1040848.jpg?width=400" alt="Pacific Oyster - Magallana gigas" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Pacific Oyster</div>
+                                    <div class="species-scientific">Magallana gigas</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Bivalve</span>
+                            <p class="species-description">Large oyster that colonises hard structures. Establishes reef-like formations. Significant structure fouler.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Large irregular shell</li>
+                                    <li>Up to 400mm length</li>
+                                    <li>Rough fluted surface</li>
+                                    <li>Cements to hard surfaces</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Didemnum perlucidum -->
+                    <div class="species-card invasive" data-name="didemnum perlucidum white colonial sea squirt">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Didemnum_perlucidum.jpg?width=400" alt="White Colonial Sea Squirt - Didemnum perlucidum" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">White Colonial Sea Squirt</div>
+                                    <div class="species-scientific">Didemnum perlucidum</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Invasive colonial tunicate found in WA. Forms thin translucent white colonies on hulls and infrastructure.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>White/translucent colonies</li>
+                                    <li>Thin encrusting sheets</li>
+                                    <li>Small zooids visible</li>
+                                    <li>Smooth surface texture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Styela plicata -->
+                    <div class="species-card invasive" data-name="styela plicata pleated sea squirt">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_plicata.jpg?width=400" alt="Pleated Sea Squirt - Styela plicata" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Pleated Sea Squirt</div>
+                                    <div class="species-scientific">Styela plicata</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Cosmopolitan solitary tunicate. Common hull fouler worldwide. Distinct pleated/ridged body surface.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Pleated/ridged surface</li>
+                                    <li>Grey-brown colour</li>
+                                    <li>Up to 70mm height</li>
+                                    <li>Solitary, not colonial</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Eriocheir sinensis -->
+                    <div class="species-card invasive" data-name="eriocheir sinensis chinese mitten crab">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Eriocheir_sinensis.jpg?width=400" alt="Chinese Mitten Crab - Eriocheir sinensis" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Chinese Mitten Crab</div>
+                                    <div class="species-scientific">Eriocheir sinensis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Crab</span>
+                            <p class="species-description">Exotic species that can be transported in niche areas. Distinctive furry claws. Catadromous lifecycle.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Dense fur on claws ("mittens")</li>
+                                    <li>Olive-brown carapace</li>
+                                    <li>Up to 80mm carapace width</li>
+                                    <li>Notched forehead</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rhithropanopeus harrisii -->
+                    <div class="species-card invasive" data-name="rhithropanopeus harrisii harris mud crab">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Rhithropanopeus_harrisii.jpg?width=400" alt="Harris Mud Crab - Rhithropanopeus harrisii" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Harris Mud Crab</div>
+                                    <div class="species-scientific">Rhithropanopeus harrisii</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Crab</span>
+                            <p class="species-description">Priority pest crab. Small mud crab that tolerates low salinity. Found in estuarine environments.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small size (up to 25mm)</li>
+                                    <li>Olive-brown colour</li>
+                                    <li>White-tipped claws</li>
+                                    <li>Three spines behind eyes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charybdis japonica -->
+                    <div class="species-card invasive" data-name="charybdis japonica asian paddle crab">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Charybdis_japonica.jpg?width=400" alt="Asian Paddle Crab - Charybdis japonica" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Asian Paddle Crab</div>
+                                    <div class="species-scientific">Charybdis japonica</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Crab</span>
+                            <p class="species-description">Non-native swimming crab. Paddle-like rear legs for swimming. Can shelter in vessel niche areas.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Paddle-shaped rear legs</li>
+                                    <li>Six spines between eyes</li>
+                                    <li>Up to 120mm carapace</li>
+                                    <li>Olive to brown colour</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blackfordia virginica -->
+                    <div class="species-card invasive" data-name="blackfordia virginica brackish hydroid">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Blackfordia_virginica.jpg?width=400" alt="Brackish Hydroid - Blackfordia virginica" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Brackish Hydroid</div>
+                                    <div class="species-scientific">Blackfordia virginica</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Hydroid</span>
+                            <p class="species-description">Introduced hydroid/jellyfish found in estuarine waters. Medusa stage is small bell-shaped jellyfish.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small medusa (up to 22mm)</li>
+                                    <li>Transparent bell</li>
+                                    <li>Polyp stage on fouling</li>
+                                    <li>Tolerates brackish water</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mnemiopsis leidyi -->
+                    <div class="species-card invasive" data-name="mnemiopsis leidyi comb jelly">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Mnemiopsis_leidyi.jpg?width=400" alt="Comb Jelly - Mnemiopsis leidyi" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Comb Jelly</div>
+                                    <div class="species-scientific">Mnemiopsis leidyi</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Comb Jelly</span>
+                            <p class="species-description">Ballast water pest. Gelatinous predator that devastated Black Sea fisheries. Spreads via ballast water.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Transparent gelatinous body</li>
+                                    <li>Eight rows of cilia (combs)</li>
+                                    <li>Up to 120mm length</li>
+                                    <li>Iridescent in light</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Caulerpa taxifolia -->
+                    <div class="species-card invasive" data-name="caulerpa taxifolia feather algae killer algae">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Caulerpa_taxifolia.jpg?width=400" alt="Feather Algae - Caulerpa taxifolia" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Feather Algae / Killer Algae</div>
+                                    <div class="species-scientific">Caulerpa taxifolia</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Macroalga</span>
+                            <p class="species-description">Invasive strain of green algae. Spreads rapidly smothering native species. Can attach to anchor chains.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Bright green feather-like fronds</li>
+                                    <li>Up to 65cm height</li>
+                                    <li>Creeping stolons</li>
+                                    <li>Dense meadow formation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bonnemaisonia hamifera -->
+                    <div class="species-card invasive" data-name="bonnemaisonia hamifera hook weed red algae">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Bonnemaisonia_hamifera.jpg?width=400" alt="Hook Weed - Bonnemaisonia hamifera" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Hook Weed</div>
+                                    <div class="species-scientific">Bonnemaisonia hamifera</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Macroalga</span>
+                            <p class="species-description">Introduced red algae with distinctive hooked branches. Spreads via fragments attaching to fouling.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Red/pink branching fronds</li>
+                                    <li>Hook-like branchlets</li>
+                                    <li>Up to 30cm height</li>
+                                    <li>Pompom-like stage (Trailliella)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -697,7 +1146,7 @@
                 <div class="species-grid" id="native-grid">
                     <!-- Balanidae -->
                     <div class="species-card native" data-name="balanidae acorn barnacles barnacle">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Acorn Barnacles]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Balanus_improvisus.jpg?width=400" alt="Acorn Barnacles - Balanidae" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -721,7 +1170,7 @@
                     
                     <!-- Galeolaria caespitosa -->
                     <div class="species-card native" data-name="galeolaria caespitosa sydney coral tube worm polychaete">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Sydney Coral]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Galeolaria_caespitosa.jpg?width=400" alt="Sydney Coral Tube Worm - Galeolaria caespitosa" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -745,7 +1194,7 @@
                     
                     <!-- Bugula spp. -->
                     <div class="species-card native" data-name="bugula bushy bryozoan bryozoans">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Bushy Bryozoans]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Bugula_neritina.jpg?width=400" alt="Bushy Bryozoans - Bugula spp." style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -769,7 +1218,7 @@
                     
                     <!-- Mytilus galloprovincialis -->
                     <div class="species-card native" data-name="mytilus galloprovincialis blue mussel">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Blue Mussel]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Mytilus_galloprovincialis.jpg?width=400" alt="Blue Mussel - Mytilus galloprovincialis" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -793,7 +1242,7 @@
                     
                     <!-- Ulva australis -->
                     <div class="species-card native" data-name="ulva australis sea lettuce algae">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Sea Lettuce]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Ulva_lactuca.jpeg?width=400" alt="Sea Lettuce - Ulva australis" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -817,7 +1266,7 @@
                     
                     <!-- Demospongiae -->
                     <div class="species-card native" data-name="demospongiae encrusting sponges sponge">
-                        <div class="species-image">[PLACEHOLDER IMAGE - Encrusting Sponges]</div>
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Cliona_celata.jpg?width=400" alt="Encrusting Sponges - Demospongiae" style="width:100%;height:100%;object-fit:cover;"></div>
                         <div class="species-content">
                             <div class="species-header">
                                 <div>
@@ -838,6 +1287,438 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Megabalanus spp. -->
+                    <div class="species-card native" data-name="megabalanus large red barnacles barnacle">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Megabalanus_tintinnabulum.jpg?width=400" alt="Large Red Barnacles - Megabalanus spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Large Red Barnacles</div>
+                                    <div class="species-scientific">Megabalanus spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Barnacle</span>
+                            <p class="species-description">Large conical barnacles with distinctive red/pink colouration. Common on vessel hulls and hard substrates.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Large conical shells</li>
+                                    <li>Red/pink colouration</li>
+                                    <li>Up to 50mm diameter</li>
+                                    <li>Ribbed shell plates</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tetraclita spp. -->
+                    <div class="species-card native" data-name="tetraclita volcano barnacles barnacle">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Tetraclita_squamosa.jpg?width=400" alt="Volcano Barnacles - Tetraclita spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Volcano Barnacles</div>
+                                    <div class="species-scientific">Tetraclita spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Barnacle</span>
+                            <p class="species-description">Distinctive pink/green volcano-shaped barnacles. Common intertidal species on rocky shores and hulls.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Pink/green colouration</li>
+                                    <li>Volcano-like shape</li>
+                                    <li>Four shell plates</li>
+                                    <li>Up to 40mm diameter</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Serpulidae & Spirorbidae -->
+                    <div class="species-card native" data-name="serpulidae spirorbidae serpulid worms tube worm">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Spirorbis_spirorbis.jpg?width=400" alt="Serpulid Worms - Serpulidae" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Serpulid Worms</div>
+                                    <div class="species-scientific">Serpulidae & Spirorbidae</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Polychaete</span>
+                            <p class="species-description">Tube-dwelling worms that build white calcareous tubes. Common foulers on all hard substrates.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>White calcareous tubes</li>
+                                    <li>Spirorbids are coiled (3mm)</li>
+                                    <li>Serpulids larger, straight/curved</li>
+                                    <li>Feathery feeding crown</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Watersipora spp. -->
+                    <div class="species-card native" data-name="watersipora red-rust bryozoan bryozoans">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Watersipora_subtorquata.jpg?width=400" alt="Red-rust Bryozoan - Watersipora spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Red-rust Bryozoan</div>
+                                    <div class="species-scientific">Watersipora spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Bryozoan</span>
+                            <p class="species-description">Sheet-forming encrusting bryozoan. Distinctive red/rust/orange colouration. Very common hull fouler.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Red/rust/orange sheets</li>
+                                    <li>Encrusting growth form</li>
+                                    <li>Calcified zooids</li>
+                                    <li>Black growing edge</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Celleporaria spp. -->
+                    <div class="species-card native" data-name="celleporaria chalky bryozoans bryozoan">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Celleporaria_pilaefera.jpg?width=400" alt="Chalky Bryozoans - Celleporaria spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Chalky Bryozoans</div>
+                                    <div class="species-scientific">Celleporaria spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Bryozoan</span>
+                            <p class="species-description">White/pink encrusting bryozoans forming chalky crusts on hard substrates. Common on hulls.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>White/pink crusts</li>
+                                    <li>Chalky texture</li>
+                                    <li>Irregular lumpy growth</li>
+                                    <li>Hard calcified surface</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cnemidocarpa spp. -->
+                    <div class="species-card native" data-name="cnemidocarpa solitary sea squirts ascidian">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Cnemidocarpa_verrucosa.jpg?width=400" alt="Solitary Sea Squirts - Cnemidocarpa spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Solitary Sea Squirts</div>
+                                    <div class="species-scientific">Cnemidocarpa spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Native solitary tunicates with orange/white colouration. Rounded to oval body shape.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Orange/white body</li>
+                                    <li>Solitary individuals</li>
+                                    <li>Two visible siphons</li>
+                                    <li>Leathery tunic</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Didemnidae (native) -->
+                    <div class="species-card native" data-name="didemnidae colonial sea squirts ascidian native">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Didemnum_molle.jpg?width=400" alt="Colonial Sea Squirts - Didemnidae" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Colonial Sea Squirts (Native)</div>
+                                    <div class="species-scientific">Didemnidae (native)</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Native colonial tunicates forming thin gelatinous mats. Compare carefully with invasive Didemnum species.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Thin gelatinous mats</li>
+                                    <li>Variable colours</li>
+                                    <li>Small zooids in colony</li>
+                                    <li>Shared cloacal openings</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trichomya hirsuta -->
+                    <div class="species-card native" data-name="trichomya hirsuta hairy mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Trichomya_hirsuta.jpg?width=400" alt="Hairy Mussel - Trichomya hirsuta" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Hairy Mussel</div>
+                                    <div class="species-scientific">Trichomya hirsuta</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Native mussel with distinctive hairy periostracum. Forms dense clumps on subtidal substrates.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Hairy shell covering</li>
+                                    <li>Brown/black shell</li>
+                                    <li>Dense cluster formation</li>
+                                    <li>Up to 60mm length</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Septifer bilocularis -->
+                    <div class="species-card native" data-name="septifer bilocularis small black mussel">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Septifer_bilocularis.jpg?width=400" alt="Small Black Mussel - Septifer bilocularis" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Small Black Mussel</div>
+                                    <div class="species-scientific">Septifer bilocularis</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Small native mussel that attaches to hard substrates. Black shell with ribbed surface.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small size (up to 40mm)</li>
+                                    <li>Black/dark brown shell</li>
+                                    <li>Ribbed shell surface</li>
+                                    <li>Septum inside shell</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cladophora spp. -->
+                    <div class="species-card native" data-name="cladophora green hair algae filamentous">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Cladophora_sp.jpg?width=400" alt="Green Hair Algae - Cladophora spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Green Hair Algae</div>
+                                    <div class="species-scientific">Cladophora spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Algae</span>
+                            <p class="species-description">Filamentous green algae forming mats on fouled surfaces. Common in nutrient-rich waters.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Bright green filaments</li>
+                                    <li>Branching structure</li>
+                                    <li>Forms tangled mats</li>
+                                    <li>Coarse texture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hincksia spp. -->
+                    <div class="species-card native" data-name="hincksia brown filamentous algae">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Ectocarpus_siliculosus.jpg?width=400" alt="Brown Filamentous Algae - Hincksia spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Brown Filamentous Algae</div>
+                                    <div class="species-scientific">Hincksia spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Algae</span>
+                            <p class="species-description">Fine brown filamentous algae. Early coloniser on new fouling. Forms fuzzy coating.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Fine brown filaments</li>
+                                    <li>Fuzzy appearance</li>
+                                    <li>Early coloniser</li>
+                                    <li>Soft delicate texture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sargassum spp. -->
+                    <div class="species-card native" data-name="sargassum juvenile sargassum brown algae">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Sargassum_muticum.jpg?width=400" alt="Juvenile Sargassum - Sargassum spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Juvenile Sargassum</div>
+                                    <div class="species-scientific">Sargassum spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Algae</span>
+                            <p class="species-description">Brown algae with small bladders. Juveniles attach to hard substrates including hulls. Small brown tufts.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Brown branching fronds</li>
+                                    <li>Small air bladders</li>
+                                    <li>Leaf-like structures</li>
+                                    <li>Holdfast attachment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gracilaria & Gelidium spp. -->
+                    <div class="species-card native" data-name="gracilaria gelidium red algae">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Gracilaria_verrucosa.jpg?width=400" alt="Red Algae - Gracilaria & Gelidium" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Red Algae</div>
+                                    <div class="species-scientific">Gracilaria & Gelidium spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Algae</span>
+                            <p class="species-description">Common red algae found on hulls and infrastructure. Cartilaginous texture with branching structure.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Red/purple colour</li>
+                                    <li>Branching fronds</li>
+                                    <li>Cartilaginous texture</li>
+                                    <li>Common in subtidal zone</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Amphipoda -->
+                    <div class="species-card native" data-name="amphipoda amphipods crustacean">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Gammarus_roeseli.jpg?width=400" alt="Amphipods - Amphipoda" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Amphipods</div>
+                                    <div class="species-scientific">Amphipoda</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Crustacea</span>
+                            <p class="species-description">Small mobile crustaceans found in fouling communities. Important detritivores and prey species.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small size (1-30mm)</li>
+                                    <li>Laterally compressed body</li>
+                                    <li>Multiple leg pairs</li>
+                                    <li>Fast swimmers/crawlers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Isopoda -->
+                    <div class="species-card native" data-name="isopoda marine isopods slater crustacean">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Idotea_balthica.jpg?width=400" alt="Marine Isopods - Isopoda" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Marine Isopods</div>
+                                    <div class="species-scientific">Isopoda</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Crustacea</span>
+                            <p class="species-description">Flat slater-like crustaceans. Found crawling in fouling communities. Some bore into wood.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Dorsoventrally flattened</li>
+                                    <li>Seven pairs of legs</li>
+                                    <li>Segmented body</li>
+                                    <li>Variable sizes (2-50mm)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pachygrapsus spp. -->
+                    <div class="species-card native" data-name="pachygrapsus small crabs shore crab">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Pachygrapsus_crassipes.jpg?width=400" alt="Small Crabs - Pachygrapsus spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Small Crabs</div>
+                                    <div class="species-scientific">Pachygrapsus spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Crab</span>
+                            <p class="species-description">Small native shore crabs that hide in fouling communities. Square carapace with striped legs.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Square-ish carapace</li>
+                                    <li>Striped legs</li>
+                                    <li>Up to 50mm width</li>
+                                    <li>Fast moving</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patiriella spp. -->
+                    <div class="species-card native" data-name="patiriella small seastars cushion star">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Patiriella_regularis.jpg?width=400" alt="Small Seastars - Patiriella spp." style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Small Seastars</div>
+                                    <div class="species-scientific">Patiriella spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Echinoderm</span>
+                            <p class="species-description">Small native cushion stars. Occasional visitors to fouled surfaces. Various colours.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Small size (up to 40mm)</li>
+                                    <li>Five short arms</li>
+                                    <li>Variable colours</li>
+                                    <li>Cushion-like shape</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Multiple taxa -->
+                    <div class="species-card native" data-name="anemones chitons limpets multiple taxa misc">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Actinia_equina.jpg?width=400" alt="Anemones, Chitons & Limpets" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Anemones / Chitons / Limpets</div>
+                                    <div class="species-scientific">Multiple taxa</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Various</span>
+                            <p class="species-description">Miscellaneous native fouling fauna including anemones, chitons, and limpets found on hull surfaces.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Anemones: soft-bodied, tentacles</li>
+                                    <li>Chitons: 8-plate shell</li>
+                                    <li>Limpets: conical shell</li>
+                                    <li>Native fouling community</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -853,18 +1734,35 @@
                                 <th class="invasive-header">Group</th>
                                 <th class="invasive-header">Scientific Name</th>
                                 <th class="invasive-header">Common Name</th>
-                                <th class="invasive-header">Priority</th>
+                                <th class="invasive-header">Notes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Ascidian</td><td class="scientific">Didemnum vexillum</td><td>Carpet sea squirt</td><td><span class="priority high">HIGH</span></td></tr>
-                            <tr><td>Mussel</td><td class="scientific">Perna viridis</td><td>Asian green mussel</td><td><span class="priority high">HIGH</span></td></tr>
-                            <tr><td>Seastar</td><td class="scientific">Asterias amurensis</td><td>Northern Pacific seastar</td><td><span class="priority high">HIGH</span></td></tr>
-                            <tr><td>Polychaete</td><td class="scientific">Sabella spallanzanii</td><td>European fan worm</td><td><span class="priority high">HIGH</span></td></tr>
-                            <tr><td>Mussel</td><td class="scientific">Perna perna</td><td>Brown mussel</td><td><span class="priority medium">MEDIUM</span></td></tr>
-                            <tr><td>Ascidian</td><td class="scientific">Styela clava</td><td>Stalked sea squirt</td><td><span class="priority medium">MEDIUM</span></td></tr>
-                            <tr><td>Crab</td><td class="scientific">Carcinus maenas</td><td>European shore crab</td><td><span class="priority medium">MEDIUM</span></td></tr>
-                            <tr><td>Macroalga</td><td class="scientific">Undaria pinnatifida</td><td>Japanese kelp</td><td><span class="priority medium">MEDIUM</span></td></tr>
+                            <tr><td>Crab</td><td class="scientific">Carcinus maenas</td><td>European shore crab</td><td>Established marine pest; transported via fouling/niche areas</td></tr>
+                            <tr><td>Seastar</td><td class="scientific">Asterias amurensis</td><td>Northern Pacific seastar</td><td>Priority pest; moves via fouled structures</td></tr>
+                            <tr><td>Macroalga</td><td class="scientific">Undaria pinnatifida</td><td>Japanese kelp / Wakame</td><td>Invasive kelp; fouls hulls</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Perna viridis</td><td>Asian green mussel</td><td>Dense hull/sea-chest fouling</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Perna perna</td><td>Brown mussel</td><td>Heavy fouling species</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Perna canaliculus</td><td>NZ green-lipped mussel</td><td>Non-native to WA; hull fouler</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Mytilopsis sallei</td><td>Black-striped false mussel</td><td>Small invasive bivalve</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Brachidontes pharaonis</td><td>Variable mussel</td><td>Exotic mussel</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Dreissena polymorpha</td><td>Zebra mussel</td><td>Freshwater pest; internal system fouler</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Dreissena bugensis</td><td>Quagga mussel</td><td>Freshwater internal fouler</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Varicorbula gibba</td><td>Basket clam</td><td>Introduced clam</td></tr>
+                            <tr><td>Bivalve</td><td class="scientific">Magallana gigas</td><td>Pacific oyster</td><td>Colonises structures</td></tr>
+                            <tr><td>Polychaete</td><td class="scientific">Sabella spallanzanii</td><td>European fan worm</td><td>Large tube worm pest</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Didemnum perlucidum</td><td>White colonial sea squirt</td><td>Invasive in WA</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Didemnum vexillum</td><td>Carpet sea squirt</td><td>Highly invasive ascidian</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Styela clava</td><td>Stalked sea squirt</td><td>Invasive tunicate</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Styela plicata</td><td>Pleated sea squirt</td><td>Cosmopolitan fouler</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Ciona intestinalis</td><td>Vase tunicate</td><td>Common fouler</td></tr>
+                            <tr><td>Crab</td><td class="scientific">Eriocheir sinensis</td><td>Chinese mitten crab</td><td>Exotic species</td></tr>
+                            <tr><td>Crab</td><td class="scientific">Rhithropanopeus harrisii</td><td>Harris mud crab</td><td>Priority pest</td></tr>
+                            <tr><td>Crab</td><td class="scientific">Charybdis japonica</td><td>Asian paddle crab</td><td>Non-native species</td></tr>
+                            <tr><td>Hydroid</td><td class="scientific">Blackfordia virginica</td><td>Brackish hydroid</td><td>Introduced hydroid</td></tr>
+                            <tr><td>Comb jelly</td><td class="scientific">Mnemiopsis leidyi</td><td>Comb jelly</td><td>Ballast water pest</td></tr>
+                            <tr><td>Macroalga</td><td class="scientific">Caulerpa taxifolia</td><td>Feather algae</td><td>Invasive strain</td></tr>
+                            <tr><td>Macroalga</td><td class="scientific">Bonnemaisonia hamifera</td><td>Hook weed</td><td>Introduced red algae</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -877,15 +1775,34 @@
                                 <th class="native-header">Group</th>
                                 <th class="native-header">Scientific Name</th>
                                 <th class="native-header">Common Name</th>
+                                <th class="native-header">Notes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Barnacle</td><td class="scientific">Balanidae family</td><td>Acorn barnacles</td></tr>
-                            <tr><td>Polychaete</td><td class="scientific">Galeolaria caespitosa</td><td>Sydney coral / tube worm</td></tr>
-                            <tr><td>Bryozoan</td><td class="scientific">Bugula spp.</td><td>Bushy bryozoans</td></tr>
-                            <tr><td>Mussel</td><td class="scientific">Mytilus galloprovincialis</td><td>Blue mussel</td></tr>
-                            <tr><td>Algae</td><td class="scientific">Ulva australis</td><td>Sea lettuce</td></tr>
-                            <tr><td>Sponge</td><td class="scientific">Demospongiae</td><td>Encrusting sponges</td></tr>
+                            <tr><td>Barnacle</td><td class="scientific">Balanidae</td><td>Acorn barnacles</td><td>Common on hulls, props, sea chests</td></tr>
+                            <tr><td>Barnacle</td><td class="scientific">Megabalanus spp.</td><td>Large red barnacles</td><td>Large conical shells</td></tr>
+                            <tr><td>Barnacle</td><td class="scientific">Tetraclita spp.</td><td>Volcano barnacles</td><td>Pink/green volcano barnacles</td></tr>
+                            <tr><td>Polychaete</td><td class="scientific">Galeolaria caespitosa</td><td>Sydney coral / tube worm</td><td>Tube-forming worm colonies</td></tr>
+                            <tr><td>Polychaete</td><td class="scientific">Serpulidae & Spirorbidae</td><td>Serpulid worms</td><td>White calcareous tubes</td></tr>
+                            <tr><td>Bryozoan</td><td class="scientific">Bugula spp.</td><td>Bushy bryozoans</td><td>Purple/brown colonies</td></tr>
+                            <tr><td>Bryozoan</td><td class="scientific">Watersipora spp.</td><td>Red-rust bryozoan</td><td>Sheet-forming fouler</td></tr>
+                            <tr><td>Bryozoan</td><td class="scientific">Celleporaria spp.</td><td>Chalky bryozoans</td><td>White/pink crusts</td></tr>
+                            <tr><td>Sponge</td><td class="scientific">Demospongiae</td><td>Encrusting sponges</td><td>Sheets or cushions</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Cnemidocarpa spp.</td><td>Solitary sea squirts</td><td>Orange/white solitary tunicates</td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Didemnidae (native)</td><td>Colonial sea squirts</td><td>Thin gelatinous mats</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Mytilus galloprovincialis</td><td>Blue mussel</td><td>Common structure fouler</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Trichomya hirsuta</td><td>Hairy mussel</td><td>Dense clumps</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Septifer bilocularis</td><td>Small black mussel</td><td>Attached to hard substrate</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Ulva australis</td><td>Sea lettuce</td><td>Bright green sheets</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Cladophora spp.</td><td>Green hair algae</td><td>Filamentous mats</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Hincksia spp.</td><td>Brown filamentous algae</td><td>Fine brown filaments</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Sargassum spp.</td><td>Juvenile Sargassum</td><td>Small brown tufts</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Gracilaria & Gelidium spp.</td><td>Red algae</td><td>Common reds</td></tr>
+                            <tr><td>Crustacea</td><td class="scientific">Amphipoda</td><td>Amphipods</td><td>Small mobile crustaceans</td></tr>
+                            <tr><td>Crustacea</td><td class="scientific">Isopoda</td><td>Marine isopods</td><td>Flat slater-like</td></tr>
+                            <tr><td>Crab</td><td class="scientific">Pachygrapsus spp.</td><td>Small crabs</td><td>Hide in fouling</td></tr>
+                            <tr><td>Echinoderm</td><td class="scientific">Patiriella spp.</td><td>Small seastars</td><td>Occasional</td></tr>
+                            <tr><td>Various</td><td class="scientific">Multiple taxa</td><td>Anemones / chitons / limpets</td><td>Misc native fouling fauna</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -898,7 +1815,7 @@
                 <div class="contact-grid">
                     <div class="contact-card">
                         <h3>Franmarine Underwater Services</h3>
-                        <p><strong>Biofouling Manager:</strong> Mat</p>
+                        <p><strong>Biofouling Manager:</strong> Mat Harvey</p>
                         <p><strong>Operations Manager:</strong> Sam Diamond</p>
                         <p><strong>Website:</strong> www.franmarine.com.au</p>
                     </div>
@@ -953,6 +1870,24 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        // Handle image loading errors - add placeholders
+        document.querySelectorAll('.species-image img').forEach(img => {
+            // Create placeholder element
+            const placeholder = document.createElement('div');
+            placeholder.className = 'placeholder';
+            const speciesName = img.alt.split(' - ')[0] || 'Species';
+            placeholder.innerHTML = '<div class="placeholder-icon">🔍</div><div>' + speciesName + '</div><div style="font-size:0.75rem;margin-top:5px;">Image not available</div>';
+            img.parentNode.appendChild(placeholder);
+            
+            img.addEventListener('error', function() {
+                this.classList.add('error');
+            });
+            // Check if already loaded with error
+            if (img.complete && img.naturalHeight === 0) {
+                img.classList.add('error');
+            }
         });
     </script>
 </body>
