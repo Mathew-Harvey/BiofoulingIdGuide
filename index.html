@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biofouling Identification Handbook - Franmarine Underwater Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --primary-light: #004080;
+            --danger: #8B0000;
+            --danger-light: #CC0000;
+            --success: #006400;
+            --warning: #FF8C00;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-100);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo { font-size: 1.4rem; font-weight: 700; }
+        .logo span { color: #7fb3d5; }
+        
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        nav a:hover { opacity: 0.8; }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #001a33 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; }
+        .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Main Content */
+        main { padding: 50px 0; }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .section-title.danger { color: var(--danger); border-color: var(--danger); }
+        .section-title.success { color: var(--success); border-color: var(--success); }
+        
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .info-card ul { padding-left: 20px; }
+        .info-card li { margin-bottom: 8px; }
+        
+        /* Priority Badges */
+        .priority {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .priority.high { background: #fce4e4; color: var(--danger-light); }
+        .priority.medium { background: #fff3e0; color: var(--warning); }
+        .priority.low { background: #e8f5e9; color: var(--success); }
+        
+        /* Species Cards */
+        .species-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .species-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .species-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        
+        .species-card.invasive { border-left: 4px solid var(--danger); }
+        .species-card.native { border-left: 4px solid var(--success); }
+        
+        .species-image {
+            height: 180px;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            font-style: italic;
+        }
+        
+        .species-content { padding: 20px; }
+        
+        .species-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .species-name {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        .species-scientific {
+            font-style: italic;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .species-group {
+            display: inline-block;
+            background: var(--gray-200);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            margin-bottom: 12px;
+        }
+        
+        .species-description {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .species-features {
+            background: var(--gray-100);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .species-features h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+        
+        .species-features ul {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+        
+        .species-features li {
+            padding: 3px 0;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .species-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        /* Alert Box */
+        .alert {
+            background: #fef3f3;
+            border: 1px solid #f5c6cb;
+            border-left: 4px solid var(--danger-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .alert h4 {
+            color: var(--danger-light);
+            margin-bottom: 10px;
+        }
+        
+        /* Quick Reference Table */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        th.invasive-header { background: var(--danger); }
+        th.native-header { background: var(--success); }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        tr:hover { background: var(--gray-100); }
+        
+        .scientific { font-style: italic; }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-card p { margin-bottom: 10px; }
+        .contact-card strong { color: var(--gray-800); }
+        
+        .hotline {
+            display: inline-block;
+            background: var(--danger-light);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        /* Filter Buttons */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--gray-300);
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .filter-btn.invasive.active { background: var(--danger); border-color: var(--danger); }
+        .filter-btn.native.active { background: var(--success); border-color: var(--success); }
+        
+        /* Footer */
+        footer {
+            background: var(--gray-800);
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        footer p { opacity: 0.8; font-size: 0.9rem; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray-600);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover { color: var(--primary); }
+        .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Search */
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 20px;
+            border: 2px solid var(--gray-300);
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            nav ul { gap: 15px; }
+            .species-grid { grid-template-columns: 1fr; }
+            header .container { flex-direction: column; gap: 15px; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            header, .filter-bar, .search-box, nav { display: none; }
+            .species-card { break-inside: avoid; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Franmarine <span>Underwater Services</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#invasive">Invasive Species</a></li>
+                    <li><a href="#native">Native Species</a></li>
+                    <li><a href="#reference">Quick Reference</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Biofouling Identification Handbook</h1>
+            <p>A comprehensive guide for commercial divers working on in-water hull cleaning operations in Western Australia</p>
+            <div class="hero-badge">Version 1.0 • December 2025</div>
+        </div>
+    </section>
+    
+    <main>
+        <div class="container">
+            <!-- Introduction Section -->
+            <section id="intro">
+                <h2 class="section-title">Introduction</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Purpose</h3>
+                        <p>This handbook assists Franmarine commercial divers in identifying biofouling organisms encountered during hull cleaning operations, with emphasis on distinguishing invasive marine pests from native fouling.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Why It Matters</h3>
+                        <p>Early detection of invasive species is critical to protecting Australia's marine environment. Divers are often first to encounter marine pests on vessel hulls. Several high-priority pests have been detected in WA waters, including carpet sea squirt at HMAS Stirling.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Priority Levels</h3>
+                        <ul>
+                            <li><span class="priority high">HIGH</span> Report immediately</li>
+                            <li><span class="priority medium">MEDIUM</span> Report within 24 hours</li>
+                            <li><span class="priority low">LOW</span> Report at end of dive</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="alert">
+                    <h4>⚠️ Reporting Marine Pests</h4>
+                    <p><strong>If you suspect you have found a marine pest:</strong></p>
+                    <ul>
+                        <li>Take clear photographs from multiple angles</li>
+                        <li>Note location (vessel name, hull section, depth)</li>
+                        <li>Note approximate coverage/quantity</li>
+                        <li><strong>DO NOT</strong> attempt to remove or relocate suspected pests</li>
+                        <li>Report immediately to your supervisor</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Invasive Species Section -->
+            <section id="invasive">
+                <h2 class="section-title danger">Part 1: Invasive Species — Priority Marine Pests</h2>
+                
+                <input type="text" class="search-box" id="invasive-search" placeholder="Search invasive species..." onkeyup="filterSpecies('invasive')">
+                
+                <div class="species-grid" id="invasive-grid">
+                    <!-- Didemnum vexillum -->
+                    <div class="species-card invasive" data-name="didemnum vexillum carpet sea squirt ascidian">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Carpet Sea Squirt]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Carpet Sea Squirt</div>
+                                    <div class="species-scientific">Didemnum vexillum</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Highly invasive colonial tunicate, also called 'sea vomit'. Forms yellowish-cream to tan mat-like colonies with visible veins. Detected at HMAS Stirling and Henderson, WA.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Off-white to cream/tan/orange colour</li>
+                                    <li>Veiny appearance with visible water channels</li>
+                                    <li>Smooth, leathery texture (not slimy)</li>
+                                    <li>Can form dripping 'wax-like' tendrils</li>
+                                    <li>Small pore-like siphons on surface</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Perna viridis -->
+                    <div class="species-card invasive" data-name="perna viridis asian green mussel">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Asian Green Mussel]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Asian Green Mussel</div>
+                                    <div class="species-scientific">Perna viridis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Large mussel (80-165mm) with distinctive bright emerald green shell. Forms dense hull and sea-chest fouling. Regularly found on vessels arriving from Asia.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Bright green shell (juveniles)</li>
+                                    <li>Brownish-green (adults)</li>
+                                    <li>80-165mm length</li>
+                                    <li>Downward-pointing beak</li>
+                                    <li>Blue-green interior</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Asterias amurensis -->
+                    <div class="species-card invasive" data-name="asterias amurensis northern pacific seastar">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Northern Pacific Seastar]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Northern Pacific Seastar</div>
+                                    <div class="species-scientific">Asterias amurensis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Seastar</span>
+                            <p class="species-description">Large seastar up to 50cm diameter. Voracious predator of mussels, scallops, oysters. Can release 10-25 million eggs per year. Established in Port Phillip Bay and Tasmania.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Five arms with pointed upturned tips</li>
+                                    <li>Yellow/orange with purple markings</li>
+                                    <li>Up to 50cm diameter</li>
+                                    <li>Small central disc</li>
+                                    <li>Yellow underneath</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sabella spallanzanii -->
+                    <div class="species-card invasive" data-name="sabella spallanzanii european fan worm polychaete">
+                        <div class="species-image">[PLACEHOLDER IMAGE - European Fan Worm]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">European Fan Worm</div>
+                                    <div class="species-scientific">Sabella spallanzanii</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Polychaete</span>
+                            <p class="species-description">Large tube-dwelling worm (90-400mm) with distinctive spiral crown of feeding tentacles. Established pest in WA, SA, VIC, TAS and NSW.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Large spiral fan crown (45-60mm)</li>
+                                    <li>Banded orange/purple/white or grey</li>
+                                    <li>Brown leathery tube</li>
+                                    <li>Fan retracts when disturbed</li>
+                                    <li>One spiral, one circular lobe</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Styela clava -->
+                    <div class="species-card invasive" data-name="styela clava stalked sea squirt ascidian">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Stalked Sea Squirt]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Stalked Sea Squirt</div>
+                                    <div class="species-scientific">Styela clava</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Solitary tunicate with distinctive club-shaped body on a tough stalk. Brown to tan coloured. Can grow to 160mm. Fouls hulls and aquaculture equipment.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Club-shaped body on stalk</li>
+                                    <li>Brown to tan colour</li>
+                                    <li>Leathery, wrinkled texture</li>
+                                    <li>50-160mm length</li>
+                                    <li>Solitary (not colonial)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carcinus maenas -->
+                    <div class="species-card invasive" data-name="carcinus maenas european shore crab">
+                        <div class="species-image">[PLACEHOLDER IMAGE - European Shore Crab]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">European Shore Crab</div>
+                                    <div class="species-scientific">Carcinus maenas</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Crab</span>
+                            <p class="species-description">Established marine pest with green carapace up to 90mm wide. Transported via fouling and niche areas on vessels.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Green carapace (can be orange underneath)</li>
+                                    <li>Five spines each side of eyes</li>
+                                    <li>Up to 90mm carapace width</li>
+                                    <li>Found in niche areas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Undaria pinnatifida -->
+                    <div class="species-card invasive" data-name="undaria pinnatifida japanese kelp wakame macroalga">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Japanese Kelp]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Japanese Kelp / Wakame</div>
+                                    <div class="species-scientific">Undaria pinnatifida</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Macroalga</span>
+                            <p class="species-description">Large brown kelp with distinctive wavy fronds and midrib. Can grow to 3m. Invasive kelp established in southern Australia.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Large brown fronds with midrib</li>
+                                    <li>Wavy/ruffled edges</li>
+                                    <li>Up to 3m length</li>
+                                    <li>Reproductive sporophyll at base</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ciona intestinalis -->
+                    <div class="species-card invasive" data-name="ciona intestinalis vase tunicate ascidian">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Vase Tunicate]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Vase Tunicate</div>
+                                    <div class="species-scientific">Ciona intestinalis</div>
+                                </div>
+                                <span class="priority medium">MEDIUM</span>
+                            </div>
+                            <span class="species-group">Ascidian</span>
+                            <p class="species-description">Common soft-bodied solitary tunicate. Translucent yellowish-green cylindrical body. Cosmopolitan fouler found worldwide.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Cylindrical vase shape</li>
+                                    <li>Translucent yellowish-green</li>
+                                    <li>Two visible siphons</li>
+                                    <li>Soft body</li>
+                                    <li>Up to 150mm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Native Species Section -->
+            <section id="native">
+                <h2 class="section-title success">Part 2: Native Species — Common Fouling Organisms</h2>
+                
+                <input type="text" class="search-box" id="native-search" placeholder="Search native species..." onkeyup="filterSpecies('native')">
+                
+                <div class="species-grid" id="native-grid">
+                    <!-- Balanidae -->
+                    <div class="species-card native" data-name="balanidae acorn barnacles barnacle">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Acorn Barnacles]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Acorn Barnacles</div>
+                                    <div class="species-scientific">Balanidae family</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Barnacle</span>
+                            <p class="species-description">Common native barnacles found on hulls, propellers and sea chests. Conical white/grey shells cemented to surfaces.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Conical white/grey shells</li>
+                                    <li>Diamond-shaped opening</li>
+                                    <li>Cement directly to surfaces</li>
+                                    <li>Dense clusters</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Galeolaria caespitosa -->
+                    <div class="species-card native" data-name="galeolaria caespitosa sydney coral tube worm polychaete">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Sydney Coral]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Sydney Coral / Tube Worm</div>
+                                    <div class="species-scientific">Galeolaria caespitosa</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Polychaete</span>
+                            <p class="species-description">Native tube-forming worm that creates white calcareous tube colonies. Forms distinctive reef-like masses.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>White calcareous tubes</li>
+                                    <li>Colonial masses</li>
+                                    <li>Reef-like formations</li>
+                                    <li>Pink feeding tentacles</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bugula spp. -->
+                    <div class="species-card native" data-name="bugula bushy bryozoan bryozoans">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Bushy Bryozoans]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Bushy Bryozoans</div>
+                                    <div class="species-scientific">Bugula spp.</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Bryozoan</span>
+                            <p class="species-description">Native bushy/branching bryozoan colonies. Purple to brown coloured with delicate branching structure.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Bushy branching growth</li>
+                                    <li>Purple/brown colour</li>
+                                    <li>Delicate feathery appearance</li>
+                                    <li>Flexible branches</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mytilus galloprovincialis -->
+                    <div class="species-card native" data-name="mytilus galloprovincialis blue mussel">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Blue Mussel]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Blue Mussel</div>
+                                    <div class="species-scientific">Mytilus galloprovincialis</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">Common native structure fouler. Blue-black to dark brown shell. Forms dense clusters attached by byssal threads.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Blue-black to dark brown shell</li>
+                                    <li>Elongated triangular shape</li>
+                                    <li>Dense clustering</li>
+                                    <li>Byssal thread attachment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ulva australis -->
+                    <div class="species-card native" data-name="ulva australis sea lettuce algae">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Sea Lettuce]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Sea Lettuce</div>
+                                    <div class="species-scientific">Ulva australis</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Algae</span>
+                            <p class="species-description">Common native green algae. Bright green translucent sheets with ruffled edges. Often found in nutrient-rich waters.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Bright green colour</li>
+                                    <li>Thin translucent sheets</li>
+                                    <li>Ruffled/wavy edges</li>
+                                    <li>Soft texture</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Demospongiae -->
+                    <div class="species-card native" data-name="demospongiae encrusting sponges sponge">
+                        <div class="species-image">[PLACEHOLDER IMAGE - Encrusting Sponges]</div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Encrusting Sponges</div>
+                                    <div class="species-scientific">Demospongiae</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Sponge</span>
+                            <p class="species-description">Various native encrusting sponges forming sheets or cushion-like growths. Variable colours including orange, yellow, grey.</p>
+                            <div class="species-features">
+                                <h4>Key Features</h4>
+                                <ul>
+                                    <li>Sheet or cushion growth</li>
+                                    <li>Variable colours</li>
+                                    <li>Soft spongy texture</li>
+                                    <li>Small pores visible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Quick Reference Section -->
+            <section id="reference">
+                <h2 class="section-title">Quick Reference Tables</h2>
+                
+                <h3 style="color: var(--danger); margin-bottom: 15px;">Invasive Species Summary</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="invasive-header">Group</th>
+                                <th class="invasive-header">Scientific Name</th>
+                                <th class="invasive-header">Common Name</th>
+                                <th class="invasive-header">Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Ascidian</td><td class="scientific">Didemnum vexillum</td><td>Carpet sea squirt</td><td><span class="priority high">HIGH</span></td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Perna viridis</td><td>Asian green mussel</td><td><span class="priority high">HIGH</span></td></tr>
+                            <tr><td>Seastar</td><td class="scientific">Asterias amurensis</td><td>Northern Pacific seastar</td><td><span class="priority high">HIGH</span></td></tr>
+                            <tr><td>Polychaete</td><td class="scientific">Sabella spallanzanii</td><td>European fan worm</td><td><span class="priority high">HIGH</span></td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Perna perna</td><td>Brown mussel</td><td><span class="priority medium">MEDIUM</span></td></tr>
+                            <tr><td>Ascidian</td><td class="scientific">Styela clava</td><td>Stalked sea squirt</td><td><span class="priority medium">MEDIUM</span></td></tr>
+                            <tr><td>Crab</td><td class="scientific">Carcinus maenas</td><td>European shore crab</td><td><span class="priority medium">MEDIUM</span></td></tr>
+                            <tr><td>Macroalga</td><td class="scientific">Undaria pinnatifida</td><td>Japanese kelp</td><td><span class="priority medium">MEDIUM</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 style="color: var(--success); margin: 30px 0 15px;">Native Species Summary</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="native-header">Group</th>
+                                <th class="native-header">Scientific Name</th>
+                                <th class="native-header">Common Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Barnacle</td><td class="scientific">Balanidae family</td><td>Acorn barnacles</td></tr>
+                            <tr><td>Polychaete</td><td class="scientific">Galeolaria caespitosa</td><td>Sydney coral / tube worm</td></tr>
+                            <tr><td>Bryozoan</td><td class="scientific">Bugula spp.</td><td>Bushy bryozoans</td></tr>
+                            <tr><td>Mussel</td><td class="scientific">Mytilus galloprovincialis</td><td>Blue mussel</td></tr>
+                            <tr><td>Algae</td><td class="scientific">Ulva australis</td><td>Sea lettuce</td></tr>
+                            <tr><td>Sponge</td><td class="scientific">Demospongiae</td><td>Encrusting sponges</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Contact Section -->
+            <section id="contact">
+                <h2 class="section-title">Contact Information</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Franmarine Underwater Services</h3>
+                        <p><strong>Biofouling Manager:</strong> Mat</p>
+                        <p><strong>Operations Manager:</strong> Sam Diamond</p>
+                        <p><strong>Website:</strong> www.franmarine.com.au</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>Emergency Pest Reporting</h3>
+                        <p><strong>DAFF Exotic Marine Pest Hotline</strong></p>
+                        <div class="hotline">1800 900 090</div>
+                        <p style="margin-top: 15px;"><em>Available 24 hours</em></p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>WA State Contacts</h3>
+                        <p><strong>DPIRD WA PaDIS:</strong> 1800 084 881</p>
+                        <p><strong>Online:</strong> www.marinepests.gov.au/report</p>
+                        <p><strong>Outbreak Info:</strong> www.outbreak.gov.au</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Franmarine Underwater Services. All rights reserved.</p>
+            <p>Information sourced from DAFF, DPIRD WA, NIMPIS, and scientific literature.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function filterSpecies(type) {
+            const searchInput = document.getElementById(type + '-search').value.toLowerCase();
+            const grid = document.getElementById(type + '-grid');
+            const cards = grid.querySelectorAll('.species-card');
+            
+            cards.forEach(card => {
+                const searchData = card.getAttribute('data-name').toLowerCase();
+                const content = card.textContent.toLowerCase();
+                if (searchData.includes(searchInput) || content.includes(searchInput)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
