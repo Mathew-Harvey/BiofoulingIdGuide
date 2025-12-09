@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduced Marine Species (IMS) - Quick ID Poster | Franmarine</title>
+    <title>Hull Biofouling ID Poster | Franmarine</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         @page {
@@ -81,7 +81,7 @@
         .species-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             gap: 4px;
             flex: 1;
             min-height: 0;
@@ -96,6 +96,13 @@
             flex-direction: column;
             position: relative;
             min-height: 0;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        
+        .species-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .species-item.high-priority {
@@ -297,6 +304,156 @@
                 box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             }
         }
+        
+        /* Gallery Modal */
+        .gallery-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .gallery-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .gallery-container {
+            width: 100%;
+            max-width: 700px;
+            max-height: calc(100vh - 40px);
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .gallery-overlay.active .gallery-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-header {
+            padding: 16px 20px;
+            background: #003366;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .gallery-header.high-priority {
+            background: #CC0000;
+        }
+        
+        .gallery-header.medium-priority {
+            background: #FF8C00;
+        }
+        
+        .gallery-header.native {
+            background: #006400;
+        }
+        
+        .gallery-header-text {
+            min-width: 0;
+        }
+        
+        .gallery-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .gallery-scientific {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+        
+        .gallery-close {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+        
+        .gallery-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .gallery-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .gallery-image-container {
+            position: relative;
+            background: #f0f0f0;
+            border-radius: 8px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-main-image {
+            width: 100%;
+            max-height: 45vh;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f0f0f0;
+        }
+        
+        .gallery-info {
+            margin-top: 16px;
+        }
+        
+        .gallery-info h4 {
+            color: #003366;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .gallery-features ul {
+            padding-left: 18px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-features li {
+            margin-bottom: 4px;
+        }
+        
+        @media print {
+            .gallery-overlay {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -305,18 +462,19 @@
         <div class="poster-header">
             <div class="poster-title">
                 <span class="alert-icon">⚠️</span>
-                <h1>INTRODUCED MARINE SPECIES (IMS) — Quick Identification Guide</h1>
+                <h1>HULL BIOFOULING — What to Look For</h1>
             </div>
             <div class="poster-subtitle">
-                <strong>Report ALL Sightings Immediately</strong>
-                Western Australia Biofouling Reference
+                <strong>Found Something Dodgy? STOP & REPORT</strong>
+                WA Hull Cleaning Quick Reference
             </div>
         </div>
         
-        <!-- Species Grid - 6 columns x 4 rows = 24 species -->
+        <!-- Species Grid - 6 columns x 3 rows = 18 species -->
         <div class="species-grid">
-            <!-- Row 1 -->
-            <!-- 1. Didemnum vexillum -->
+            <!-- Row 1: HIGH PRIORITY -->
+            
+            <!-- 1. Carpet Sea Squirt -->
             <div class="species-item high-priority">
                 <div class="species-image">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Tunicate_colony_of_Didemnum_vexillum_overgrowing_gravel.JPG/400px-Tunicate_colony_of_Didemnum_vexillum_overgrowing_gravel.JPG" alt="Carpet Sea Squirt">
@@ -325,22 +483,22 @@
                 <div class="species-content">
                     <div class="species-name">Carpet Sea Squirt</div>
                     <div class="species-scientific">Didemnum vexillum</div>
-                    <span class="species-group">Ascidian</span>
+                    <span class="species-group">Sea Squirt</span>
                     <div class="species-features">
                         <ul>
-                            <li>Off-white to cream/tan/orange</li>
-                            <li>Veiny, visible water channels</li>
-                            <li>Smooth, leathery (not slimy)</li>
-                            <li>Dripping 'wax-like' tendrils</li>
+                            <li>Creamy/tan like old wax</li>
+                            <li>Veiny like varicose veins</li>
+                            <li>Leathery, NOT slimy</li>
+                            <li>Drips like candle wax</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 2. Perna viridis -->
+            <!-- 2. Asian Green Mussel -->
             <div class="species-item high-priority">
                 <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Perna_viridis_001.jpg?width=400" alt="Asian Green Mussel">
+                    <img src="assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel">
                     <span class="priority-badge high">HIGH</span>
                 </div>
                 <div class="species-content">
@@ -349,37 +507,16 @@
                     <span class="species-group">Mussel</span>
                     <div class="species-features">
                         <ul>
-                            <li>Bright green shell (juveniles)</li>
-                            <li>Brownish-green (adults)</li>
-                            <li>80-165mm length</li>
-                            <li>Blue-green interior</li>
+                            <li>Bright green shell (young)</li>
+                            <li>Brownish-green (older)</li>
+                            <li>Big: 80-165mm</li>
+                            <li>Blue-green inside</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 3. Asterias amurensis -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_1012_Asterias_amurensis_Northern_Pacific_Seastar.jpg?width=400" alt="Northern Pacific Seastar">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Northern Pacific Seastar</div>
-                    <div class="species-scientific">Asterias amurensis</div>
-                    <span class="species-group">Seastar</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Five arms, pointed upturned tips</li>
-                            <li>Yellow/orange, purple markings</li>
-                            <li>Up to 50cm diameter</li>
-                            <li>Yellow underneath</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 4. Sabella spallanzanii -->
+            <!-- 3. European Fan Worm -->
             <div class="species-item high-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_866_Sabella_spallanzanii_European_fanworm.jpg?width=400" alt="European Fan Worm">
@@ -388,19 +525,19 @@
                 <div class="species-content">
                     <div class="species-name">European Fan Worm</div>
                     <div class="species-scientific">Sabella spallanzanii</div>
-                    <span class="species-group">Polychaete</span>
+                    <span class="species-group">Tube Worm</span>
                     <div class="species-features">
                         <ul>
-                            <li>Large spiral fan crown</li>
-                            <li>Banded orange/purple/white</li>
+                            <li>HUGE spiral fan: 45-60mm</li>
+                            <li>Stripy orange/purple/white</li>
                             <li>Brown leathery tube</li>
-                            <li>Fan retracts when disturbed</li>
+                            <li>Fan pulls in when close</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 5. Mytilopsis sallei -->
+            <!-- 4. Black-striped False Mussel -->
             <div class="species-item high-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_862_Mytilopsis_sallei_Black_Striped_Mussel.jpg?width=400" alt="Black-striped False Mussel">
@@ -409,168 +546,63 @@
                 <div class="species-content">
                     <div class="species-name">Black-striped False Mussel</div>
                     <div class="species-scientific">Mytilopsis sallei</div>
-                    <span class="species-group">Bivalve</span>
+                    <span class="species-group">Mussel</span>
                     <div class="species-features">
                         <ul>
-                            <li>Small size (up to 25mm)</li>
+                            <li>Small: only 25mm</li>
                             <li>Dark stripes on shell</li>
-                            <li>Tolerates brackish water</li>
-                            <li>Forms dense colonies</li>
+                            <li>Likes brackish water</li>
+                            <li>Check sea chests!</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 6. Dreissena polymorpha -->
+            <!-- 5. White Colonial Sea Squirt -->
             <div class="species-item high-priority">
                 <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Dreissena_polymorpha3.jpg?width=400" alt="Zebra Mussel">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Zebra Mussel</div>
-                    <div class="species-scientific">Dreissena polymorpha</div>
-                    <span class="species-group">Bivalve</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Zebra-like striped pattern</li>
-                            <li>D-shaped shell</li>
-                            <li>Up to 50mm length</li>
-                            <li>Freshwater/brackish</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Row 2 -->
-            <!-- 7. Dreissena bugensis -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Dreissena_bugensis.jpg?width=400" alt="Quagga Mussel">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Quagga Mussel</div>
-                    <div class="species-scientific">Dreissena bugensis</div>
-                    <span class="species-group">Bivalve</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Rounder than zebra mussel</li>
-                            <li>Pale bands/stripes</li>
-                            <li>Ventral side convex</li>
-                            <li>Up to 40mm length</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 8. Didemnum perlucidum -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Didemnum_(YPM_IZ_093937).jpeg?width=400" alt="White Colonial Sea Squirt">
+                    <img src="assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt">
                     <span class="priority-badge high">HIGH</span>
                 </div>
                 <div class="species-content">
                     <div class="species-name">White Colonial Sea Squirt</div>
                     <div class="species-scientific">Didemnum perlucidum</div>
-                    <span class="species-group">Ascidian</span>
+                    <span class="species-group">Sea Squirt</span>
                     <div class="species-features">
                         <ul>
-                            <li>White/translucent colonies</li>
-                            <li>Thin encrusting sheets</li>
-                            <li>Small zooids visible</li>
-                            <li>Smooth surface texture</li>
+                            <li>White/see-through</li>
+                            <li>Thin sheet on surface</li>
+                            <li>Smooth texture</li>
+                            <li>Already in WA!</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 9. Eriocheir sinensis -->
+            <!-- 6. Killer Algae -->
             <div class="species-item high-priority">
                 <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/EriocheirSinensis1.jpg?width=400" alt="Chinese Mitten Crab">
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Caulerpa_taxifolia_Feather_algae.jpg?width=400" alt="Killer Algae">
                     <span class="priority-badge high">HIGH</span>
                 </div>
                 <div class="species-content">
-                    <div class="species-name">Chinese Mitten Crab</div>
-                    <div class="species-scientific">Eriocheir sinensis</div>
-                    <span class="species-group">Crab</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Dense fur on claws ("mittens")</li>
-                            <li>Olive-brown carapace</li>
-                            <li>Up to 80mm carapace width</li>
-                            <li>Notched forehead</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 10. Rhithropanopeus harrisii -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Rhithropanopeus_harrisii.jpg?width=400" alt="Harris Mud Crab">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Harris Mud Crab</div>
-                    <div class="species-scientific">Rhithropanopeus harrisii</div>
-                    <span class="species-group">Crab</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Small size (up to 25mm)</li>
-                            <li>Olive-brown colour</li>
-                            <li>White-tipped claws</li>
-                            <li>Three spines behind eyes</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 11. Mnemiopsis leidyi -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Mnemiopsis_leidyi_-_Oslofjord,_Norway.jpg?width=400" alt="Comb Jelly">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Comb Jelly</div>
-                    <div class="species-scientific">Mnemiopsis leidyi</div>
-                    <span class="species-group">Comb Jelly</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Transparent gelatinous body</li>
-                            <li>Eight rows of cilia (combs)</li>
-                            <li>Up to 120mm length</li>
-                            <li>Iridescent in light</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 12. Caulerpa taxifolia -->
-            <div class="species-item high-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Caulerpa_taxifolia_Feather_algae.jpg?width=400" alt="Feather Algae">
-                    <span class="priority-badge high">HIGH</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Feather Algae / Killer Algae</div>
+                    <div class="species-name">Killer Algae</div>
                     <div class="species-scientific">Caulerpa taxifolia</div>
-                    <span class="species-group">Macroalga</span>
+                    <span class="species-group">Algae</span>
                     <div class="species-features">
                         <ul>
-                            <li>Bright green feather fronds</li>
-                            <li>Up to 65cm height</li>
-                            <li>Creeping stolons</li>
-                            <li>Dense meadow formation</li>
+                            <li>Bright green - stands out</li>
+                            <li>Feather-shaped fronds</li>
+                            <li>Creeping runners</li>
+                            <li>Up to 65cm tall</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- Row 3 -->
-            <!-- 13. Styela clava -->
+            <!-- Row 2: MEDIUM PRIORITY -->
+            
+            <!-- 7. Stalked Sea Squirt -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_clava.JPG?width=400" alt="Stalked Sea Squirt">
@@ -579,82 +611,19 @@
                 <div class="species-content">
                     <div class="species-name">Stalked Sea Squirt</div>
                     <div class="species-scientific">Styela clava</div>
-                    <span class="species-group">Ascidian</span>
+                    <span class="species-group">Sea Squirt</span>
                     <div class="species-features">
                         <ul>
-                            <li>Club-shaped body on stalk</li>
-                            <li>Brown to tan colour</li>
-                            <li>Leathery, wrinkled texture</li>
-                            <li>50-160mm length</li>
+                            <li>Brown pickle on a stalk</li>
+                            <li>Leathery & wrinkly</li>
+                            <li>50-160mm tall</li>
+                            <li>Stands alone</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 14. Carcinus maenas -->
-            <div class="species-item medium-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Carcinus_maenas.jpg?width=400" alt="European Shore Crab">
-                    <span class="priority-badge medium">MED</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">European Shore Crab</div>
-                    <div class="species-scientific">Carcinus maenas</div>
-                    <span class="species-group">Crab</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Green carapace</li>
-                            <li>Five spines each side of eyes</li>
-                            <li>Up to 90mm carapace width</li>
-                            <li>Orange underneath</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 15. Undaria pinnatifida -->
-            <div class="species-item medium-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_867_Undaria_pinnatifida_Japanese_kelp.jpg?width=400" alt="Japanese Kelp">
-                    <span class="priority-badge medium">MED</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Japanese Kelp / Wakame</div>
-                    <div class="species-scientific">Undaria pinnatifida</div>
-                    <span class="species-group">Macroalga</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Large brown fronds + midrib</li>
-                            <li>Wavy/ruffled edges</li>
-                            <li>Up to 3m length</li>
-                            <li>Sporophyll at base</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 16. Ciona intestinalis -->
-            <div class="species-item medium-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Cionaintestinalis.jpg?width=400" alt="Vase Tunicate">
-                    <span class="priority-badge medium">MED</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Vase Tunicate</div>
-                    <div class="species-scientific">Ciona intestinalis</div>
-                    <span class="species-group">Ascidian</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Cylindrical vase shape</li>
-                            <li>Translucent yellowish-green</li>
-                            <li>Two visible siphons</li>
-                            <li>Soft body, up to 150mm</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 17. Perna perna -->
+            <!-- 8. Brown Mussel -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Perna_perna_002.jpg?width=400" alt="Brown Mussel">
@@ -666,16 +635,58 @@
                     <span class="species-group">Mussel</span>
                     <div class="species-features">
                         <ul>
-                            <li>Dark brown to black shell</li>
-                            <li>Up to 90mm length</li>
-                            <li>Forms dense clusters</li>
-                            <li>Heavy hull fouler</li>
+                            <li>Dark brown/black shell</li>
+                            <li>Up to 90mm</li>
+                            <li>Dense thick clumps</li>
+                            <li>Hard to scrape</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 18. Perna canaliculus -->
+            <!-- 9. Japanese Kelp -->
+            <div class="species-item medium-priority">
+                <div class="species-image">
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_867_Undaria_pinnatifida_Japanese_kelp.jpg?width=400" alt="Japanese Kelp">
+                    <span class="priority-badge medium">MED</span>
+                </div>
+                <div class="species-content">
+                    <div class="species-name">Japanese Kelp (Wakame)</div>
+                    <div class="species-scientific">Undaria pinnatifida</div>
+                    <span class="species-group">Kelp</span>
+                    <div class="species-features">
+                        <ul>
+                            <li>Big brown fronds</li>
+                            <li>Central spine/midrib</li>
+                            <li>Wavy ruffled edges</li>
+                            <li>Up to 3m long</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 10. Vase Tunicate -->
+            <div class="species-item medium-priority">
+                <div class="species-image">
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Cionaintestinalis.jpg?width=400" alt="Vase Tunicate">
+                    <span class="priority-badge medium">MED</span>
+                </div>
+                <div class="species-content">
+                    <div class="species-name">Vase Tunicate</div>
+                    <div class="species-scientific">Ciona intestinalis</div>
+                    <span class="species-group">Sea Squirt</span>
+                    <div class="species-features">
+                        <ul>
+                            <li>See-through yellow-green</li>
+                            <li>Tube/vase shape</li>
+                            <li>Two holes on top</li>
+                            <li>Soft & squishy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 11. NZ Green-lipped Mussel -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Green-lipped_mussels_-_Picton,_NZ_-_DSC00240.jpg?width=400" alt="NZ Green-lipped Mussel">
@@ -687,59 +698,16 @@
                     <span class="species-group">Mussel</span>
                     <div class="species-features">
                         <ul>
-                            <li>Green lip along shell margin</li>
-                            <li>Brown-green shell exterior</li>
-                            <li>Up to 240mm length</li>
-                            <li>Distinctive periostracum</li>
+                            <li>Green lip on edge</li>
+                            <li>Brown-green shell</li>
+                            <li>MASSIVE: up to 240mm</li>
+                            <li>Check NZ vessels</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- Row 4 -->
-            <!-- 19. Brachidontes pharaonis -->
-            <div class="species-item medium-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Brachidontes_pharaonis_(MNHN-IM-2000-33997)_001.jpeg?width=400" alt="Variable Mussel">
-                    <span class="priority-badge medium">MED</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Variable Mussel</div>
-                    <div class="species-scientific">Brachidontes pharaonis</div>
-                    <span class="species-group">Mussel</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Variable colouration</li>
-                            <li>Ribbed shell surface</li>
-                            <li>Up to 35mm length</li>
-                            <li>Intertidal/subtidal</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 20. Varicorbula gibba -->
-            <div class="species-item medium-priority">
-                <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Varicorbula_gibba_01.jpg?width=400" alt="Basket Clam">
-                    <span class="priority-badge medium">MED</span>
-                </div>
-                <div class="species-content">
-                    <div class="species-name">Basket Clam</div>
-                    <div class="species-scientific">Varicorbula gibba</div>
-                    <span class="species-group">Bivalve</span>
-                    <div class="species-features">
-                        <ul>
-                            <li>Small white shells</li>
-                            <li>Up to 12mm length</li>
-                            <li>Asymmetric valves</li>
-                            <li>Lives in soft sediment</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 21. Magallana gigas -->
+            <!-- 12. Pacific Oyster -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Crassostrea_gigas_p1040848.jpg?width=400" alt="Pacific Oyster">
@@ -748,19 +716,21 @@
                 <div class="species-content">
                     <div class="species-name">Pacific Oyster</div>
                     <div class="species-scientific">Magallana gigas</div>
-                    <span class="species-group">Bivalve</span>
+                    <span class="species-group">Oyster</span>
                     <div class="species-features">
                         <ul>
-                            <li>Large irregular shell</li>
-                            <li>Up to 400mm length</li>
-                            <li>Rough fluted surface</li>
-                            <li>Cements to surfaces</li>
+                            <li>Messy irregular shell</li>
+                            <li>Sharp frilly edges!</li>
+                            <li>Up to 400mm</li>
+                            <li>Glued flat to surface</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 22. Styela plicata -->
+            <!-- Row 3: MORE MEDIUM + NICHE CRABS -->
+            
+            <!-- 13. Pleated Sea Squirt -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_plicata.jpg?width=400" alt="Pleated Sea Squirt">
@@ -769,19 +739,40 @@
                 <div class="species-content">
                     <div class="species-name">Pleated Sea Squirt</div>
                     <div class="species-scientific">Styela plicata</div>
-                    <span class="species-group">Ascidian</span>
+                    <span class="species-group">Sea Squirt</span>
                     <div class="species-features">
                         <ul>
-                            <li>Pleated/ridged surface</li>
+                            <li>Ridged like a brain</li>
                             <li>Grey-brown colour</li>
-                            <li>Up to 70mm height</li>
-                            <li>Solitary, not colonial</li>
+                            <li>Golf ball size: 70mm</li>
+                            <li>Sits alone</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 23. Charybdis japonica -->
+            <!-- 14. European Shore Crab -->
+            <div class="species-item medium-priority">
+                <div class="species-image">
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Carcinus_maenas.jpg?width=400" alt="European Shore Crab">
+                    <span class="priority-badge medium">MED</span>
+                </div>
+                <div class="species-content">
+                    <div class="species-name">European Shore Crab</div>
+                    <div class="species-scientific">Carcinus maenas</div>
+                    <span class="species-group">Niche Hitchhiker</span>
+                    <div class="species-features">
+                        <ul>
+                            <li>Green shell</li>
+                            <li>5 spines each side of eyes</li>
+                            <li>Up to 90mm across</li>
+                            <li>Hides in sea chests</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 15. Asian Paddle Crab -->
             <div class="species-item medium-priority">
                 <div class="species-image">
                     <img src="https://en.wikipedia.org/wiki/Special:FilePath/Charybdis_japonica.jpg?width=400" alt="Asian Paddle Crab">
@@ -790,34 +781,78 @@
                 <div class="species-content">
                     <div class="species-name">Asian Paddle Crab</div>
                     <div class="species-scientific">Charybdis japonica</div>
-                    <span class="species-group">Crab</span>
+                    <span class="species-group">Niche Hitchhiker</span>
                     <div class="species-features">
                         <ul>
-                            <li>Paddle-shaped rear legs</li>
-                            <li>Six spines between eyes</li>
-                            <li>Up to 120mm carapace</li>
-                            <li>Olive to brown colour</li>
+                            <li>Paddle-shaped back legs</li>
+                            <li>6 spines between eyes</li>
+                            <li>Up to 120mm across</li>
+                            <li>Olive-brown colour</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <!-- 24. Bonnemaisonia hamifera -->
-            <div class="species-item medium-priority">
+            <!-- NATIVE COMPARISON - 16, 17, 18 -->
+            
+            <!-- 16. Blue Mussel (Native - for comparison) -->
+            <div class="species-item" style="border-color: #006400; border-width: 2px;">
                 <div class="species-image">
-                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Icones_of_Japanese_algae_(9935884464).jpg?width=400" alt="Hook Weed">
-                    <span class="priority-badge medium">MED</span>
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Mytilus_galloprovincialis.jpg?width=400" alt="Blue Mussel">
+                    <span class="priority-badge" style="background: #006400;">NATIVE</span>
                 </div>
                 <div class="species-content">
-                    <div class="species-name">Hook Weed</div>
-                    <div class="species-scientific">Bonnemaisonia hamifera</div>
-                    <span class="species-group">Macroalga</span>
+                    <div class="species-name">Blue Mussel ✓</div>
+                    <div class="species-scientific">Mytilus galloprovincialis</div>
+                    <span class="species-group">Common - No Report</span>
                     <div class="species-features">
                         <ul>
-                            <li>Red/pink branching fronds</li>
-                            <li>Hook-like branchlets</li>
-                            <li>Up to 30cm height</li>
-                            <li>Pompom-like stage</li>
+                            <li>Blue-black shell</li>
+                            <li>NOT green</li>
+                            <li>Pointy triangle shape</li>
+                            <li>Normal WA fouling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 17. Native Tube Worms (for comparison) -->
+            <div class="species-item" style="border-color: #006400; border-width: 2px;">
+                <div class="species-image">
+                    <img src="https://en.wikipedia.org/wiki/Special:FilePath/Spirobranchus_giganteus_(Christmastree_Worm_-_yellow_variation).jpg?width=400" alt="Native Tube Worms">
+                    <span class="priority-badge" style="background: #006400;">NATIVE</span>
+                </div>
+                <div class="species-content">
+                    <div class="species-name">Native Tube Worms ✓</div>
+                    <div class="species-scientific">Serpulidae</div>
+                    <span class="species-group">Common - No Report</span>
+                    <div class="species-features">
+                        <ul>
+                            <li>SMALL fan (not 45-60mm)</li>
+                            <li>White hard tubes</li>
+                            <li>NOT brown leathery tube</li>
+                            <li>Normal WA fouling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 18. Native Colonial Sea Squirts (for comparison) -->
+            <div class="species-item" style="border-color: #006400; border-width: 2px;">
+                <div class="species-image">
+                    <img src="assets/didemnum_perlucidum.jpg" alt="Native Sea Squirts">
+                    <span class="priority-badge" style="background: #006400;">NATIVE</span>
+                </div>
+                <div class="species-content">
+                    <div class="species-name">Native Sea Squirts ✓</div>
+                    <div class="species-scientific">Didemnidae</div>
+                    <span class="species-group">Compare Carefully!</span>
+                    <div class="species-features">
+                        <ul>
+                            <li>Thin jelly-like mat</li>
+                            <li>NOT veiny/waxy</li>
+                            <li>Slimy, not leathery</li>
+                            <li>If unsure - REPORT IT</li>
                         </ul>
                     </div>
                 </div>
@@ -831,22 +866,121 @@
                 <div class="legend">
                     <div class="legend-item">
                         <div class="legend-dot high"></div>
-                        <span>HIGH Priority</span>
+                        <span>HIGH - Stop & Report Now</span>
                     </div>
                     <div class="legend-item">
                         <div class="legend-dot medium"></div>
-                        <span>MEDIUM Priority</span>
+                        <span>MEDIUM - Report within 24hrs</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #006400;"></div>
+                        <span>NATIVE - Normal Fouling</span>
                     </div>
                 </div>
             </div>
             <div class="footer-action">
-                📞 If found: DO NOT DISTURB — Report immediately to DPIRD Pest Watch: 1800 084 881
+                📞 Found Something? STOP CLEANING — Call DPIRD: 1800 084 881
             </div>
             <div class="footer-right">
-                Biofouling ID Guide v1.0<br>
-                Print at A3 Landscape for best results
+                Hull Biofouling ID Guide v2.0<br>
+                Print A3 Landscape
             </div>
         </div>
     </div>
+    
+    <!-- Gallery Modal -->
+    <div class="gallery-overlay" id="gallery-overlay">
+        <div class="gallery-container">
+            <div class="gallery-header" id="gallery-header">
+                <div class="gallery-header-text">
+                    <h2 class="gallery-title" id="gallery-title"></h2>
+                    <div class="gallery-scientific" id="gallery-scientific"></div>
+                </div>
+                <button class="gallery-close" id="gallery-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="gallery-body">
+                <div class="gallery-image-container">
+                    <img class="gallery-main-image" id="gallery-image" src="" alt="">
+                </div>
+                <div class="gallery-info">
+                    <div class="gallery-features" id="gallery-features"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Gallery Modal functionality
+        const galleryOverlay = document.getElementById('gallery-overlay');
+        const galleryHeader = document.getElementById('gallery-header');
+        const galleryTitle = document.getElementById('gallery-title');
+        const galleryScientific = document.getElementById('gallery-scientific');
+        const galleryImage = document.getElementById('gallery-image');
+        const galleryFeatures = document.getElementById('gallery-features');
+        const galleryClose = document.getElementById('gallery-close');
+        
+        // Open modal when clicking a species item
+        document.querySelectorAll('.species-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Get species info from card
+                const name = this.querySelector('.species-name').textContent;
+                const scientific = this.querySelector('.species-scientific').textContent;
+                const img = this.querySelector('.species-image img');
+                const imgSrc = img ? img.src : '';
+                const imgAlt = img ? img.alt : name;
+                
+                // Get features list
+                const featuresList = this.querySelector('.species-features ul');
+                const featuresHTML = featuresList ? '<h4>How to Spot It</h4>' + featuresList.outerHTML : '';
+                
+                // Determine priority for header color
+                galleryHeader.className = 'gallery-header';
+                if (this.classList.contains('high-priority')) {
+                    galleryHeader.classList.add('high-priority');
+                } else if (this.classList.contains('medium-priority')) {
+                    galleryHeader.classList.add('medium-priority');
+                } else if (this.style.borderColor === 'rgb(0, 100, 0)') {
+                    galleryHeader.classList.add('native');
+                }
+                
+                // Check for native badge
+                const badge = this.querySelector('.priority-badge');
+                if (badge && badge.textContent.trim() === 'NATIVE') {
+                    galleryHeader.classList.add('native');
+                }
+                
+                // Populate modal
+                galleryTitle.textContent = name;
+                galleryScientific.textContent = scientific;
+                galleryImage.src = imgSrc;
+                galleryImage.alt = imgAlt;
+                galleryFeatures.innerHTML = featuresHTML;
+                
+                // Show modal
+                galleryOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close modal
+        function closeGallery() {
+            galleryOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        galleryClose.addEventListener('click', closeGallery);
+        
+        galleryOverlay.addEventListener('click', function(e) {
+            if (e.target === galleryOverlay) {
+                closeGallery();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && galleryOverlay.classList.contains('active')) {
+                closeGallery();
+            }
+        });
+    </script>
 </body>
 </html>
