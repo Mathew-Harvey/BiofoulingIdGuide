@@ -4,6 +4,67 @@
  */
 
 // =============================================
+// Region Selector
+// =============================================
+
+const regionData = {
+    wa: {
+        name: 'Western Australia',
+        shortName: 'WA',
+        icon: '🦘'
+    },
+    nsw: {
+        name: 'New South Wales',
+        shortName: 'NSW',
+        icon: '🌊'
+    }
+};
+
+function setRegion(region) {
+    // Update body data attribute
+    document.body.setAttribute('data-region', region);
+    
+    // Update region buttons
+    document.querySelectorAll('.region-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-region') === region) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update region badge
+    const badgeText = document.getElementById('region-badge-text');
+    if (badgeText) {
+        badgeText.textContent = regionData[region].name;
+        // Add animation
+        badgeText.parentElement.style.animation = 'none';
+        badgeText.parentElement.offsetHeight; // Trigger reflow
+        badgeText.parentElement.style.animation = 'fadeInUp 0.3s ease';
+    }
+    
+    // Update hero subtitle
+    const regionTextSpans = document.querySelectorAll('.region-text');
+    regionTextSpans.forEach(span => {
+        span.textContent = regionData[region].shortName;
+    });
+    
+    // Store preference in localStorage
+    localStorage.setItem('biofouling-region', region);
+    
+    // Scroll to top smoothly when changing regions
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Initialize region from localStorage or default to WA
+function initRegion() {
+    const savedRegion = localStorage.getItem('biofouling-region') || 'wa';
+    setRegion(savedRegion);
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', initRegion);
+
+// =============================================
 // Species Search Filter
 // =============================================
 

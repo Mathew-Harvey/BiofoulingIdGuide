@@ -14,6 +14,8 @@
     --gray-300: #dee2e6;
     --gray-600: #6c757d;
     --gray-800: #343a40;
+    --wa-color: #003366;
+    --nsw-color: #1a4f7a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,6 +27,140 @@ body {
     background: var(--gray-100);
 }
 
+/* =============================================
+   Region Selector
+   ============================================= */
+
+.region-selector {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.region-selector-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.region-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.region-toggle {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 50px;
+}
+
+.region-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 2px solid transparent;
+    background: transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.region-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.region-btn.active {
+    background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+    color: #1a1a2e;
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.region-btn.active .region-icon {
+    transform: scale(1.1);
+}
+
+.region-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.region-name {
+    font-weight: 600;
+}
+
+/* Region Badge in Hero */
+.region-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: fadeInUp 0.5s ease;
+}
+
+.region-badge-icon {
+    font-size: 1.1rem;
+}
+
+.region-badge-text {
+    font-size: 0.95rem;
+}
+
+/* Pulse animation for region badge */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Region content visibility */
+body[data-region="wa"] .wa-content { display: block !important; }
+body[data-region="wa"] .nsw-content { display: none !important; }
+body[data-region="nsw"] .wa-content { display: none !important; }
+body[data-region="nsw"] .nsw-content { display: block !important; }
+
+/* Responsive region selector */
+@media (max-width: 600px) {
+    .region-selector-inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .region-toggle {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .region-btn {
+        justify-content: center;
+        padding: 14px 20px;
+    }
+}
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* Header */
@@ -33,9 +169,15 @@ header {
     color: white;
     padding: 20px 0;
     position: sticky;
-    top: 0;
+    top: 60px; /* Below region selector */
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+    header {
+        top: 130px; /* Taller region selector on mobile */
+    }
 }
 
 header .container {

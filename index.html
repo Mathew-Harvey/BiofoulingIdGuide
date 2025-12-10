@@ -7,7 +7,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-region="wa">
+    
+    <!-- Region Selector Banner -->
+    <div class="region-selector">
+        <div class="container">
+            <div class="region-selector-inner">
+                <span class="region-label">Select your region:</span>
+                <div class="region-toggle">
+                    <button class="region-btn active" data-region="wa" onclick="setRegion('wa')">
+                        <span class="region-icon">🦘</span>
+                        <span class="region-name">Western Australia</span>
+                    </button>
+                    <button class="region-btn" data-region="nsw" onclick="setRegion('nsw')">
+                        <span class="region-icon">🌊</span>
+                        <span class="region-name">New South Wales</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <header>
         <div class="container">
             <div class="logo">Franmarine <span>Underwater Services</span></div>
@@ -25,16 +45,32 @@
     
     <section class="hero">
         <div class="container">
+            <div class="region-badge" id="region-badge">
+                <span class="region-badge-icon">📍</span>
+                <span class="region-badge-text" id="region-badge-text">Western Australia</span>
+            </div>
             <h1>Hull Biofouling ID Guide</h1>
-            <p>Quick reference for divers cleaning ship hulls in WA - know what you're scraping off</p>
+            <p id="hero-subtitle">Quick reference for divers cleaning ship hulls in <span class="region-text">WA</span> - know what you're scraping off</p>
             <div class="hero-badge">Version 2.0 • December 2025</div>
             <div class="print-links">
-                <a href="A3Poster.html" class="print-btn" target="_blank">
+                <!-- WA Print Links -->
+                <a href="A3Poster.html" class="print-btn region-content wa-content" target="_blank" id="poster-link-wa">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet.html" class="print-btn" target="_blank">
+                <a href="A5Booklet.html" class="print-btn region-content wa-content" target="_blank" id="booklet-link-wa">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- NSW Print Links -->
+                <a href="A3Poster-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="poster-link-nsw" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="booklet-link-nsw" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
@@ -56,7 +92,8 @@
                     </div>
                     <div class="info-card">
                         <h3>Why It Matters</h3>
-                        <p>Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA - like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
+                        <p class="region-content wa-content">Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA - like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
+                        <p class="region-content nsw-content" style="display:none;">Marine pests hitch rides on hulls. Sydney Harbour and NSW ports have seen invasive species like Caulerpa taxifolia and European fan worm. Divers are our first line of defence.</p>
                     </div>
                     <div class="info-card">
                         <h3>Priority Levels</h3>
@@ -101,7 +138,8 @@
                                 <span class="priority high">HIGH</span>
                             </div>
                             <span class="species-group">Sea Squirt</span>
-                            <p class="species-description">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>Already found at HMAS Stirling and Henderson.</strong></p>
+                            <p class="species-description region-content wa-content">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>Already found at HMAS Stirling and Henderson.</strong></p>
+                            <p class="species-description region-content nsw-content" style="display:none;">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>HIGH priority pest - report any sightings in NSW waters immediately.</strong></p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
                                 <ul>
@@ -118,8 +156,8 @@
                         </div>
                     </div>
                     
-                    <!-- Didemnum perlucidum - White Sea Squirt -->
-                    <div class="species-card invasive" data-name="didemnum perlucidum white colonial sea squirt">
+                    <!-- Didemnum perlucidum - White Sea Squirt - WA ONLY -->
+                    <div class="species-card invasive region-content wa-content" data-name="didemnum perlucidum white colonial sea squirt">
                         <div class="species-image"><img src="assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt"></div>
                         <div class="species-content">
                             <div class="species-header">
@@ -197,8 +235,8 @@
                         </div>
                     </div>
                     
-                    <!-- Perna perna - Brown Mussel -->
-                    <div class="species-card invasive" data-name="perna perna brown mussel">
+                    <!-- Perna perna - Brown Mussel - WA ONLY -->
+                    <div class="species-card invasive region-content wa-content" data-name="perna perna brown mussel">
                         <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Perna_perna_002.jpg?width=400" alt="Brown Mussel"></div>
                         <div class="species-content">
                             <div class="species-header">
@@ -283,7 +321,8 @@
                                 <span class="priority high">HIGH</span>
                             </div>
                             <span class="species-group">Tube Worm</span>
-                            <p class="species-description">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Already established in WA.</strong></p>
+                            <p class="species-description region-content wa-content">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Already established in WA.</strong></p>
+                            <p class="species-description region-content nsw-content" style="display:none;">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Established in NSW ports including Sydney Harbour.</strong></p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
                                 <ul>
@@ -414,7 +453,8 @@
                                 <span class="priority high">HIGH</span>
                             </div>
                             <span class="species-group">Algae</span>
-                            <p class="species-description">Bright green feathery algae. Called "killer algae" because it smothers everything. Can hitchhike on anchor chains too.</p>
+                            <p class="species-description region-content wa-content">Bright green feathery algae. Called "killer algae" because it smothers everything. Can hitchhike on anchor chains too.</p>
+                            <p class="species-description region-content nsw-content" style="display:none;">Bright green feathery algae. <strong>CLASS 1 NOXIOUS in NSW - established in 14+ estuaries including Sydney Harbour.</strong> Illegal to possess.</p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
                                 <ul>
@@ -422,6 +462,112 @@
                                     <li>Feather-shaped fronds</li>
                                     <li>Spreads with creeping runners</li>
                                     <li>Can get 65cm tall</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ==================== NSW-SPECIFIC HIGH PRIORITY SPECIES ==================== -->
+                    
+                    <!-- Northern Pacific Seastar - NSW ONLY -->
+                    <div class="species-card invasive region-content nsw-content" data-name="asterias amurensis northern pacific seastar" style="display:none;">
+                        <div class="species-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/CSIRO_ScienceImage_2662_Northern_Pacific_Seastar.jpg/800px-CSIRO_ScienceImage_2662_Northern_Pacific_Seastar.jpg" alt="Northern Pacific Seastar"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Northern Pacific Seastar</div>
+                                    <div class="species-scientific">Asterias amurensis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Seastar - PROHIBITED in NSW</span>
+                            <p class="species-description">Large seastar - a voracious predator. <strong>Prohibited Matter in NSW. Estimated $1 billion loss to Tasmanian fisheries.</strong></p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Large - up to 50cm diameter</li>
+                                    <li>5 arms with distinctive upturned tips</li>
+                                    <li>Yellow-orange body with purple/red markings</li>
+                                    <li>Undersides completely yellow</li>
+                                    <li>Small central disc</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Asian Date/Bag Mussel - NSW ONLY -->
+                    <div class="species-card invasive region-content nsw-content" data-name="musculista senhousia asian date bag mussel" style="display:none;">
+                        <div class="species-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Arcuatula_senhousia.jpg/800px-Arcuatula_senhousia.jpg" alt="Asian Date Mussel"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Asian Date/Bag Mussel</div>
+                                    <div class="species-scientific">Musculista senhousia</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Mussel - PROHIBITED in NSW</span>
+                            <p class="species-description">Small mussel that forms extremely dense mats. <strong>Prohibited Matter in NSW. Established in VIC, TAS, SA, WA.</strong></p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Small - up to 30mm</li>
+                                    <li>Thin, fragile, easily crushed shell</li>
+                                    <li>Greenish with zigzag markings</li>
+                                    <li>Iridescent radiating bands</li>
+                                    <li>Forms dense mats (thousands per m²)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charru Mussel - NSW ONLY -->
+                    <div class="species-card invasive region-content nsw-content" data-name="mytella strigata charru mussel" style="display:none;">
+                        <div class="species-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mytella_strigata.jpg/800px-Mytella_strigata.jpg" alt="Charru Mussel"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Charru Mussel</div>
+                                    <div class="species-scientific">Mytella strigata</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Mussel - APMPL Listed 2020</span>
+                            <p class="species-description">Medium mussel with variable colours. <strong>Not established in Australia. Forms extremely dense colonies.</strong></p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Medium 22-50mm</li>
+                                    <li>Variable: black, brown, grey, orange</li>
+                                    <li>Zigzags, spots, or concentric bands</li>
+                                    <li>Blue-purple opalescent interior</li>
+                                    <li>Yellowish flesh</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chinese Mitten Crab - NSW ONLY -->
+                    <div class="species-card invasive region-content nsw-content" data-name="eriocheir sinensis chinese mitten crab" style="display:none;">
+                        <div class="species-image"><img src="https://en.wikipedia.org/wiki/Special:FilePath/Eriocheir_sinensis.jpg?width=400" alt="Chinese Mitten Crab"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Chinese Mitten Crab</div>
+                                    <div class="species-scientific">Eriocheir sinensis</div>
+                                </div>
+                                <span class="priority high">HIGH</span>
+                            </div>
+                            <span class="species-group">Crab - PROHIBITED</span>
+                            <p class="species-description">Medium crab with distinctive hairy "mittens" on claws. <strong>Not established in Australia. Can carry lung fluke parasite.</strong></p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Dense patches of dark hair on claws ("mittens")</li>
+                                    <li>White-tipped claws</li>
+                                    <li>Up to 80mm carapace</li>
+                                    <li>Olive-brown shell</li>
+                                    <li>4 spines either side of eyes</li>
                                 </ul>
                             </div>
                         </div>
@@ -471,15 +617,19 @@
                                     <div class="species-name">Asian Paddle Crab</div>
                                     <div class="species-scientific">Charybdis japonica</div>
                                 </div>
-                                <span class="priority medium">MEDIUM</span>
+                                <span class="priority medium region-content wa-content">MEDIUM</span>
+                                <span class="priority high region-content nsw-content" style="display:none;">HIGH</span>
                             </div>
-                            <span class="species-group">Crab</span>
-                            <p class="species-description">Swimming crab with paddle-shaped back legs. Can shelter in niche areas on vessels.</p>
+                            <span class="species-group region-content wa-content">Crab</span>
+                            <span class="species-group region-content nsw-content" style="display:none;">Crab - PROHIBITED in NSW</span>
+                            <p class="species-description region-content wa-content">Swimming crab with paddle-shaped back legs. Can shelter in niche areas on vessels.</p>
+                            <p class="species-description region-content nsw-content" style="display:none;">Swimming crab with paddle-shaped back legs. <strong>Prohibited Matter in NSW. Carries White Spot Syndrome Virus!</strong></p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
                                 <ul>
                                     <li>Back legs are flat paddles (for swimming)</li>
                                     <li>6 spines between the eyes</li>
+                                    <li>5 spines on each claw</li>
                                     <li>Up to 120mm across</li>
                                     <li>Olive-brown colour</li>
                                 </ul>
@@ -493,7 +643,8 @@
             <!-- Native Species Section -->
             <section id="native">
                 <h2 class="section-title success">Part 3: Native Hull Fouling — The Normal Stuff</h2>
-                <p style="margin-bottom: 20px; color: var(--gray-600);">This is what you'll see most of the time. It's the normal WA marine growth. Knowing it helps you spot when something's wrong.</p>
+                <p style="margin-bottom: 20px; color: var(--gray-600);" class="region-content wa-content">This is what you'll see most of the time. It's the normal WA marine growth. Knowing it helps you spot when something's wrong.</p>
+                <p style="margin-bottom: 20px; color: var(--gray-600); display:none;" class="region-content nsw-content">This is what you'll see most of the time. It's the normal NSW marine growth. Knowing it helps you spot when something's wrong.</p>
                 
                 <input type="text" class="search-box" id="native-search" placeholder="Search native species..." onkeyup="filterSpecies('native')">
                 
@@ -884,6 +1035,33 @@
                         </div>
                     </div>
                     
+                    <!-- Sydney Rock Oyster - NSW ONLY -->
+                    <div class="species-card native region-content nsw-content" data-name="saccostrea glomerata sydney rock oyster" style="display:none;">
+                        <div class="species-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Sydney_Rock_Oyster_%28Saccostrea_glomerata%29.jpg/800px-Sydney_Rock_Oyster_%28Saccostrea_glomerata%29.jpg" alt="Sydney Rock Oyster"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Sydney Rock Oyster</div>
+                                    <div class="species-scientific">Saccostrea glomerata</div>
+                                </div>
+                            </div>
+                            <span class="species-group">Native NSW Oyster</span>
+                            <p class="species-description">Native NSW oyster. Rounder and smaller than the invasive Pacific Oyster. Less frilly edges.</p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Rounder and smaller than Pacific Oyster</li>
+                                    <li>Usually less than 80mm</li>
+                                    <li>Less frilly edges</li>
+                                    <li>Native to NSW waters</li>
+                                </ul>
+                            </div>
+                            <div class="lookalike-box">
+                                <strong>Compare with:</strong> Pacific Oyster (invasive) - larger, more irregular shape, very frilly sharp edges.
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
             
@@ -958,10 +1136,46 @@
                         <p style="margin-top: 15px;"><em>Call anytime - they want to hear from you</em></p>
                     </div>
                     
-                    <div class="contact-card">
+                    <!-- WA State Contacts -->
+                    <div class="contact-card region-content wa-content">
                         <h3>WA State</h3>
                         <p><strong>DPIRD Pest Watch:</strong> 1800 084 881</p>
                         <p><strong>Online Report:</strong> www.marinepests.gov.au/report</p>
+                    </div>
+                    
+                    <!-- NSW State Contacts -->
+                    <div class="contact-card region-content nsw-content" style="display:none;">
+                        <h3>NSW State</h3>
+                        <p><strong>NSW DPI Aquatic Biosecurity:</strong> 1300 795 299</p>
+                        <p><strong>Email:</strong> aquatic.biosecurity@dpi.nsw.gov.au</p>
+                        <p><strong>Online Report:</strong> www.marinepests.gov.au/report</p>
+                    </div>
+                </div>
+                
+                <!-- NSW Additional Info -->
+                <div class="region-content nsw-content" style="display:none; margin-top: 25px;">
+                    <div class="alert" style="border-left-color: var(--primary); background: #e3f2fd;">
+                        <h4 style="color: var(--primary);">📍 NSW Reporting Notes</h4>
+                        <ul>
+                            <li><strong>Sydney Harbour:</strong> Carpet sea squirt outbreak detected May 2023 (Fleet Base East)</li>
+                            <li><strong>Caulerpa taxifolia:</strong> CLASS 1 NOXIOUS - established in 14+ NSW estuaries</li>
+                            <li><strong>European Fan Worm:</strong> Established in Eden (1996), Botany Bay</li>
+                            <li><strong>Northern Pacific Seastar:</strong> Prohibited matter - report immediately</li>
+                            <li>Take photos and GPS coordinates for any unusual sightings</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- WA Additional Info -->
+                <div class="region-content wa-content" style="margin-top: 25px;">
+                    <div class="alert" style="border-left-color: var(--primary); background: #e3f2fd;">
+                        <h4 style="color: var(--primary);">📍 WA Reporting Notes</h4>
+                        <ul>
+                            <li><strong>HMAS Stirling:</strong> Carpet sea squirt detected - heightened surveillance</li>
+                            <li><strong>Henderson:</strong> Key commercial port - priority monitoring</li>
+                            <li><strong>Fremantle:</strong> High vessel traffic from international routes</li>
+                            <li>Take photos and GPS coordinates for any unusual sightings</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -971,7 +1185,8 @@
     <footer>
         <div class="container">
             <p>© 2025 Franmarine Underwater Services</p>
-            <p>Info from DAFF, DPIRD WA, NIMPIS</p>
+            <p class="region-content wa-content">Info from DAFF, DPIRD WA, NIMPIS</p>
+            <p class="region-content nsw-content" style="display:none;">Info from DAFF, NSW DPI, NIMPIS</p>
         </div>
     </footer>
     
