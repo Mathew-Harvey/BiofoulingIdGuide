@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hull Biofouling ID Guide - Franmarine Underwater Services</title>
+    <title>Hull Biofouling ID Guide - MarineStream</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-region="wa">
     
-    <!-- Region Selector Banner -->
-    <div class="region-selector">
-        <div class="container">
-            <div class="region-selector-inner">
-                <span class="region-label">Select your region:</span>
-                <div class="region-toggle">
-                    <button class="region-btn active" data-region="wa" onclick="setRegion('wa')">
-                        <span class="region-icon">🦘</span>
-                        <span class="region-name">Western Australia</span>
-                    </button>
-                    <button class="region-btn" data-region="nsw" onclick="setRegion('nsw')">
-                        <span class="region-icon">🌊</span>
-                        <span class="region-name">New South Wales</span>
-                    </button>
-                </div>
+    <!-- Region Selection Modal (First Visit) -->
+    <div class="region-modal" id="region-modal">
+        <div class="region-modal-backdrop"></div>
+        <div class="region-modal-content">
+            <div class="region-modal-header">
+                <h2>Welcome to the Hull Biofouling ID Guide</h2>
+                <p>Select your region to see relevant species and contacts</p>
+            </div>
+            <div class="region-modal-options">
+                <button class="region-modal-btn" onclick="selectRegionFromModal('wa')">
+                    <span class="region-modal-icon">🦘</span>
+                    <span class="region-modal-name">Western Australia</span>
+                    <span class="region-modal-desc">DPIRD WA regulations & contacts</span>
+                </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('nsw')">
+                    <span class="region-modal-icon">🌊</span>
+                    <span class="region-modal-name">New South Wales</span>
+                    <span class="region-modal-desc">NSW DPI regulations & contacts</span>
+                </button>
             </div>
         </div>
     </div>
     
     <header>
         <div class="container">
-            <div class="logo">Franmarine <span>Underwater Services</span></div>
+            <a href="https://www.marinestream.com.au" class="logo"><img src="assets/marinestream_logo_white.png" alt="MarineStream" style="height: 32px;"></a>
             <nav>
                 <ul>
                     <li><a href="#intro">Intro</a></li>
@@ -40,6 +44,22 @@
                     <li><a href="#contact">Report It</a></li>
                 </ul>
             </nav>
+            <!-- Region Dropdown -->
+            <div class="region-dropdown" id="region-dropdown">
+                <button class="region-dropdown-trigger" onclick="toggleRegionDropdown()">
+                    <span class="region-dropdown-icon" id="region-dropdown-icon">🦘</span>
+                    <span class="region-dropdown-text" id="region-dropdown-text">WA</span>
+                    <svg class="region-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+                </button>
+                <div class="region-dropdown-menu" id="region-dropdown-menu">
+                    <button class="region-dropdown-item" data-region="wa" onclick="setRegion('wa')">
+                        <span>🦘</span> Western Australia
+                    </button>
+                    <button class="region-dropdown-item" data-region="nsw" onclick="setRegion('nsw')">
+                        <span>🌊</span> New South Wales
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
     
@@ -1126,10 +1146,10 @@
                 
                 <div class="contact-grid">
                     <div class="contact-card">
-                        <h3>Franmarine</h3>
+                        <h3>MarineStream</h3>
                         <p><strong>Biofouling Manager:</strong> Mat Harvey</p>
                         <p><strong>Operations Manager:</strong> Sam Diamond</p>
-                        <p><strong>Website:</strong> www.franmarine.com.au</p>
+                        <p><strong>Website:</strong> <a href="https://www.marinestream.com.au" style="color: inherit;">www.marinestream.com.au</a></p>
                     </div>
                     
                     <div class="contact-card">
@@ -1187,7 +1207,7 @@
     
     <footer>
         <div class="container">
-            <p>© 2025 Franmarine Underwater Services</p>
+            <p>© 2025 MarineStream</p>
             <p class="region-content wa-content">Info from DAFF, DPIRD WA, NIMPIS</p>
             <p class="region-content nsw-content" style="display:none;">Info from DAFF, NSW DPI, NIMPIS</p>
         </div>

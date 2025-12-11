@@ -1,6 +1,6 @@
 /**
  * Hull Biofouling ID Guide - JavaScript
- * Franmarine Underwater Services
+ * MarineStream
  */
 
 // =============================================
@@ -24,23 +24,28 @@ function setRegion(region) {
     // Update body data attribute
     document.body.setAttribute('data-region', region);
     
-    // Update region buttons
-    document.querySelectorAll('.region-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-region') === region) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // Update region badge
+    // Update region badge in hero
     const badgeText = document.getElementById('region-badge-text');
     if (badgeText) {
         badgeText.textContent = regionData[region].name;
-        // Add animation
         badgeText.parentElement.style.animation = 'none';
-        badgeText.parentElement.offsetHeight; // Trigger reflow
+        badgeText.parentElement.offsetHeight;
         badgeText.parentElement.style.animation = 'fadeInUp 0.3s ease';
     }
+    
+    // Update header dropdown
+    const dropdownText = document.getElementById('region-dropdown-text');
+    const dropdownIcon = document.getElementById('region-dropdown-icon');
+    if (dropdownText) dropdownText.textContent = regionData[region].shortName;
+    if (dropdownIcon) dropdownIcon.textContent = regionData[region].icon;
+    
+    // Update dropdown menu active state
+    document.querySelectorAll('.region-dropdown-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-region') === region) {
+            item.classList.add('active');
+        }
+    });
     
     // Update hero subtitle
     const regionTextSpans = document.querySelectorAll('.region-text');
@@ -51,14 +56,61 @@ function setRegion(region) {
     // Store preference in localStorage
     localStorage.setItem('biofouling-region', region);
     
-    // Scroll to top smoothly when changing regions
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Close dropdown if open
+    closeRegionDropdown();
 }
 
-// Initialize region from localStorage or default to WA
+// Select region from modal (first visit)
+function selectRegionFromModal(region) {
+    setRegion(region);
+    localStorage.setItem('biofouling-region-selected', 'true');
+    closeRegionModal();
+}
+
+// Region modal functions
+function showRegionModal() {
+    const modal = document.getElementById('region-modal');
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRegionModal() {
+    const modal = document.getElementById('region-modal');
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Region dropdown functions
+function toggleRegionDropdown() {
+    const dropdown = document.getElementById('region-dropdown');
+    if (dropdown) dropdown.classList.toggle('open');
+}
+
+function closeRegionDropdown() {
+    const dropdown = document.getElementById('region-dropdown');
+    if (dropdown) dropdown.classList.remove('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('region-dropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+        closeRegionDropdown();
+    }
+});
+
+// Initialize region
 function initRegion() {
+    const hasSelected = localStorage.getItem('biofouling-region-selected');
     const savedRegion = localStorage.getItem('biofouling-region') || 'wa';
+    
+    // Set the region
     setRegion(savedRegion);
+    
+    // Show modal if first visit
+    if (!hasSelected) {
+        setTimeout(showRegionModal, 300);
+    }
 }
 
 // Run on page load

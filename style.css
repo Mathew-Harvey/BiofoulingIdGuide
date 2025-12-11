@@ -20,87 +20,214 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: var(--gray-800);
     background: var(--gray-100);
+    overflow-x: hidden;
 }
 
 /* =============================================
-   Region Selector
+   Region Modal (First Visit)
    ============================================= */
 
-.region-selector {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    padding: 12px 0;
-    position: sticky;
-    top: 0;
-    z-index: 200;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.region-selector-inner {
+.region-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-.region-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-    font-size: 0.95rem;
+.region-modal.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.region-toggle {
+.region-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 20, 40, 0.9);
+    backdrop-filter: blur(8px);
+}
+
+.region-modal-content {
+    position: relative;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border-radius: 24px;
+    padding: 48px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.region-modal.active .region-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.region-modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.region-modal-header h2 {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.region-modal-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+}
+
+.region-modal-options {
     display: flex;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px;
-    border-radius: 50px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.region-btn {
+.region-modal-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-family: inherit;
+}
+
+.region-modal-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: translateX(4px);
+}
+
+.region-modal-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.region-modal-name {
+    display: block;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.region-modal-desc {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+/* =============================================
+   Region Dropdown (Header)
+   ============================================= */
+
+.region-dropdown {
+    position: relative;
+    margin-left: 16px;
+}
+
+.region-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    cursor: pointer;
+    color: white;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.region-dropdown-trigger:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.region-dropdown-icon {
+    font-size: 1.1rem;
+}
+
+.region-dropdown-arrow {
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.region-dropdown.open .region-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.region-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.region-dropdown.open .region-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.region-dropdown-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 24px;
-    border: 2px solid transparent;
-    background: transparent;
-    border-radius: 40px;
+    width: 100%;
+    padding: 14px 18px;
+    background: none;
+    border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-    color: rgba(255, 255, 255, 0.7);
     font-family: inherit;
     font-size: 0.95rem;
-    font-weight: 500;
+    color: #333;
+    transition: background 0.15s ease;
+    text-align: left;
 }
 
-.region-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+.region-dropdown-item:hover {
+    background: #f5f5f5;
+}
+
+.region-dropdown-item.active {
+    background: #003366;
     color: white;
-}
-
-.region-btn.active {
-    background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
-    color: #1a1a2e;
-    border-color: rgba(255, 215, 0, 0.3);
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
-
-.region-btn.active .region-icon {
-    transform: scale(1.1);
-}
-
-.region-icon {
-    font-size: 1.3rem;
-    transition: transform 0.3s ease;
-}
-
-.region-name {
-    font-weight: 600;
 }
 
 /* Region Badge in Hero */
@@ -142,21 +269,18 @@ body[data-region="wa"] .nsw-content { display: none !important; }
 body[data-region="nsw"] .wa-content { display: none !important; }
 body[data-region="nsw"] .nsw-content { display: block !important; }
 
-/* Responsive region selector */
+/* Responsive region modal */
 @media (max-width: 600px) {
-    .region-selector-inner {
-        flex-direction: column;
-        gap: 10px;
+    .region-modal-content {
+        padding: 32px 24px;
     }
     
-    .region-toggle {
-        flex-direction: column;
-        width: 100%;
-        max-width: 280px;
+    .region-modal-header h2 {
+        font-size: 1.3rem;
     }
     
-    .region-btn {
-        justify-content: center;
+    .region-dropdown-text {
+        display: none;
         padding: 14px 20px;
     }
 }
@@ -169,15 +293,9 @@ header {
     color: white;
     padding: 20px 0;
     position: sticky;
-    top: 60px; /* Below region selector */
+    top: 0;
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 600px) {
-    header {
-        top: 130px; /* Taller region selector on mobile */
-    }
 }
 
 header .container {
