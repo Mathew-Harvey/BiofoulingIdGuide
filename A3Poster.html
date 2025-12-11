@@ -428,6 +428,36 @@
             background: #f0f0f0;
         }
         
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .gallery-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+            opacity: 0.7;
+            transition: all 0.2s ease;
+        }
+        
+        .gallery-thumb:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .gallery-thumb.active {
+            border-color: #003366;
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.3);
+        }
+        
         .gallery-info {
             margin-top: 16px;
         }
@@ -496,7 +526,7 @@
             </div>
             
             <!-- 2. Asian Green Mussel -->
-            <div class="species-item high-priority">
+            <div class="species-item high-priority" data-images="assets/AsianGreenLipMuscle.webp,assets/AsianGreen01.jpeg,assets/AsianGreen02.jpg">
                 <div class="species-image">
                     <img src="assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel">
                     <span class="priority-badge high">HIGH</span>
@@ -902,6 +932,7 @@
                 <div class="gallery-image-container">
                     <img class="gallery-main-image" id="gallery-image" src="" alt="">
                 </div>
+                <div class="gallery-thumbnails" id="gallery-thumbnails" style="display: none;"></div>
                 <div class="gallery-info">
                     <div class="gallery-features" id="gallery-features"></div>
                 </div>
@@ -917,7 +948,20 @@
         const galleryScientific = document.getElementById('gallery-scientific');
         const galleryImage = document.getElementById('gallery-image');
         const galleryFeatures = document.getElementById('gallery-features');
+        const galleryThumbnails = document.getElementById('gallery-thumbnails');
         const galleryClose = document.getElementById('gallery-close');
+        
+        // Function to set main image and update active thumbnail
+        function setGalleryImage(src, alt, index) {
+            galleryImage.src = src;
+            galleryImage.alt = alt;
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.remove('active');
+                if (i === index) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
         
         // Open modal when clicking a species item
         document.querySelectorAll('.species-item').forEach(item => {
@@ -928,6 +972,10 @@
                 const img = this.querySelector('.species-image img');
                 const imgSrc = img ? img.src : '';
                 const imgAlt = img ? img.alt : name;
+                
+                // Get multiple images if available
+                const imagesData = this.getAttribute('data-images');
+                const images = imagesData ? imagesData.split(',').map(s => s.trim()) : [];
                 
                 // Get features list
                 const featuresList = this.querySelector('.species-features ul');
@@ -952,9 +1000,31 @@
                 // Populate modal
                 galleryTitle.textContent = name;
                 galleryScientific.textContent = scientific;
-                galleryImage.src = imgSrc;
-                galleryImage.alt = imgAlt;
                 galleryFeatures.innerHTML = featuresHTML;
+                
+                // Handle multiple images
+                if (images.length > 1) {
+                    galleryThumbnails.innerHTML = '';
+                    images.forEach((imageSrc, index) => {
+                        const thumb = document.createElement('img');
+                        thumb.src = imageSrc;
+                        thumb.alt = imgAlt + ' - Photo ' + (index + 1);
+                        thumb.className = 'gallery-thumb' + (index === 0 ? ' active' : '');
+                        thumb.dataset.index = index;
+                        thumb.addEventListener('click', function() {
+                            setGalleryImage(this.src, this.alt, parseInt(this.dataset.index));
+                        });
+                        galleryThumbnails.appendChild(thumb);
+                    });
+                    galleryThumbnails.style.display = 'flex';
+                    galleryImage.src = images[0];
+                    galleryImage.alt = imgAlt;
+                } else {
+                    galleryThumbnails.style.display = 'none';
+                    galleryThumbnails.innerHTML = '';
+                    galleryImage.src = imgSrc;
+                    galleryImage.alt = imgAlt;
+                }
                 
                 // Show modal
                 galleryOverlay.classList.add('active');

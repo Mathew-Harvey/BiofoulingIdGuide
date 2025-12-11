@@ -128,7 +128,21 @@ const galleryImage = document.getElementById('gallery-image');
 const galleryDescription = document.getElementById('gallery-description');
 const galleryFeatures = document.getElementById('gallery-features');
 const galleryLookalike = document.getElementById('gallery-lookalike');
+const galleryThumbnails = document.getElementById('gallery-thumbnails');
 const galleryClose = document.getElementById('gallery-close');
+
+// Function to set main image and update active thumbnail
+function setGalleryImage(src, alt, index) {
+    galleryImage.src = src;
+    galleryImage.alt = alt;
+    // Update active thumbnail by index
+    document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+        thumb.classList.remove('active');
+        if (i === index) {
+            thumb.classList.add('active');
+        }
+    });
+}
 
 // Open modal when clicking a species card
 document.querySelectorAll('.species-card').forEach(card => {
@@ -136,10 +150,15 @@ document.querySelectorAll('.species-card').forEach(card => {
         // Get species info from card
         const name = this.querySelector('.species-name').textContent;
         const scientific = this.querySelector('.species-scientific').textContent;
-        const description = this.querySelector('.species-description').textContent;
+        const descEl = this.querySelector('.species-description');
+        const description = descEl ? descEl.textContent : '';
         const img = this.querySelector('.species-image img');
         const imgSrc = img ? img.src : '';
         const imgAlt = img ? img.alt : name;
+        
+        // Get multiple images if available
+        const imagesData = this.getAttribute('data-images');
+        const images = imagesData ? imagesData.split(',').map(s => s.trim()) : [];
         
         // Get features list
         const featuresList = this.querySelector('.species-features ul');
@@ -169,13 +188,35 @@ document.querySelectorAll('.species-card').forEach(card => {
         galleryScientific.textContent = scientific;
         galleryImage.src = imgSrc;
         galleryImage.alt = imgAlt;
-        galleryDescription.textContent = description;
+        if (galleryDescription) galleryDescription.textContent = description;
         galleryFeatures.innerHTML = featuresHTML;
         
-        if (lookalikeHTML) {
+        // Handle multiple images - show thumbnails if 2+ images
+        if (images.length > 1 && galleryThumbnails) {
+            galleryThumbnails.innerHTML = '';
+            images.forEach((imageSrc, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imageSrc;
+                thumb.alt = imgAlt + ' - Photo ' + (index + 1);
+                thumb.className = 'gallery-thumb' + (index === 0 ? ' active' : '');
+                thumb.dataset.index = index;
+                thumb.addEventListener('click', function() {
+                    setGalleryImage(this.src, this.alt, parseInt(this.dataset.index));
+                });
+                galleryThumbnails.appendChild(thumb);
+            });
+            galleryThumbnails.style.display = 'flex';
+            // Set main image to first in the array
+            galleryImage.src = images[0];
+        } else if (galleryThumbnails) {
+            galleryThumbnails.style.display = 'none';
+            galleryThumbnails.innerHTML = '';
+        }
+        
+        if (lookalikeHTML && galleryLookalike) {
             galleryLookalike.innerHTML = lookalikeHTML;
             galleryLookalike.style.display = 'block';
-        } else {
+        } else if (galleryLookalike) {
             galleryLookalike.style.display = 'none';
         }
         
