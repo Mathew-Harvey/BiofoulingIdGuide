@@ -7,9 +7,9 @@
     <title>Hull Biofouling ID Guide - A5 Booklet | MarineStream</title>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* A5 Booklet Print Styles */
+        /* A4 Sheet with 2x A5 Pages - Booklet Layout */
         @page {
-            size: 148mm 210mm; /* A5 Portrait */
+            size: 297mm 210mm; /* A4 Landscape */
             margin: 0;
         }
         
@@ -33,19 +33,28 @@
             font-family: 'Bitter', Georgia, serif;
         }
         
-        /* Page container */
-        .page {
-            width: 148mm;
+        /* A4 Sheet container - holds 2 A5 pages side by side */
+        .a4-sheet {
+            width: 297mm;
             height: 210mm;
-            padding: 5mm 6mm 8mm 6mm;
+            display: flex;
+            flex-direction: row;
             page-break-after: always;
             page-break-inside: avoid;
-            position: relative;
-            overflow: hidden;
         }
         
-        .page:last-child {
+        .a4-sheet:last-child {
             page-break-after: auto;
+        }
+        
+        /* A5 Page container - half of A4 */
+        .page {
+            width: 148.5mm;
+            height: 210mm;
+            padding: 5mm 6mm 8mm 6mm;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
         }
         
         /* ============ COVER PAGE ============ */
@@ -60,7 +69,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 15mm 12mm;
-            width: 148mm;
+            width: 148.5mm;
             height: 210mm;
         }
         
@@ -593,25 +602,42 @@
             color: #0d1b2a;
         }
         
+        /* Fold line indicator */
+        .a4-sheet::after {
+            content: "";
+            position: absolute;
+            left: 148.5mm;
+            top: 0;
+            bottom: 0;
+            border-left: 0.3mm dashed #ccc;
+            pointer-events: none;
+        }
+        
         /* Screen preview styles */
         @media screen {
             html {
-                background: #666;
+                background: #555;
             }
             
             body {
-                max-width: 148mm;
+                max-width: 297mm;
                 margin: 20px auto;
+                background: #444;
+            }
+            
+            .a4-sheet {
                 background: white;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+                margin-bottom: 20px;
+                position: relative;
             }
             
             .page {
-                border-bottom: 1px dashed #ccc;
+                border-right: 1px dashed #ddd;
             }
             
             .page:last-child {
-                border-bottom: none;
+                border-right: none;
             }
         }
         
@@ -620,733 +646,759 @@
             html, body {
                 margin: 0;
                 padding: 0;
-                width: 148mm;
+                width: 297mm;
+            }
+            
+            .a4-sheet {
+                margin: 0;
+                width: 297mm;
+                height: 210mm;
+            }
+            
+            .a4-sheet::after {
+                display: none; /* Hide fold line when printing */
             }
             
             .page {
-                margin: 0;
-                width: 148mm;
+                width: 148.5mm;
                 height: 210mm;
             }
         }
     </style>
 </head>
 <body>
-    <!-- PAGE 1: COVER -->
-    <div class="page cover-page">
-        <div class="cover">
-            <div class="cover-top">
-                <a href="https://www.marinestream.com.au" class="cover-logo"><img src="assets/marinestream_logo_white.png" alt="MarineStream" style="height: 28px;"></a>
-            </div>
-            <div class="cover-main">
-                <div class="cover-icon">🔍</div>
-                <h1>Hull Biofouling<br>ID Guide</h1>
-                <p class="cover-subtitle">Quick reference for divers cleaning ship hulls in WA waters</p>
-                <span class="cover-tagline">Field Pocket Guide</span>
-            </div>
-            <div class="cover-bottom">
-                <div class="cover-alert">⚠️ Found something dodgy? STOP & REPORT</div>
-                <p class="cover-version">Version 2.0 • December 2025</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- PAGE 2: INTRODUCTION -->
-    <div class="page">
-        <div class="intro-page">
-            <h2>How to Use This Guide</h2>
-            
-            <div class="intro-section">
-                <h3>The Job</h3>
-                <p>You're cleaning hulls. You need to spot the bad stuff before you scrape it off. This guide shows you what to look for and what to report.</p>
-            </div>
-            
-            <div class="intro-section">
-                <h3>Why It Matters</h3>
-                <p>Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA — like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
-            </div>
-            
-            <div class="priority-legend">
-                <div class="priority-item">
-                    <div class="priority-dot high"></div>
-                    <span><strong>HIGH</strong> — Stop work. Report immediately.</span>
+    <!-- A4 SHEET 1: Cover + Introduction -->
+    <div class="a4-sheet">
+        <!-- PAGE 1: COVER -->
+        <div class="page cover-page">
+            <div class="cover">
+                <div class="cover-top">
+                    <a href="https://www.marinestream.com.au" class="cover-logo"><img src="assets/marinestream_logo_white.png" alt="MarineStream" style="height: 28px;"></a>
                 </div>
-                <div class="priority-item">
-                    <div class="priority-dot medium"></div>
-                    <span><strong>MEDIUM</strong> — Report within 24 hours</span>
+                <div class="cover-main">
+                    <div class="cover-icon">🔍</div>
+                    <h1>Hull Biofouling<br>ID Guide</h1>
+                    <p class="cover-subtitle">Quick reference for divers cleaning ship hulls in WA waters</p>
+                    <span class="cover-tagline">Field Pocket Guide</span>
                 </div>
-                <div class="priority-item">
-                    <div class="priority-dot native"></div>
-                    <span><strong>NATIVE</strong> — Normal WA fouling, no report needed</span>
+                <div class="cover-bottom">
+                    <div class="cover-alert">⚠️ Found something dodgy? STOP & REPORT</div>
+                    <p class="cover-version">Version 2.0 • December 2025</p>
                 </div>
             </div>
-            
-            <div class="action-box">
-                <h4>⚠️ Found Something Dodgy?</h4>
-                <ul>
-                    <li><strong>STOP cleaning</strong> in that area</li>
-                    <li>Take photos — close-up + wide shot, use hand for scale</li>
-                    <li>Note location (bow distance, depth, port/stbd)</li>
-                    <li><strong>DON'T scrape it off</strong> until reported</li>
-                    <li>Surface and tell your supervisor</li>
-                </ul>
-            </div>
         </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>2</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 3: HIGH PRIORITY SPECIES 1-2 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header">
-                <h2>HIGH Priority — Report Now</h2>
-                <span>Page 1 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- Carpet Sea Squirt -->
-                <div class="species-card high" data-images="assets/dvex1.jpg,assets/dvex2.webp,assets/dvex3.png">
-                    <div class="species-img">
-                        <img src="assets/dvex1.jpg" alt="Carpet Sea Squirt">
-                        <span class="species-badge high">HIGH</span>
+        
+        <!-- PAGE 2: INTRODUCTION -->
+        <div class="page">
+            <div class="intro-page">
+                <h2>How to Use This Guide</h2>
+                
+                <div class="intro-section">
+                    <h3>The Job</h3>
+                    <p>You're cleaning hulls. You need to spot the bad stuff before you scrape it off. This guide shows you what to look for and what to report.</p>
+                </div>
+                
+                <div class="intro-section">
+                    <h3>Why It Matters</h3>
+                    <p>Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA — like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
+                </div>
+                
+                <div class="priority-legend">
+                    <div class="priority-item">
+                        <div class="priority-dot high"></div>
+                        <span><strong>HIGH</strong> — Stop work. Report immediately.</span>
                     </div>
-                    <div class="species-info">
-                        <div class="species-name">Carpet Sea Squirt</div>
-                        <div class="species-scientific">Didemnum vexillum</div>
-                        <span class="species-group">Sea Squirt</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Creamy/tan like old wax</li>
-                                <li>Veiny look — like varicose veins</li>
-                                <li>Leathery feel, NOT slimy</li>
-                                <li>Drips down like candle wax</li>
-                                <li><strong>Already at HMAS Stirling</strong></li>
-                            </ul>
+                    <div class="priority-item">
+                        <div class="priority-dot medium"></div>
+                        <span><strong>MEDIUM</strong> — Report within 24 hours</span>
+                    </div>
+                    <div class="priority-item">
+                        <div class="priority-dot native"></div>
+                        <span><strong>NATIVE</strong> — Normal WA fouling, no report needed</span>
+                    </div>
+                </div>
+                
+                <div class="action-box">
+                    <h4>⚠️ Found Something Dodgy?</h4>
+                    <ul>
+                        <li><strong>STOP cleaning</strong> in that area</li>
+                        <li>Take photos — close-up + wide shot, use hand for scale</li>
+                        <li>Note location (bow distance, depth, port/stbd)</li>
+                        <li><strong>DON'T scrape it off</strong> until reported</li>
+                        <li>Surface and tell your supervisor</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>2</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- A4 SHEET 2: HIGH PRIORITY SPECIES 1-4 -->
+    <div class="a4-sheet">
+        <!-- PAGE 3: HIGH PRIORITY SPECIES 1-2 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header">
+                    <h2>HIGH Priority — Report Now</h2>
+                    <span>Page 1 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- Carpet Sea Squirt -->
+                    <div class="species-card high" data-images="assets/dvex1.jpg,assets/dvex2.webp,assets/dvex3.png">
+                        <div class="species-img">
+                            <img src="assets/dvex1.jpg" alt="Carpet Sea Squirt">
+                            <span class="species-badge high">HIGH</span>
                         </div>
-                        <div class="lookalike-note">
-                            <strong>Don't confuse with:</strong> Native sea squirts — thinner, gelatinous, no veiny texture
+                        <div class="species-info">
+                            <div class="species-name">Carpet Sea Squirt</div>
+                            <div class="species-scientific">Didemnum vexillum</div>
+                            <span class="species-group">Sea Squirt</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Creamy/tan like old wax</li>
+                                    <li>Veiny look — like varicose veins</li>
+                                    <li>Leathery feel, NOT slimy</li>
+                                    <li>Drips down like candle wax</li>
+                                    <li><strong>Already at HMAS Stirling</strong></li>
+                                </ul>
+                            </div>
+                            <div class="lookalike-note">
+                                <strong>Don't confuse with:</strong> Native sea squirts — thinner, gelatinous, no veiny texture
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Asian Green Mussel -->
+                    <div class="species-card high" data-images="assets/AsianGreenLipMuscle.webp,assets/AsianGreen01.jpeg,assets/AsianGreen02.jpg,assets/AsianGreen03.jpg,assets/AsianGreen04.jpg,assets/AsianGreen05.jpg">
+                        <div class="species-img">
+                            <img src="assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel">
+                            <span class="species-badge high">HIGH</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Asian Green Mussel</div>
+                            <div class="species-scientific">Perna viridis</div>
+                            <span class="species-group">Mussel</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Young = bright emerald green</li>
+                                    <li>Older = brownish-green</li>
+                                    <li>Big — 80-165mm (hand-sized)</li>
+                                    <li>Blue-green inside when open</li>
+                                    <li>Check sea chests carefully</li>
+                                </ul>
+                            </div>
+                            <div class="lookalike-note">
+                                <strong>Don't confuse with:</strong> Blue mussel — those are blue-black, not green
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>3</span>
+            </div>
+        </div>
+        
+        <!-- PAGE 4: HIGH PRIORITY SPECIES 3-4 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header">
+                    <h2>HIGH Priority — Report Now</h2>
+                    <span>Page 2 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- European Fan Worm -->
+                    <div class="species-card high">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_866_Sabella_spallanzanii_European_fanworm.jpg?width=400" alt="European Fan Worm">
+                            <span class="species-badge high">HIGH</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">European Fan Worm</div>
+                            <div class="species-scientific">Sabella spallanzanii</div>
+                            <span class="species-group">Tube Worm</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>HUGE fan — 45-60mm across</li>
+                                    <li>Fan spirals in (not flat)</li>
+                                    <li>Stripy — orange/purple/white bands</li>
+                                    <li>Brown leathery tube</li>
+                                    <li><strong>Already established in WA</strong></li>
+                                </ul>
+                            </div>
+                            <div class="lookalike-note">
+                                <strong>Don't confuse with:</strong> Native serpulid worms — smaller fans, white hard tubes
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Black-striped False Mussel -->
+                    <div class="species-card high" data-images="assets/BlackStripedFalseMus01.png,assets/BlackStripedFalseMus02.jpg,assets/BlackStripedFalseMus03.png">
+                        <div class="species-img">
+                            <img src="assets/BlackStripedFalseMus01.png" alt="Black-striped False Mussel">
+                            <span class="species-badge high">HIGH</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Black-striped False Mussel</div>
+                            <div class="species-scientific">Mytilopsis sallei</div>
+                            <span class="species-group">Mussel</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Small — only 25mm (thumbnail)</li>
+                                    <li>Dark stripes on shell</li>
+                                    <li>Packs in thick layers</li>
+                                    <li>Loves brackish water</li>
+                                    <li><strong>Check sea chests!</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>4</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- A4 SHEET 3: HIGH PRIORITY SPECIES 5-6 + MEDIUM 1-2 -->
+    <div class="a4-sheet">
+        <!-- PAGE 5: HIGH PRIORITY SPECIES 5-6 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header">
+                    <h2>HIGH Priority — Report Now</h2>
+                    <span>Page 3 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- White Colonial Sea Squirt -->
+                    <div class="species-card high" data-images="assets/didemnum_perlucidum.jpg,assets/whitesquirt01.png,assets/whitesquirt02.jpg,assets/whitesquirt03.png">
+                        <div class="species-img">
+                            <img src="assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt">
+                            <span class="species-badge high">HIGH</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">White Colonial Sea Squirt</div>
+                            <div class="species-scientific">Didemnum perlucidum</div>
+                            <span class="species-group">Sea Squirt</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>White or see-through</li>
+                                    <li>Thin sheet — hugs the surface</li>
+                                    <li>Smooth, not lumpy</li>
+                                    <li>Can see tiny dots inside</li>
+                                    <li><strong>Already in WA waters</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Killer Algae -->
+                    <div class="species-card high">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Caulerpa_taxifolia_Feather_algae.jpg?width=400" alt="Killer Algae">
+                            <span class="species-badge high">HIGH</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Killer Algae</div>
+                            <div class="species-scientific">Caulerpa taxifolia</div>
+                            <span class="species-group">Algae</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Bright green — stands out</li>
+                                    <li>Feather-shaped fronds</li>
+                                    <li>Spreads with creeping runners</li>
+                                    <li>Can grow to 65cm tall</li>
+                                    <li>Can hitchhike on anchor chains too</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>5</span>
+            </div>
+        </div>
+        
+        <!-- PAGE 6: MEDIUM PRIORITY 1-2 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header medium">
+                    <h2>MEDIUM Priority — Report 24hrs</h2>
+                    <span>Page 1 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- Stalked Sea Squirt -->
+                    <div class="species-card medium">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_clava.JPG?width=400" alt="Stalked Sea Squirt">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Stalked Sea Squirt</div>
+                            <div class="species-scientific">Styela clava</div>
+                            <span class="species-group">Sea Squirt</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Looks like brown pickle on stalk</li>
+                                    <li>Leathery and wrinkly like prune</li>
+                                    <li>50-160mm tall</li>
+                                    <li>Stands alone, not in colonies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Brown Mussel -->
+                    <div class="species-card medium" data-images="assets/brownmuscle01.webp,assets/brownmuscle02.jpg,assets/brownmuscle03.jpg">
+                        <div class="species-img">
+                            <img src="assets/brownmuscle01.webp" alt="Brown Mussel">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Brown Mussel</div>
+                            <div class="species-scientific">Perna perna</div>
+                            <span class="species-group">Mussel</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Dark brown to black shell</li>
+                                    <li>Up to 90mm (fist-sized)</li>
+                                    <li>Dense thick clumps</li>
+                                    <li>Thick shell, hard to break</li>
+                                    <li>From Africa/South America</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>6</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- A4 SHEET 4: MEDIUM PRIORITY 3-6 -->
+    <div class="a4-sheet">
+        <!-- PAGE 7: MEDIUM PRIORITY 3-4 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header medium">
+                    <h2>MEDIUM Priority — Report 24hrs</h2>
+                    <span>Page 2 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- NZ Green-lipped Mussel -->
+                    <div class="species-card medium" data-images="assets/NZGreenLippedMuscle01.jpg,assets/NZGreenLippedMuscle02.jpg,assets/NZGreenLippedMuscle03.png,assets/NZGreenLippedMuscle04.png">
+                        <div class="species-img">
+                            <img src="assets/NZGreenLippedMuscle01.jpg" alt="NZ Green-lipped Mussel">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">NZ Green-lipped Mussel</div>
+                            <div class="species-scientific">Perna canaliculus</div>
+                            <span class="species-group">Mussel</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Green "lip" on shell edge — key ID</li>
+                                    <li>Brown-green shell outside</li>
+                                    <li>MASSIVE — up to 240mm</li>
+                                    <li>Check vessels from NZ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pacific Oyster -->
+                    <div class="species-card medium">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Crassostrea_gigas_p1040848.jpg?width=400" alt="Pacific Oyster">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Pacific Oyster</div>
+                            <div class="species-scientific">Magallana gigas</div>
+                            <span class="species-group">Oyster</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Messy irregular shape</li>
+                                    <li>Rough frilly edges — SHARP!</li>
+                                    <li>Can get huge — up to 400mm</li>
+                                    <li>Glued flat to surface</li>
+                                    <li>Watch your gloves!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>7</span>
+            </div>
+        </div>
+        
+        <!-- PAGE 8: MEDIUM PRIORITY 5-6 -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header medium">
+                    <h2>MEDIUM Priority — Report 24hrs</h2>
+                    <span>Page 3 of 3</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- Japanese Kelp -->
+                    <div class="species-card medium">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_867_Undaria_pinnatifida_Japanese_kelp.jpg?width=400" alt="Japanese Kelp">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Japanese Kelp (Wakame)</div>
+                            <div class="species-scientific">Undaria pinnatifida</div>
+                            <span class="species-group">Kelp</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Big brown fronds with midrib spine</li>
+                                    <li>Wavy ruffled edges</li>
+                                    <li>Can be up to 3m long</li>
+                                    <li>Frilly reproductive bit at base</li>
+                                    <li>Already in southern Aust.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vase Tunicate -->
+                    <div class="species-card medium">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Cionaintestinalis.jpg?width=400" alt="Vase Tunicate">
+                            <span class="species-badge medium">MED</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Vase Tunicate</div>
+                            <div class="species-scientific">Ciona intestinalis</div>
+                            <span class="species-group">Sea Squirt</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>See-through yellowish-green</li>
+                                    <li>Tube/vase shaped</li>
+                                    <li>Two holes at top (siphons)</li>
+                                    <li>Soft and squishy — not hard</li>
+                                    <li>Up to 150mm tall</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>8</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- A4 SHEET 5: NICHE + NATIVE -->
+    <div class="a4-sheet">
+        <!-- PAGE 9: NICHE HITCHHIKERS -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header niche">
+                    <h2>Niche Area Hitchhikers</h2>
+                    <span>Check Sea Chests</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- European Shore Crab -->
+                    <div class="species-card niche">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Carcinus_maenas.jpg?width=400" alt="European Shore Crab">
+                            <span class="species-badge niche">NICHE</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">European Shore Crab</div>
+                            <div class="species-scientific">Carcinus maenas</div>
+                            <span class="species-group">Crab</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Green shell (can be orange under)</li>
+                                    <li>5 spines each side behind eyes</li>
+                                    <li>Up to 90mm across</li>
+                                    <li>Hides in sea chests & rope guards</li>
+                                    <li>Already established pest — still report</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Asian Paddle Crab -->
+                    <div class="species-card niche">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Charybdis_japonica.jpg?width=400" alt="Asian Paddle Crab">
+                            <span class="species-badge niche">NICHE</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Asian Paddle Crab</div>
+                            <div class="species-scientific">Charybdis japonica</div>
+                            <span class="species-group">Crab</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Back legs are flat paddles</li>
+                                    <li>6 spines between the eyes</li>
+                                    <li>Up to 120mm across</li>
+                                    <li>Olive-brown colour</li>
+                                    <li>Swimming crab — can shelter in niche areas</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Asian Green Mussel -->
-                <div class="species-card high" data-images="assets/AsianGreenLipMuscle.webp,assets/AsianGreen01.jpeg,assets/AsianGreen02.jpg,assets/AsianGreen03.jpg,assets/AsianGreen04.jpg,assets/AsianGreen05.jpg">
-                    <div class="species-img">
-                        <img src="assets/AsianGreenLipMuscle.webp" alt="Asian Green Mussel">
-                        <span class="species-badge high">HIGH</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Asian Green Mussel</div>
-                        <div class="species-scientific">Perna viridis</div>
-                        <span class="species-group">Mussel</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Young = bright emerald green</li>
-                                <li>Older = brownish-green</li>
-                                <li>Big — 80-165mm (hand-sized)</li>
-                                <li>Blue-green inside when open</li>
-                                <li>Check sea chests carefully</li>
-                            </ul>
-                        </div>
-                        <div class="lookalike-note">
-                            <strong>Don't confuse with:</strong> Blue mussel — those are blue-black, not green
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>3</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 4: HIGH PRIORITY SPECIES 3-4 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header">
-                <h2>HIGH Priority — Report Now</h2>
-                <span>Page 2 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- European Fan Worm -->
-                <div class="species-card high">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_866_Sabella_spallanzanii_European_fanworm.jpg?width=400" alt="European Fan Worm">
-                        <span class="species-badge high">HIGH</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">European Fan Worm</div>
-                        <div class="species-scientific">Sabella spallanzanii</div>
-                        <span class="species-group">Tube Worm</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>HUGE fan — 45-60mm across</li>
-                                <li>Fan spirals in (not flat)</li>
-                                <li>Stripy — orange/purple/white bands</li>
-                                <li>Brown leathery tube</li>
-                                <li><strong>Already established in WA</strong></li>
-                            </ul>
-                        </div>
-                        <div class="lookalike-note">
-                            <strong>Don't confuse with:</strong> Native serpulid worms — smaller fans, white hard tubes
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Black-striped False Mussel -->
-                <div class="species-card high" data-images="assets/BlackStripedFalseMus01.png,assets/BlackStripedFalseMus02.jpg,assets/BlackStripedFalseMus03.png">
-                    <div class="species-img">
-                        <img src="assets/BlackStripedFalseMus01.png" alt="Black-striped False Mussel">
-                        <span class="species-badge high">HIGH</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Black-striped False Mussel</div>
-                        <div class="species-scientific">Mytilopsis sallei</div>
-                        <span class="species-group">Mussel</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Small — only 25mm (thumbnail)</li>
-                                <li>Dark stripes on shell</li>
-                                <li>Packs in thick layers</li>
-                                <li>Loves brackish water</li>
-                                <li><strong>Check sea chests!</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>4</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 5: HIGH PRIORITY SPECIES 5-6 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header">
-                <h2>HIGH Priority — Report Now</h2>
-                <span>Page 3 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- White Colonial Sea Squirt -->
-                <div class="species-card high" data-images="assets/didemnum_perlucidum.jpg,assets/whitesquirt01.png,assets/whitesquirt02.jpg,assets/whitesquirt03.png">
-                    <div class="species-img">
-                        <img src="assets/didemnum_perlucidum.jpg" alt="White Colonial Sea Squirt">
-                        <span class="species-badge high">HIGH</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">White Colonial Sea Squirt</div>
-                        <div class="species-scientific">Didemnum perlucidum</div>
-                        <span class="species-group">Sea Squirt</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>White or see-through</li>
-                                <li>Thin sheet — hugs the surface</li>
-                                <li>Smooth, not lumpy</li>
-                                <li>Can see tiny dots inside</li>
-                                <li><strong>Already in WA waters</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Killer Algae -->
-                <div class="species-card high">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Caulerpa_taxifolia_Feather_algae.jpg?width=400" alt="Killer Algae">
-                        <span class="species-badge high">HIGH</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Killer Algae</div>
-                        <div class="species-scientific">Caulerpa taxifolia</div>
-                        <span class="species-group">Algae</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Bright green — stands out</li>
-                                <li>Feather-shaped fronds</li>
-                                <li>Spreads with creeping runners</li>
-                                <li>Can grow to 65cm tall</li>
-                                <li>Can hitchhike on anchor chains too</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>5</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 6: MEDIUM PRIORITY 1-2 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header medium">
-                <h2>MEDIUM Priority — Report 24hrs</h2>
-                <span>Page 1 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- Stalked Sea Squirt -->
-                <div class="species-card medium">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Styela_clava.JPG?width=400" alt="Stalked Sea Squirt">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Stalked Sea Squirt</div>
-                        <div class="species-scientific">Styela clava</div>
-                        <span class="species-group">Sea Squirt</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Looks like brown pickle on stalk</li>
-                                <li>Leathery and wrinkly like prune</li>
-                                <li>50-160mm tall</li>
-                                <li>Stands alone, not in colonies</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Brown Mussel -->
-                <div class="species-card medium" data-images="assets/brownmuscle01.webp,assets/brownmuscle02.jpg,assets/brownmuscle03.jpg">
-                    <div class="species-img">
-                        <img src="assets/brownmuscle01.webp" alt="Brown Mussel">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Brown Mussel</div>
-                        <div class="species-scientific">Perna perna</div>
-                        <span class="species-group">Mussel</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Dark brown to black shell</li>
-                                <li>Up to 90mm (fist-sized)</li>
-                                <li>Dense thick clumps</li>
-                                <li>Thick shell, hard to break</li>
-                                <li>From Africa/South America</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>6</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 7: MEDIUM PRIORITY 3-4 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header medium">
-                <h2>MEDIUM Priority — Report 24hrs</h2>
-                <span>Page 2 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- NZ Green-lipped Mussel -->
-                <div class="species-card medium" data-images="assets/NZGreenLippedMuscle01.jpg,assets/NZGreenLippedMuscle02.jpg,assets/NZGreenLippedMuscle03.png,assets/NZGreenLippedMuscle04.png">
-                    <div class="species-img">
-                        <img src="assets/NZGreenLippedMuscle01.jpg" alt="NZ Green-lipped Mussel">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">NZ Green-lipped Mussel</div>
-                        <div class="species-scientific">Perna canaliculus</div>
-                        <span class="species-group">Mussel</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Green "lip" on shell edge — key ID</li>
-                                <li>Brown-green shell outside</li>
-                                <li>MASSIVE — up to 240mm</li>
-                                <li>Check vessels from NZ</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pacific Oyster -->
-                <div class="species-card medium">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Crassostrea_gigas_p1040848.jpg?width=400" alt="Pacific Oyster">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Pacific Oyster</div>
-                        <div class="species-scientific">Magallana gigas</div>
-                        <span class="species-group">Oyster</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Messy irregular shape</li>
-                                <li>Rough frilly edges — SHARP!</li>
-                                <li>Can get huge — up to 400mm</li>
-                                <li>Glued flat to surface</li>
-                                <li>Watch your gloves!</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>7</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 8: MEDIUM PRIORITY 5-6 -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header medium">
-                <h2>MEDIUM Priority — Report 24hrs</h2>
-                <span>Page 3 of 3</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- Japanese Kelp -->
-                <div class="species-card medium">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_867_Undaria_pinnatifida_Japanese_kelp.jpg?width=400" alt="Japanese Kelp">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Japanese Kelp (Wakame)</div>
-                        <div class="species-scientific">Undaria pinnatifida</div>
-                        <span class="species-group">Kelp</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Big brown fronds with midrib spine</li>
-                                <li>Wavy ruffled edges</li>
-                                <li>Can be up to 3m long</li>
-                                <li>Frilly reproductive bit at base</li>
-                                <li>Already in southern Aust.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Vase Tunicate -->
-                <div class="species-card medium">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Cionaintestinalis.jpg?width=400" alt="Vase Tunicate">
-                        <span class="species-badge medium">MED</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Vase Tunicate</div>
-                        <div class="species-scientific">Ciona intestinalis</div>
-                        <span class="species-group">Sea Squirt</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>See-through yellowish-green</li>
-                                <li>Tube/vase shaped</li>
-                                <li>Two holes at top (siphons)</li>
-                                <li>Soft and squishy — not hard</li>
-                                <li>Up to 150mm tall</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>8</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 9: NICHE HITCHHIKERS -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header niche">
-                <h2>Niche Area Hitchhikers</h2>
-                <span>Check Sea Chests</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- European Shore Crab -->
-                <div class="species-card niche">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Carcinus_maenas.jpg?width=400" alt="European Shore Crab">
-                        <span class="species-badge niche">NICHE</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">European Shore Crab</div>
-                        <div class="species-scientific">Carcinus maenas</div>
-                        <span class="species-group">Crab</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Green shell (can be orange under)</li>
-                                <li>5 spines each side behind eyes</li>
-                                <li>Up to 90mm across</li>
-                                <li>Hides in sea chests & rope guards</li>
-                                <li>Already established pest — still report</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Asian Paddle Crab -->
-                <div class="species-card niche">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Charybdis_japonica.jpg?width=400" alt="Asian Paddle Crab">
-                        <span class="species-badge niche">NICHE</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Asian Paddle Crab</div>
-                        <div class="species-scientific">Charybdis japonica</div>
-                        <span class="species-group">Crab</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Back legs are flat paddles</li>
-                                <li>6 spines between the eyes</li>
-                                <li>Up to 120mm across</li>
-                                <li>Olive-brown colour</li>
-                                <li>Swimming crab — can shelter in niche areas</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <p style="font-size: 7.5pt; color: #5a4080; margin-top: 4mm; text-align: center; font-style: italic;">
-                These don't grow on hulls but hide in sea chests, rope guards, and gratings. Check when inspecting these areas.
-            </p>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>9</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 10: NATIVE COMPARISON -->
-    <div class="page">
-        <div class="species-page">
-            <div class="species-page-header native">
-                <h2>Native — Normal WA Fouling</h2>
-                <span>No Report Needed</span>
-            </div>
-            
-            <div class="species-pair">
-                <!-- Blue Mussel -->
-                <div class="species-card native">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Mytilus_galloprovincialis.jpg?width=400" alt="Blue Mussel">
-                        <span class="species-badge native">NATIVE</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Blue Mussel ✓</div>
-                        <div class="species-scientific">Mytilus galloprovincialis</div>
-                        <span class="species-group">Mussel — Common</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Blue-black to dark brown shell</li>
-                                <li>Pointy triangle shape</li>
-                                <li>Clumps together with threads</li>
-                                <li><strong>NOT green — that's Asian one</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Native Tube Worms -->
-                <div class="species-card native">
-                    <div class="species-img">
-                        <img src="https://en.wikipedia.org/wiki/Special:FilePath/Spirobranchus_giganteus_(Christmastree_Worm_-_yellow_variation).jpg?width=400" alt="Native Tube Worms">
-                        <span class="species-badge native">NATIVE</span>
-                    </div>
-                    <div class="species-info">
-                        <div class="species-name">Native Serpulid Worms ✓</div>
-                        <div class="species-scientific">Serpulidae & Spirorbidae</div>
-                        <span class="species-group">Tube Worm — Common</span>
-                        <div class="species-features">
-                            <ul>
-                                <li>Hard white calcium tubes</li>
-                                <li>Small feathery fans</li>
-                                <li>Spirorbids are tiny 3mm coils</li>
-                                <li><strong>NOT big spiral fans like European fan worm</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 3mm; padding: 2.5mm; background: #e8f4ea; border-radius: 2mm; font-size: 7.5pt;">
-                <strong style="color: #2d7d46;">Native Sea Squirts:</strong> Thin jelly-like mats, various colours, NOT veiny/waxy. If unsure between native and invasive — <strong>always report it</strong>.
-            </div>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>10</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 11: QUICK REFERENCE TABLE -->
-    <div class="page">
-        <div class="reference-page">
-            <h2>Quick Reference Table</h2>
-            
-            <table class="ref-table invasive">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Species</th>
-                        <th style="width: 12%;">Priority</th>
-                        <th>Quick ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Carpet Sea Squirt</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>Creamy veiny mat, waxy texture, drips</td>
-                    </tr>
-                    <tr>
-                        <td>Asian Green Mussel</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>Bright green shell, 80-165mm</td>
-                    </tr>
-                    <tr>
-                        <td>European Fan Worm</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>Big spiral fan 45-60mm, stripy</td>
-                    </tr>
-                    <tr>
-                        <td>Black-striped Mussel</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>Small 25mm, dark stripes, sea chests</td>
-                    </tr>
-                    <tr>
-                        <td>White Sea Squirt</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>White/clear thin sheet</td>
-                    </tr>
-                    <tr>
-                        <td>Killer Algae</td>
-                        <td><span class="ref-priority high">HIGH</span></td>
-                        <td>Bright green feathery fronds</td>
-                    </tr>
-                    <tr>
-                        <td>NZ Green-lip Mussel</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>Green lip on edge, massive 240mm</td>
-                    </tr>
-                    <tr>
-                        <td>Pacific Oyster</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>Messy shell, sharp edges, glued flat</td>
-                    </tr>
-                    <tr>
-                        <td>Japanese Kelp</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>Brown fronds with spine, wavy edges</td>
-                    </tr>
-                    <tr>
-                        <td>Stalked Sea Squirt</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>Brown pickle on stalk, wrinkly</td>
-                    </tr>
-                    <tr>
-                        <td>Brown Mussel</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>Dark brown/black, 90mm, thick clumps</td>
-                    </tr>
-                    <tr>
-                        <td>Vase Tunicate</td>
-                        <td><span class="ref-priority medium">MED</span></td>
-                        <td>See-through yellow-green tube</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <table class="ref-table native" style="margin-top: 3mm;">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Native Species</th>
-                        <th>Key Difference from Invasive</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Blue Mussel</td>
-                        <td>Blue-black shell, NOT green</td>
-                    </tr>
-                    <tr>
-                        <td>Native Tube Worms</td>
-                        <td>Small fans, white hard tubes — NOT big brown tube</td>
-                    </tr>
-                    <tr>
-                        <td>Native Sea Squirts</td>
-                        <td>Thin jelly mats, NOT veiny/waxy</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>11</span>
-        </div>
-    </div>
-    
-    <!-- PAGE 12: CONTACT & REPORTING -->
-    <div class="page">
-        <div class="contact-page">
-            <h2>Report It</h2>
-            
-            <div class="hotline-box">
-                <h3>🚨 Exotic Marine Pest Hotline (24/7)</h3>
-                <div class="hotline-number">1800 900 090</div>
-                <div class="hotline-label">Call anytime — they want to hear from you</div>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <h4>MarineStream</h4>
-                    <p><strong>Biofouling Manager:</strong><br>Mat Harvey</p>
-                    <p><strong>Operations Manager:</strong><br>Sam Diamond</p>
-                    <p style="margin-top: 2mm;">www.marinestream.com.au</p>
-                </div>
-                <div class="contact-card">
-                    <h4>WA State</h4>
-                    <p><strong>DPIRD Pest Watch:</strong><br>1800 084 881</p>
-                    <p style="margin-top: 2mm;"><strong>Online Report:</strong><br>www.marinepests.gov.au/report</p>
-                </div>
-            </div>
-            
-            <div class="reminder-box">
-                <h4>✓ When Reporting, Include:</h4>
-                <ul>
-                    <li>Photos — close-up + wide shot with hand for scale</li>
-                    <li>Location on hull (bow distance, depth, port/stbd)</li>
-                    <li>Vessel name and location</li>
-                    <li>Date and time of sighting</li>
-                    <li>Your contact details</li>
-                </ul>
-            </div>
-            
-            <div style="margin-top: 5mm; text-align: center; padding: 3mm; background: #f0f2f4; border-radius: 2mm;">
-                <p style="font-size: 8pt; color: #555; margin-bottom: 1.5mm;">
-                    <strong>Hull Biofouling ID Guide</strong> • Version 2.0 • December 2025
-                </p>
-                <p style="font-size: 7pt; color: #888;">
-                    © 2025 MarineStream • Info from DAFF, DPIRD WA, NIMPIS
+                <p style="font-size: 7.5pt; color: #5a4080; margin-top: 4mm; text-align: center; font-style: italic;">
+                    These don't grow on hulls but hide in sea chests, rope guards, and gratings. Check when inspecting these areas.
                 </p>
             </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>9</span>
+            </div>
         </div>
-        <div class="page-footer">
-            <span class="page-footer-logo">MarineStream</span>
-            <span>12</span>
+        
+        <!-- PAGE 10: NATIVE COMPARISON -->
+        <div class="page">
+            <div class="species-page">
+                <div class="species-page-header native">
+                    <h2>Native — Normal WA Fouling</h2>
+                    <span>No Report Needed</span>
+                </div>
+                
+                <div class="species-pair">
+                    <!-- Blue Mussel -->
+                    <div class="species-card native">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Mytilus_galloprovincialis.jpg?width=400" alt="Blue Mussel">
+                            <span class="species-badge native">NATIVE</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Blue Mussel ✓</div>
+                            <div class="species-scientific">Mytilus galloprovincialis</div>
+                            <span class="species-group">Mussel — Common</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Blue-black to dark brown shell</li>
+                                    <li>Pointy triangle shape</li>
+                                    <li>Clumps together with threads</li>
+                                    <li><strong>NOT green — that's Asian one</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Native Tube Worms -->
+                    <div class="species-card native">
+                        <div class="species-img">
+                            <img src="https://en.wikipedia.org/wiki/Special:FilePath/Spirobranchus_giganteus_(Christmastree_Worm_-_yellow_variation).jpg?width=400" alt="Native Tube Worms">
+                            <span class="species-badge native">NATIVE</span>
+                        </div>
+                        <div class="species-info">
+                            <div class="species-name">Native Serpulid Worms ✓</div>
+                            <div class="species-scientific">Serpulidae & Spirorbidae</div>
+                            <span class="species-group">Tube Worm — Common</span>
+                            <div class="species-features">
+                                <ul>
+                                    <li>Hard white calcium tubes</li>
+                                    <li>Small feathery fans</li>
+                                    <li>Spirorbids are tiny 3mm coils</li>
+                                    <li><strong>NOT big spiral fans like European fan worm</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3mm; padding: 2.5mm; background: #e8f4ea; border-radius: 2mm; font-size: 7.5pt;">
+                    <strong style="color: #2d7d46;">Native Sea Squirts:</strong> Thin jelly-like mats, various colours, NOT veiny/waxy. If unsure between native and invasive — <strong>always report it</strong>.
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>10</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- A4 SHEET 6: QUICK REFERENCE + CONTACT -->
+    <div class="a4-sheet">
+        <!-- PAGE 11: QUICK REFERENCE TABLE -->
+        <div class="page">
+            <div class="reference-page">
+                <h2>Quick Reference Table</h2>
+                
+                <table class="ref-table invasive">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Species</th>
+                            <th style="width: 12%;">Priority</th>
+                            <th>Quick ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carpet Sea Squirt</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>Creamy veiny mat, waxy texture, drips</td>
+                        </tr>
+                        <tr>
+                            <td>Asian Green Mussel</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>Bright green shell, 80-165mm</td>
+                        </tr>
+                        <tr>
+                            <td>European Fan Worm</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>Big spiral fan 45-60mm, stripy</td>
+                        </tr>
+                        <tr>
+                            <td>Black-striped Mussel</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>Small 25mm, dark stripes, sea chests</td>
+                        </tr>
+                        <tr>
+                            <td>White Sea Squirt</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>White/clear thin sheet</td>
+                        </tr>
+                        <tr>
+                            <td>Killer Algae</td>
+                            <td><span class="ref-priority high">HIGH</span></td>
+                            <td>Bright green feathery fronds</td>
+                        </tr>
+                        <tr>
+                            <td>NZ Green-lip Mussel</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>Green lip on edge, massive 240mm</td>
+                        </tr>
+                        <tr>
+                            <td>Pacific Oyster</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>Messy shell, sharp edges, glued flat</td>
+                        </tr>
+                        <tr>
+                            <td>Japanese Kelp</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>Brown fronds with spine, wavy edges</td>
+                        </tr>
+                        <tr>
+                            <td>Stalked Sea Squirt</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>Brown pickle on stalk, wrinkly</td>
+                        </tr>
+                        <tr>
+                            <td>Brown Mussel</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>Dark brown/black, 90mm, thick clumps</td>
+                        </tr>
+                        <tr>
+                            <td>Vase Tunicate</td>
+                            <td><span class="ref-priority medium">MED</span></td>
+                            <td>See-through yellow-green tube</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="ref-table native" style="margin-top: 3mm;">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Native Species</th>
+                            <th>Key Difference from Invasive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blue Mussel</td>
+                            <td>Blue-black shell, NOT green</td>
+                        </tr>
+                        <tr>
+                            <td>Native Tube Worms</td>
+                            <td>Small fans, white hard tubes — NOT big brown tube</td>
+                        </tr>
+                        <tr>
+                            <td>Native Sea Squirts</td>
+                            <td>Thin jelly mats, NOT veiny/waxy</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>11</span>
+            </div>
+        </div>
+        
+        <!-- PAGE 12: CONTACT & REPORTING -->
+        <div class="page">
+            <div class="contact-page">
+                <h2>Report It</h2>
+                
+                <div class="hotline-box">
+                    <h3>🚨 Exotic Marine Pest Hotline (24/7)</h3>
+                    <div class="hotline-number">1800 900 090</div>
+                    <div class="hotline-label">Call anytime — they want to hear from you</div>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>MarineStream</h4>
+                        <p><strong>Biofouling Manager:</strong><br>Mat Harvey</p>
+                        <p><strong>Operations Manager:</strong><br>Sam Diamond</p>
+                        <p style="margin-top: 2mm;">www.marinestream.com.au</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>WA State</h4>
+                        <p><strong>DPIRD Pest Watch:</strong><br>1800 084 881</p>
+                        <p style="margin-top: 2mm;"><strong>Online Report:</strong><br>www.marinepests.gov.au/report</p>
+                    </div>
+                </div>
+                
+                <div class="reminder-box">
+                    <h4>✓ When Reporting, Include:</h4>
+                    <ul>
+                        <li>Photos — close-up + wide shot with hand for scale</li>
+                        <li>Location on hull (bow distance, depth, port/stbd)</li>
+                        <li>Vessel name and location</li>
+                        <li>Date and time of sighting</li>
+                        <li>Your contact details</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 5mm; text-align: center; padding: 3mm; background: #f0f2f4; border-radius: 2mm;">
+                    <p style="font-size: 8pt; color: #555; margin-bottom: 1.5mm;">
+                        <strong>Hull Biofouling ID Guide</strong> • Version 2.0 • December 2025
+                    </p>
+                    <p style="font-size: 7pt; color: #888;">
+                        © 2025 MarineStream • Info from DAFF, DPIRD WA, NIMPIS
+                    </p>
+                </div>
+            </div>
+            <div class="page-footer">
+                <span class="page-footer-logo">MarineStream</span>
+                <span>12</span>
+            </div>
         </div>
     </div>
 </body>
 </html>
-
