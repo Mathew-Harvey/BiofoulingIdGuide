@@ -663,6 +663,110 @@ footer .container {
 
 footer p { opacity: 0.8; font-size: 0.9rem; }
 
+footer .container {
+    flex-direction: column;
+    gap: 25px;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Developer Contact Section */
+.dev-contact {
+    width: 100%;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dev-contact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.6) 0%, rgba(0, 80, 130, 0.4) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(100, 181, 198, 0.2);
+    flex-wrap: wrap;
+}
+
+.dev-contact-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.dev-contact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dev-contact-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.dev-contact-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.dev-contact-links {
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.dev-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #64b5c6;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.dev-link:hover {
+    background: rgba(100, 181, 198, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(100, 181, 198, 0.3);
+    color: #8ed4e3;
+}
+
+.dev-link svg {
+    transition: transform 0.25s ease;
+}
+
+.dev-link:hover svg {
+    transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+    .dev-contact-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .dev-contact-links {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
 /* Search */
 .search-box {
     width: 100%;
