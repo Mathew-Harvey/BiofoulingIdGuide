@@ -17,6 +17,31 @@ const regionData = {
         name: 'New South Wales',
         shortName: 'NSW',
         icon: '🌊'
+    },
+    vic: {
+        name: 'Victoria',
+        shortName: 'VIC',
+        icon: '⭐'
+    },
+    tas: {
+        name: 'Tasmania',
+        shortName: 'TAS',
+        icon: '🏔️'
+    },
+    qld: {
+        name: 'Queensland',
+        shortName: 'QLD',
+        icon: '☀️'
+    },
+    sa: {
+        name: 'South Australia',
+        shortName: 'SA',
+        icon: '🍷'
+    },
+    nt: {
+        name: 'Northern Territory',
+        shortName: 'NT',
+        icon: '🐊'
     }
 };
 

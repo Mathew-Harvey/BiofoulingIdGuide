@@ -29,6 +29,31 @@
                     <span class="region-modal-name">New South Wales</span>
                     <span class="region-modal-desc">NSW DPI regulations & contacts</span>
                 </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('vic')">
+                    <span class="region-modal-icon">⭐</span>
+                    <span class="region-modal-name">Victoria</span>
+                    <span class="region-modal-desc">Agriculture VIC regulations & contacts</span>
+                </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('tas')">
+                    <span class="region-modal-icon">🏔️</span>
+                    <span class="region-modal-name">Tasmania</span>
+                    <span class="region-modal-desc">Biosecurity TAS regulations & contacts</span>
+                </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('qld')">
+                    <span class="region-modal-icon">☀️</span>
+                    <span class="region-modal-name">Queensland</span>
+                    <span class="region-modal-desc">Biosecurity QLD regulations & contacts</span>
+                </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('sa')">
+                    <span class="region-modal-icon">🍷</span>
+                    <span class="region-modal-name">South Australia</span>
+                    <span class="region-modal-desc">PIRSA regulations & contacts</span>
+                </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('nt')">
+                    <span class="region-modal-icon">🐊</span>
+                    <span class="region-modal-name">Northern Territory</span>
+                    <span class="region-modal-desc">NT DEPWS regulations & contacts</span>
+                </button>
             </div>
         </div>
     </div>
@@ -58,6 +83,21 @@
                     </button>
                     <button class="region-dropdown-item" data-region="nsw" onclick="setRegion('nsw')">
                         <span>🌊</span> New South Wales
+                    </button>
+                    <button class="region-dropdown-item" data-region="vic" onclick="setRegion('vic')">
+                        <span>⭐</span> Victoria
+                    </button>
+                    <button class="region-dropdown-item" data-region="tas" onclick="setRegion('tas')">
+                        <span>🏔️</span> Tasmania
+                    </button>
+                    <button class="region-dropdown-item" data-region="qld" onclick="setRegion('qld')">
+                        <span>☀️</span> Queensland
+                    </button>
+                    <button class="region-dropdown-item" data-region="sa" onclick="setRegion('sa')">
+                        <span>🍷</span> South Australia
+                    </button>
+                    <button class="region-dropdown-item" data-region="nt" onclick="setRegion('nt')">
+                        <span>🐊</span> Northern Territory
                     </button>
                 </div>
             </div>
@@ -92,6 +132,61 @@
                     <span class="print-desc">Wall reference</span>
                 </a>
                 <a href="A5Booklet-NSW.html" class="print-btn region-content nsw-content" target="_blank" id="booklet-link-nsw" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- VIC Print Links -->
+                <a href="A3Poster-VIC.html" class="print-btn region-content vic-content" target="_blank" id="poster-link-vic" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-VIC.html" class="print-btn region-content vic-content" target="_blank" id="booklet-link-vic" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- TAS Print Links -->
+                <a href="A3Poster-TAS.html" class="print-btn region-content tas-content" target="_blank" id="poster-link-tas" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-TAS.html" class="print-btn region-content tas-content" target="_blank" id="booklet-link-tas" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- QLD Print Links -->
+                <a href="A3Poster-QLD.html" class="print-btn region-content qld-content" target="_blank" id="poster-link-qld" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-QLD.html" class="print-btn region-content qld-content" target="_blank" id="booklet-link-qld" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- SA Print Links -->
+                <a href="A3Poster-SA.html" class="print-btn region-content sa-content" target="_blank" id="poster-link-sa" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-SA.html" class="print-btn region-content sa-content" target="_blank" id="booklet-link-sa" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
+                <!-- NT Print Links -->
+                <a href="A3Poster-NT.html" class="print-btn region-content nt-content" target="_blank" id="poster-link-nt" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-NT.html" class="print-btn region-content nt-content" target="_blank" id="booklet-link-nt" style="display:none;">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
@@ -526,7 +621,7 @@
                             <div class="species-header">
                                 <div>
                                     <div class="species-name">Asian Date/Bag Mussel</div>
-                                    <div class="species-scientific">Musculista senhousia</div>
+                                    <div class="species-scientific">Arcuatula senhousia</div>
                                 </div>
                                 <span class="priority high">HIGH</span>
                             </div>
