@@ -54,6 +54,11 @@
                     <span class="region-modal-name">Northern Territory</span>
                     <span class="region-modal-desc">NT DEPWS regulations & contacts</span>
                 </button>
+                <button class="region-modal-btn" onclick="selectRegionFromModal('sl')">
+                    <span class="region-modal-icon">🇱🇰</span>
+                    <span class="region-modal-name">Sri Lanka</span>
+                    <span class="region-modal-desc">MEPA & IMO TEST Biofouling guidance</span>
+                </button>
             </div>
         </div>
     </div>
@@ -99,6 +104,9 @@
                     <button class="region-dropdown-item" data-region="nt" onclick="setRegion('nt')">
                         <span>🐊</span> Northern Territory
                     </button>
+                    <button class="region-dropdown-item" data-region="sl" onclick="setRegion('sl')">
+                        <span>🇱🇰</span> Sri Lanka
+                    </button>
                 </div>
             </div>
         </div>
@@ -115,12 +123,12 @@
             <div class="hero-badge">Version 3.0 • January 2026</div>
             <div class="print-links">
                 <!-- WA Print Links -->
-                <a href="A3Poster.html" class="print-btn region-content wa-content" target="_blank" id="poster-link-wa">
+                <a href="A3Poster.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="poster-link-wa">
                     <span class="print-icon">🖨️</span>
                     <span class="print-text">A3 Poster</span>
                     <span class="print-desc">Wall reference</span>
                 </a>
-                <a href="A5Booklet.html" class="print-btn region-content wa-content" target="_blank" id="booklet-link-wa">
+                <a href="A5Booklet.html" class="print-btn region-content wa-content has-sl-override" target="_blank" id="booklet-link-wa">
                     <span class="print-icon">📖</span>
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
@@ -191,6 +199,17 @@
                     <span class="print-text">A5 Booklet</span>
                     <span class="print-desc">Pocket guide</span>
                 </a>
+                <!-- Sri Lanka Print Links -->
+                <a href="A3Poster-SL.html" class="print-btn region-content sl-content" target="_blank" id="poster-link-sl" style="display:none;">
+                    <span class="print-icon">🖨️</span>
+                    <span class="print-text">A3 Poster</span>
+                    <span class="print-desc">Wall reference</span>
+                </a>
+                <a href="A5Booklet-SL.html" class="print-btn region-content sl-content" target="_blank" id="booklet-link-sl" style="display:none;">
+                    <span class="print-icon">📖</span>
+                    <span class="print-text">A5 Booklet</span>
+                    <span class="print-desc">Pocket guide</span>
+                </a>
             </div>
         </div>
     </section>
@@ -208,7 +227,8 @@
                     </div>
                     <div class="info-card">
                         <h3>Why It Matters</h3>
-                        <p class="region-content wa-content">Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA - like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
+                        <p class="region-content wa-content has-sl-override">Marine pests hitch rides on hulls. Some nasty ones have already turned up in WA - like carpet sea squirt at HMAS Stirling. Divers are our first line of defence.</p>
+                        <p class="region-content sl-content" style="display:none;">Invasive marine species hitch rides on ship hulls and in sea chests. Sri Lanka has already recorded new invaders such as the charru mussel (<em>Mytella strigata</em>) near Anawilundawa, and the Asian green mussel is widespread. Divers and inspectors are the first line of defence under the IMO Biofouling Guidelines.</p>
                         <p class="region-content nsw-content" style="display:none;">Marine pests hitch rides on hulls. Sydney Harbour and NSW ports have seen invasive species like Caulerpa taxifolia and European fan worm. Divers are our first line of defence.</p>
                         <p class="region-content vic-content" style="display:none;">Marine pests hitch rides on hulls. Port Phillip Bay has established populations of Northern Pacific Seastar. Divers are our first line of defence.</p>
                         <p class="region-content tas-content" style="display:none;">Marine pests hitch rides on hulls. The Derwent Estuary has been devastated by Northern Pacific Seastar. Divers are our first line of defence.</p>
@@ -219,10 +239,16 @@
                     <div class="info-card">
                         <h3>Priority Levels</h3>
                         <!-- WA Priority Levels -->
-                        <ul class="priority-list region-content wa-content">
+                        <ul class="priority-list region-content wa-content has-sl-override">
                             <li><span class="priority high">NOXIOUS</span> WA noxious listed. Stop work & report to DPIRD within 24hrs.</li>
                             <li><span class="priority medium">WATCH</span> Emerging threat — not yet in WA. Document & report.</li>
                             <li><span class="priority low">NATIVE</span> Normal WA fouling — no report needed.</li>
+                        </ul>
+                        <!-- Sri Lanka Priority Levels -->
+                        <ul class="priority-list region-content sl-content" style="display:none;">
+                            <li><span class="priority high">HIGH RISK</span> Invasive marine species of concern to Sri Lanka. Stop work, document & report to MEPA.</li>
+                            <li><span class="priority medium">WATCH</span> Emerging threat in the region. Document & report.</li>
+                            <li><span class="priority low">NATIVE</span> Normal local fouling — no report needed.</li>
                         </ul>
                         <!-- NSW Priority Levels -->
                         <ul class="priority-list region-content nsw-content" style="display:none;">
@@ -260,7 +286,8 @@
                             <li><span class="priority medium">WATCH</span> Emerging threat. Document & report.</li>
                             <li><span class="priority low">NATIVE</span> Normal NT fouling — no report needed.</li>
                         </ul>
-                        <p class="region-content wa-content" style="font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Key species from WA noxious list. Full list: fish.wa.gov.au (Schedule 5)</em></p>
+                        <p class="region-content wa-content has-sl-override" style="font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Key species from WA noxious list. Full list: fish.wa.gov.au (Schedule 5)</em></p>
+                        <p class="region-content sl-content" style="display:none; font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Aligned with the IMO Biofouling Guidelines (resolution MEPC.378(80)) and the GEF-UNDP-IMO GloFouling / IMO–Norad TEST Biofouling Project.</em></p>
                         <p class="region-content nsw-content" style="display:none; font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Species listed under NSW Biosecurity Act 2015</em></p>
                         <p class="region-content vic-content" style="display:none; font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Species under Catchment & Land Protection Act 1994</em></p>
                         <p class="region-content tas-content" style="display:none; font-size: 0.85em; color: var(--gray-600); margin-top: 10px;"><em>Species under TAS Biosecurity Act 2019</em></p>
@@ -271,7 +298,7 @@
                 </div>
                 
                 <!-- WA Alert -->
-                <div class="alert region-content wa-content">
+                <div class="alert region-content wa-content has-sl-override">
                     <h4>⚠️ Suspect a Noxious Species?</h4>
                     <ul>
                         <li><strong>STOP cleaning</strong> — cease work until DPIRD advises</li>
@@ -279,6 +306,18 @@
                         <li>Note where on the hull (bow distance, depth, port/starboard)</li>
                         <li><strong>DON'T scrape it off</strong> — leave specimen intact</li>
                         <li>Report to <strong>DPIRD FishWatch 1800 815 507</strong> within 24 hours</li>
+                    </ul>
+                </div>
+
+                <!-- Sri Lanka Alert -->
+                <div class="alert region-content sl-content" style="display:none;">
+                    <h4>⚠️ Suspect an Invasive Marine Species?</h4>
+                    <ul>
+                        <li><strong>STOP cleaning</strong> — pause in-water work until MEPA advises</li>
+                        <li>Take photos - close-up + wide shot, use your hand for scale</li>
+                        <li>Note where on the hull (sea chest, niche area, depth, port/starboard) and the vessel's last ports</li>
+                        <li><strong>DON'T scrape it off</strong> — keep the specimen intact for identification</li>
+                        <li>Report to the <strong>Marine Environment Protection Authority (MEPA)</strong> — Tel <strong>+94 11 2554373</strong> / <strong>+94 11 2554006</strong>, email <strong>info@mepa.gov.lk</strong> (mepa.gov.lk)</li>
                     </ul>
                 </div>
                 
@@ -383,7 +422,8 @@
                             </div>
                             <span class="species-group region-content wa-content">Sea Squirt • WA Noxious Listed</span>
                             <span class="species-group region-content nsw-content" style="display:none;">Sea Squirt</span>
-                            <p class="species-description region-content wa-content">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>Already found at HMAS Stirling and Henderson.</strong></p>
+                            <p class="species-description region-content wa-content has-sl-override">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>Already found at HMAS Stirling and Henderson.</strong></p>
+                            <p class="species-description region-content sl-content" style="display:none;">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>A serious hull and niche-area fouler — report any sightings.</strong></p>
                             <p class="species-description region-content nsw-content" style="display:none;">Nicknamed "sea vomit" - and it looks like it. Creamy-tan carpet that grows over everything. <strong>HIGH priority pest - report any sightings in NSW waters immediately.</strong></p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
@@ -481,6 +521,35 @@
                         </div>
                     </div>
                     
+                    <!-- Mytella strigata - Charru Mussel (Sri Lanka) -->
+                    <div class="species-card invasive region-content sl-content" style="display:none;" data-name="mytella strigata charru mussel black mussel" data-images="assets/charru_mussel.svg">
+                        <div class="species-image"><img src="assets/charru_mussel.svg" alt="Charru Mussel"></div>
+                        <div class="species-content">
+                            <div class="species-header">
+                                <div>
+                                    <div class="species-name">Charru Mussel</div>
+                                    <div class="species-scientific">Mytella strigata</div>
+                                </div>
+                                <span class="priority high">HIGH RISK</span>
+                            </div>
+                            <span class="species-group">Mussel</span>
+                            <p class="species-description">A small dark mussel that has recently invaded Sri Lanka — first found in 2023 in shrimp farms near the Anawilundawa Ramsar wetland on the north-west coast. Forms dense clusters that foul aquaculture gear, clog nets and intakes, and smother native bivalves. Tolerates brackish water, so check sea chests, internal seawater systems and low-salinity niche areas.</p>
+                            <div class="species-features">
+                                <h4>How to Spot It</h4>
+                                <ul>
+                                    <li>Small — usually 20-40mm long</li>
+                                    <li>Dark olive-brown to blackish, sometimes with faint rays</li>
+                                    <li>Glossy, smooth shell with a pointed beak</li>
+                                    <li>Packs into thick clumps on hard surfaces and on each other</li>
+                                    <li>Thrives in estuaries, lagoons and brackish water</li>
+                                </ul>
+                            </div>
+                            <div class="lookalike-box">
+                                <strong>Don't confuse with:</strong> Young Asian green mussels (those are green-tinged and grow much larger) and the black-striped false mussel <em>Mytilopsis sallei</em> (which has internal shelf-like "teeth" inside the shell hinge). If unsure, keep the specimen and report it.
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Perna perna - Brown Mussel - Multiple Regions -->
                     <div class="species-card invasive region-content wa-content vic-content tas-content sa-content qld-content" data-name="perna perna brown mussel" data-images="assets/brownmuscle01.webp,assets/brownmuscle02.jpg,assets/brownmuscle03.jpg">
                         <div class="species-image"><img src="assets/brownmuscle01.webp" alt="Brown Mussel"></div>
@@ -636,7 +705,8 @@
                             <span class="species-group region-content qld-content" style="display:none;">Tube Worm • Not in QLD</span>
                             <span class="species-group region-content sa-content" style="display:none;">Tube Worm • Established in SA</span>
                             <span class="species-group region-content nt-content" style="display:none;">Tube Worm • Not in NT</span>
-                            <p class="species-description region-content wa-content">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Already established in WA — still report.</strong></p>
+                            <p class="species-description region-content wa-content has-sl-override">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Already established in WA — still report.</strong></p>
+                            <p class="species-description region-content sl-content" style="display:none;">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>A known hull fouler — report any sightings.</strong></p>
                             <p class="species-description region-content nsw-content" style="display:none;">Big feathery worm in a leathery tube. The fan is much bigger than native tube worms. <strong>Established in NSW ports including Sydney Harbour.</strong></p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
@@ -684,7 +754,8 @@
                             <span class="species-group region-content qld-content" style="display:none;">Kelp • QLD Priority</span>
                             <span class="species-group region-content sa-content" style="display:none;">Kelp • Established in SA</span>
                             <span class="species-group region-content nt-content" style="display:none;">Kelp • Cold-water Species — Not on NT Declared Weeds List</span>
-                            <p class="species-description region-content wa-content">Big brown seaweed with a central spine. <strong>Established in VIC, TAS, SA but NOT yet detected in WA.</strong> Report any sightings in WA waters.</p>
+                            <p class="species-description region-content wa-content has-sl-override">Big brown seaweed with a central spine. <strong>Established in VIC, TAS, SA but NOT yet detected in WA.</strong> Report any sightings in WA waters.</p>
+                            <p class="species-description region-content sl-content" style="display:none;">Big brown seaweed with a central spine. <strong>A cold-temperate kelp — unlikely to establish in tropical Sri Lanka, but transiting vessels may carry it.</strong> Report any sightings.</p>
                             <p class="species-description region-content nsw-content" style="display:none;">Big brown seaweed with a central spine. Not in NSW yet but watch for it on vessels from southern Australia.</p>
                             <p class="species-description region-content vic-content" style="display:none;">Big brown seaweed with a central spine. <strong>ESTABLISHED in VIC - prevent further spread.</strong></p>
                             <p class="species-description region-content tas-content" style="display:none;">Big brown seaweed with a central spine. <strong>ESTABLISHED in TAS - prevent further spread.</strong></p>
@@ -723,7 +794,8 @@
                             <span class="species-group region-content nsw-content" style="display:none;">Algae</span>
                             <span class="species-group region-content qld-content" style="display:none;">Algae • Native to North QLD</span>
                             <span class="species-group region-content nt-content" style="display:none;">Algae • Native to Northern Australia</span>
-                            <p class="species-description region-content wa-content">Bright green feathery algae. Called "killer algae" because it smothers everything. <strong>WA Noxious listed — not yet in WA.</strong></p>
+                            <p class="species-description region-content wa-content has-sl-override">Bright green feathery algae. Called "killer algae" because it smothers everything. <strong>WA Noxious listed — not yet in WA.</strong></p>
+                            <p class="species-description region-content sl-content" style="display:none;">Bright green feathery algae. Called "killer algae" because it smothers everything. <strong>An aggressive smothering weed — report any sightings.</strong></p>
                             <p class="species-description region-content nsw-content" style="display:none;">Bright green feathery algae. <strong>CLASS 1 NOXIOUS in NSW - established in 14+ estuaries including Sydney Harbour.</strong> Illegal to possess.</p>
                             <p class="species-description region-content qld-content" style="display:none;">Bright green feathery algae. <strong>Native to northern Australia</strong> — not considered a pest in QLD waters. The invasive aquarium strain is a concern in temperate southern states (e.g. NSW), but the native form is part of the natural tropical ecosystem here.</p>
                             <p class="species-description region-content nt-content" style="display:none;">Bright green feathery algae. <strong>Native to northern Australia</strong> — not considered a pest in the NT and <strong>not on the NT declared weeds list.</strong> The invasive aquarium strain is a concern in temperate southern states, but the native form is part of the natural tropical ecosystem here.</p>
@@ -943,7 +1015,8 @@
                             <span class="species-group region-content qld-content" style="display:none;">Mussel • QLD Prohibited</span>
                             <span class="species-group region-content sa-content" style="display:none;">Mussel • Established in SA</span>
                             <span class="species-group region-content nt-content" style="display:none;">Mussel • NT Priority</span>
-                            <p class="species-description region-content wa-content">Small mussel that forms extremely dense mats. <strong>WA Noxious Listed. Established in VIC, TAS, SA.</strong></p>
+                            <p class="species-description region-content wa-content has-sl-override">Small mussel that forms extremely dense mats. <strong>WA Noxious Listed. Established in VIC, TAS, SA.</strong></p>
+                            <p class="species-description region-content sl-content" style="display:none;">Small mussel that forms extremely dense mats that smother surfaces. <strong>A spreading fouler of warm and temperate waters — report any sightings.</strong></p>
                             <p class="species-description region-content nsw-content" style="display:none;">Small mussel that forms extremely dense mats. <strong>Prohibited Matter in NSW. Established in VIC, TAS, SA, WA.</strong></p>
                             <p class="species-description region-content vic-content" style="display:none;">Small mussel that forms extremely dense mats. <strong>ESTABLISHED in VIC - prevent further spread.</strong></p>
                             <p class="species-description region-content tas-content" style="display:none;">Small mussel that forms extremely dense mats. <strong>ESTABLISHED in TAS - prevent further spread.</strong></p>
@@ -1121,7 +1194,8 @@
                             </div>
                             <span class="species-group region-content wa-content">Crab • WA Noxious Listed</span>
                             <span class="species-group region-content nsw-content" style="display:none;">Crab</span>
-                            <p class="species-description region-content wa-content">Green crab that hides in sea chests and rope guards. <strong>NOT established in WA - remains on the noxious list. Report to DPIRD immediately.</strong></p>
+                            <p class="species-description region-content wa-content has-sl-override">Green crab that hides in sea chests and rope guards. <strong>NOT established in WA - remains on the noxious list. Report to DPIRD immediately.</strong></p>
+                            <p class="species-description region-content sl-content" style="display:none;">Green crab that hides in sea chests and rope guards. <strong>A temperate invader — most likely on vessels from cooler waters. Report any sightings.</strong></p>
                             <p class="species-description region-content nsw-content" style="display:none;">Green crab that hides in sea chests and rope guards. Already established in some Australian waters.</p>
                             <div class="species-features">
                                 <h4>How to Spot It</h4>
@@ -1609,7 +1683,7 @@
             </section>
             
             <!-- Quick Reference Section -->
-            <section id="reference" class="region-content wa-content">
+            <section id="reference" class="region-content wa-content has-sl-override">
                 <h2 class="section-title">Quick Reference — WA Noxious Species</h2>
                 
                 <p class="ref-note"><em>Key species from WA noxious fish list (Schedule 5, Fish Resources Management Regulations 1995). <a href="https://www.fish.wa.gov.au" target="_blank">Full list at fish.wa.gov.au</a></em></p>
@@ -1656,7 +1730,54 @@
                     </table>
                 </div>
             </section>
-            
+
+            <!-- Quick Reference Section - Sri Lanka -->
+            <section id="reference-sl" class="region-content sl-content" style="display:none;">
+                <h2 class="section-title">Quick Reference — Sri Lanka IMS of Concern</h2>
+
+                <p class="ref-note"><em>Invasive marine species of interest or concern to Sri Lanka. Aligned with the IMO Biofouling Guidelines and the GEF-UNDP-IMO GloFouling / IMO–Norad TEST Biofouling Project. Report sightings to MEPA.</em></p>
+
+                <h3 class="ref-section-title noxious">🛑 High Risk — Report to MEPA</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="invasive-header">Type</th>
+                                <th class="invasive-header">Species</th>
+                                <th class="invasive-header">Quick ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Mussel</td><td><strong>Charru Mussel</strong> (<em>Mytella strigata</em>)</td><td>Small 20-40mm, dark olive-black, glossy, dense brackish-water clumps — new invader</td></tr>
+                            <tr><td>Mussel</td><td><strong>Asian Green Mussel</strong> (<em>Perna viridis</em>)</td><td>Bright green shell (young), big 80-165mm, in sea chests</td></tr>
+                            <tr><td>Mussel</td><td><strong>Black-striped False Mussel</strong> (<em>Mytilopsis sallei</em>)</td><td>Small 25mm, dark stripes, brackish, in sea chests</td></tr>
+                            <tr><td>Mussel</td><td><strong>Brown Mussel</strong> (<em>Perna perna</em>)</td><td>Dark brown/black, up to 90mm, thick clusters</td></tr>
+                            <tr><td>Tube Worm</td><td><strong>European Fan Worm</strong> (<em>Sabella spallanzanii</em>)</td><td>Big spiral fan 45-60mm, stripy, leathery brown tube</td></tr>
+                            <tr><td>Oyster</td><td><strong>Pacific Oyster</strong> (<em>Magallana gigas</em>)</td><td>Irregular shell, sharp frilly edges</td></tr>
+                            <tr><td>Sea Squirt</td><td><strong>Carpet Sea Squirt</strong> (<em>Didemnum vexillum</em>)</td><td>Creamy veiny mat, waxy texture, dripping tendrils</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="ref-section-title watch">⚠️ Watch List — Know What They Look Like</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="niche-header">Type</th>
+                                <th class="niche-header">Species</th>
+                                <th class="niche-header">Quick ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sea Squirt</td><td><strong>White Colonial Sea Squirt</strong> (<em>Didemnum perlucidum</em>)</td><td>White/translucent thin sheets on hull and niches</td></tr>
+                            <tr><td>Barnacles</td><td><strong>Fouling Barnacles</strong> (<em>Amphibalanus</em> spp.)</td><td>Hard cone shells in dense crusts — common tropical foulers</td></tr>
+                            <tr><td>Cold-water</td><td><strong>Wakame / N. Pacific Seastar</strong></td><td>Unlikely to establish in tropical waters, but transiting vessels may carry them</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
             <!-- Contact Section -->
             <section id="contact">
                 <h2 class="section-title">Report It</h2>
@@ -1669,13 +1790,31 @@
                         <p><strong>Website:</strong> <a href="https://www.marinestream.com.au" style="color: inherit;">www.marinestream.com.au</a></p>
                     </div>
                     
-                    <div class="contact-card">
+                    <div class="contact-card aus-only">
                         <h3>National Reporting</h3>
                         <p><strong>Marine Pests Australia</strong></p>
                         <p><a href="https://www.marinepests.gov.au/report" target="_blank" style="color: inherit;">www.marinepests.gov.au/report</a></p>
                         <p style="margin-top: 10px;"><em>Use your state contacts below for fastest response</em></p>
                     </div>
-                    
+
+                    <!-- Sri Lanka National Reporting -->
+                    <div class="contact-card region-content sl-content" style="display:none;">
+                        <h3>IMO TEST Biofouling</h3>
+                        <p><strong>GEF-UNDP-IMO GloFouling / IMO–Norad TEST Biofouling Project</strong></p>
+                        <p>Delivered in Sri Lanka with MEPA &amp; MTCC Africa (JKUAT)</p>
+                        <p><a href="https://www.glofouling.imo.org" target="_blank" style="color: inherit;">glofouling.imo.org</a></p>
+                    </div>
+
+                    <!-- Sri Lanka State Contacts -->
+                    <div class="contact-card region-content sl-content" style="display:none;">
+                        <h3>MEPA Sri Lanka</h3>
+                        <div class="hotline">📞 +94 11 2554373</div>
+                        <p style="font-size: 0.85em; margin-top: 5px;">Marine Environment Protection Authority (also +94 11 2554006)</p>
+                        <p><strong>Email:</strong> <a href="mailto:info@mepa.gov.lk" style="color: inherit;">info@mepa.gov.lk</a></p>
+                        <p><strong>Web:</strong> <a href="https://mepa.gov.lk" target="_blank" style="color: inherit;">mepa.gov.lk</a></p>
+                        <p style="font-size: 0.85em; margin-top: 5px;">No.177, Nawala Road, Narahenpita, Colombo 05</p>
+                    </div>
+
                     <!-- WA State Contacts -->
                     <div class="contact-card region-content wa-content">
                         <h3>DPIRD Western Australia</h3>
@@ -1845,6 +1984,20 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Sri Lanka Additional Info -->
+                <div class="region-content sl-content" style="display:none; margin-top: 25px;">
+                    <div class="alert" style="border-left-color: var(--primary); background: #e3f2fd;">
+                        <h4 style="color: var(--primary);">📍 Sri Lanka Reporting Notes</h4>
+                        <ul>
+                            <li><strong>Charru mussel (<em>Mytella strigata</em>):</strong> New invader — first recorded 2023 near the Anawilundawa Ramsar wetland. Report any dense dark-mussel clusters.</li>
+                            <li><strong>Asian green mussel (<em>Perna viridis</em>):</strong> Widespread in the region and a major hull/sea-chest fouler.</li>
+                            <li><strong>Black-striped false mussel (<em>Mytilopsis sallei</em>):</strong> Brackish-water pest — check sea chests and internal seawater systems.</li>
+                            <li><strong>Pathways:</strong> Hull biofouling, sea chests and ballast water. Sri Lanka is implementing the IMO Biofouling Guidelines through the TEST Biofouling Project.</li>
+                            <li>Report suspected invasive marine species to <strong>MEPA</strong> (+94 11 2554373, info@mepa.gov.lk). Keep the specimen, photos and the vessel's recent port history.</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -1853,7 +2006,8 @@
         <div class="container">
             <div class="footer-main">
                 <p>© 2026 MarineStream</p>
-                <p class="region-content wa-content">Info from DAFF, DPIRD WA, NIMPIS</p>
+                <p class="region-content wa-content has-sl-override">Info from DAFF, DPIRD WA, NIMPIS</p>
+                <p class="region-content sl-content" style="display:none;">Info from IMO Biofouling Guidelines, MEPA Sri Lanka, GloFouling / TEST Biofouling</p>
                 <p class="region-content nsw-content" style="display:none;">Info from DAFF, NSW DPI, NIMPIS</p>
                 <p class="region-content vic-content" style="display:none;">Info from DAFF, Agriculture Victoria, NIMPIS</p>
                 <p class="region-content tas-content" style="display:none;">Info from DAFF, Biosecurity Tasmania, NIMPIS</p>

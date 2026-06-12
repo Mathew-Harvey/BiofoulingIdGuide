@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Version-2.0-blue?style=flat-square" alt="Version 2.0">
   <img src="https://img.shields.io/badge/December-2025-green?style=flat-square" alt="December 2025">
-  <img src="https://img.shields.io/badge/Regions-All_Australian_States-orange?style=flat-square" alt="All Australian States">
+  <img src="https://img.shields.io/badge/Regions-All_Australian_States_+_Sri_Lanka-orange?style=flat-square" alt="All Australian States + Sri Lanka">
   <img src="https://img.shields.io/badge/License-Proprietary-red?style=flat-square" alt="Proprietary">
 </p>
 
@@ -460,6 +460,7 @@ npx serve .
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **3.1** | June 2026 | Added **Sri Lanka** region for the IMO–Norad TEST Biofouling Project: Sri Lanka IMS of concern (incl. charru mussel *Mytella strigata*), MEPA reporting contacts, Sri Lanka quick-reference and print variants. All Australian content retained. |
 | **2.0** | December 2025 | Hull-specific species list, multi-region support, A5 booklet format, simplified diver-friendly language, native comparison species |
 | **1.0** | November 2025 | Initial release, WA focus |
 

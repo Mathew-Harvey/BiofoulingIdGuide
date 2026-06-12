@@ -326,6 +326,36 @@ body[data-region="nt"] .tas-content { display: none !important; }
 body[data-region="nt"] .qld-content { display: none !important; }
 body[data-region="nt"] .sa-content { display: none !important; }
 body[data-region="nt"] .nt-content { display: block !important; }
+body[data-region="nt"] .sl-content { display: none !important; }
+
+/* Sri Lanka — IMO–Norad TEST Biofouling Project.
+   No Australian legal classes apply, so we show any Sri Lanka-specific blocks
+   (.sl-content) and fall back to the default .wa-content for shared ID info.
+   Where a Sri Lanka override exists, the matching .wa-content block is marked
+   .has-sl-override so it is hidden to avoid duplication. */
+body[data-region="sl"] .nsw-content,
+body[data-region="sl"] .vic-content,
+body[data-region="sl"] .tas-content,
+body[data-region="sl"] .qld-content,
+body[data-region="sl"] .sa-content,
+body[data-region="sl"] .nt-content { display: none !important; }
+body[data-region="sl"] .wa-content { display: block !important; }
+body[data-region="sl"] .sl-content { display: block !important; }
+body[data-region="sl"] .wa-content.has-sl-override { display: none !important; }
+
+/* Hide Sri Lanka-only content while an Australian region is active */
+body[data-region="wa"] .sl-content,
+body[data-region="nsw"] .sl-content,
+body[data-region="vic"] .sl-content,
+body[data-region="tas"] .sl-content,
+body[data-region="qld"] .sl-content,
+body[data-region="sa"] .sl-content { display: none !important; }
+
+/* Elements that only apply to the Australian editions are hidden for Sri Lanka */
+body[data-region="sl"] .aus-only { display: none !important; }
+
+/* Sri Lankan flag accent for the region badge/dropdown */
+body[data-region="sl"] .region-badge { border-color: #8D153A; }
 
 /* Responsive region modal */
 @media (max-width: 600px) {
